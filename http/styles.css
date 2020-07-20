@@ -1,0 +1,47 @@
+body {
+  margin: 0 auto;
+}
+
+#main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#container {
+  width: 25vw;
+}
+
+input {
+  width: 100%;
+  padding: 8px 0 8px 0;
+  margin: 5px 0 0 0;
+  display: inline-block;
+  border: none;
+  border-bottom: 1px solid black;
+  background: transparent;
+}
+
+input:focus {
+  outline: none;
+}
+
+.tooltip {
+  text-align: right;
+  color: gray;
+  font-style: italic;
+  font-size: 12px;
+}
+
+#signup {
+  background-color: black;
+  color: white;
+  padding: 13px;
+  border: none;
+  width: 100%;
+}
+
+.field-div {
+  height: 15vh;
+}

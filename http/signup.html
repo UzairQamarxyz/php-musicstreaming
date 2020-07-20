@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <main id="main">
+        <form method="POST" action="../php/signup.php" onsubmit="return validate()">
+            <div id="container">
+                <div class="field-div" id="email-div">
+                    <input type="text" name="email" placeholder="Email" id="email" oninput="emailVal()" required>
+                    <p id="et" class="tooltip"></p>
+                </div>
+                <div class="field-div" id="user-div">
+                    <input type="text" name="username" placeholder="Username" id="username" oninput="userVal()" required>
+                    <p id="ut" class="tooltip"></p>
+                </div>
+                <div class="field-div" id="psw-div">
+                    <input type="password" name="psw" placeholder="Password" id="psw" oninput="pswVal()" required>
+                    <p id="pt" class="tooltip"></p>
+                </div>
+                <input type="submit" id="signup" value="Signup" />
+            </div>
+            </div>
+        </form>
+    </main>
+    <script>
+        function validate() {
+            return (emailVal() && userVal() && pswVal())
+        }
+
+
+        // EMAIL VALIDATION
+        function emailVal() {
+            var emailRegex = /^\w+([\.-]?\w+)*@\w+(\.\w{2,3})/
+            var email = document.getElementById("email").value
+
+            if (!email.match(emailRegex) || email.length == 0) {
+                $("#et").text("*Please Enter a Valid Email").css({
+                    "color": "red"
+                })
+                return false
+            } else {
+                $("#et").text("*The entered email is valid").css({
+                    "color": "green"
+                })
+                return true
+            }
+        }
+
+        // USERNAME VALIDATION
+        function userVal() {
+            var userRegex = /^[a-zA-Z]+[^\W_]{3,}/
+            var username = document.getElementById("username").value
+
+            if (!username.match(userRegex) || username.length == 0) {
+                $("#ut").text("*Username must be alphanumeric with no special characters and must be atleast 4 letters long").css({
+                    "color": "red"
+                })
+                return false
+            } else {
+                $("#ut").text("*The username is valid").css({
+                    "color": "green"
+                })
+                return true
+            }
+        }
+
+        // PASSWORD VALIDATION
+        function pswVal() {
+            var strongPsw = /^(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z])(?=\D*\d)(?=.*[!@#$%^&-+=()<>,./?;:'"\\|\[\]{}])(?=.{8,})/
+            var medPsw = /^(((?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]))|((?=[^a-z]*[a-z])(?=\D*\d))|((?=[^a-z]*[a-z])(?=.*[!@#$%^&-+=()<>,./?;:'"\\|\[\]{}])))(?=.{6,})/
+            var psw = document.getElementById("psw").value
+
+            if (psw.match(strongPsw)) {
+                $("#pt").text("*Password Strength: Strong").css({
+                    "color": "green"
+                })
+                return true
+            } else if (psw.match(medPsw)) {
+                $("#pt").text("*Password Strength: Medium").css({
+                    "color": "orange"
+                })
+                return true
+            } else if (psw.length < 6) {
+                $("#pt").text("*Password must be atleast 6 characters").css({
+                    "color": "red"
+                })
+                return false
+            } else {
+                $("#pt").text("*Password Strength: Weak").css({
+                    "color": "red"
+                })
+                return true
+            }
+        }
+    </script>
+</body>
+
+</html>
