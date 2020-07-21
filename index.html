@@ -2,6 +2,7 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="./styles/index.css">
+    <link rel="stylesheet" type="text/css" href="./styles/form.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
@@ -12,9 +13,11 @@
             <p id="desc">Site Description</p>
             <button id="login" onclick="login()">Login</button>
         </div>
+
         <!-- FORM -->
-        <form id="form" method="POST" action="/" onsubmit="return validate()">
-            <div id="container">
+
+        <div id="container">
+            <form id="form" method="POST" action="/" onsubmit="return validate()">
                 <div class="field-div" id="email-div">
                     <input type="text" name="email" placeholder="Email" id="email" oninput="emailVal()" required>
                     <p id="et" class="tooltip"></p>
@@ -28,12 +31,16 @@
                     <p id="pt" class="tooltip"></p>
                 </div>
                 <input type="submit" id="signup" value="Signup" />
-            </div>
-            </div>
-        </form>
+            </form>
+        </div>
 
     </main>
     <script>
+        function login() {
+            window.open('./http/login.html', '_blank')
+        }
+
+        // Signup
         function validate() {
             return (emailVal() && userVal() && pswVal())
         }

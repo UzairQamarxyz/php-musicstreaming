@@ -22,10 +22,10 @@ button {
   color: black;
   width: 85px;
   height: 32px;
-  background-color: whitesmoke;
+  background-color: transparent;
   border: none;
   border-radius: 5px;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 #signup {
@@ -37,7 +37,7 @@ button {
 
 #login {
   border: 2px solid whitesmoke;
-  color: mediumpurple;
+  color: whitesmoke;
   margin: 0px 0px 0px 5px;
 }
 
@@ -49,53 +49,7 @@ button {
   font-size: 4rem;
 }
 
-#desc {
-  color: whitesmoke;
-  margin-top: 0;
-}
-
-#form {
-  margin-right: 5%;
-}
-
-#container {
-  width: 25vw;
-}
-
-input {
-  width: 100%;
-  padding: 8px 0 8px 0;
-  margin: 5px 0 0 0;
-  display: inline-block;
-  border: none;
-  border-bottom: 1px solid black;
-  background: transparent;
-  color: whitesmoke;
-}
-
-input:focus {
-  outline: none;
-}
-
-input::placeholder {
-  color: whitesmoke;
-}
-
-.tooltip {
-  text-align: right;
-  color: gray;
-  font-style: italic;
-  font-size: 12px;
-}
-
-#signup {
-  background-color: black;
-  color: whitesmoke;
-  padding: 13px;
-  border: none;
-  width: 100%;
-}
-
-.field-div {
-  height: 15vh;
+#desc{
+    margin-top: 0;
+    color: whitesmoke
 }

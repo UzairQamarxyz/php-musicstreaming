@@ -1,16 +1,6 @@
-body {
-  margin: 0 auto;
-}
-
-#main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
 #container {
   width: 25vw;
+  margin-right: 5%;
 }
 
 input {
@@ -27,6 +17,10 @@ input:focus {
   outline: none;
 }
 
+input::placeholder {
+  color: whitesmoke;
+}
+
 .tooltip {
   text-align: right;
   color: gray;
@@ -35,11 +29,12 @@ input:focus {
 }
 
 #signup {
-  background-color: black;
-  color: white;
+  background-color: whitesmoke;
+  color: mediumpurple;
   padding: 13px;
   border: none;
   width: 100%;
+  border-radius: 4px;
 }
 
 .field-div {
