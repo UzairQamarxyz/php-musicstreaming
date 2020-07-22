@@ -2,22 +2,54 @@
 <html>
 
 <head>
-
+    <link rel="stylesheet" type="text/css" href="../styles/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
     <header id="header">
-        
+        <span id="left-header">
+            <a id="site" href="#">SITE</a>
+        </span>
+        <span id="mid-header">
+            <input id="search-bar" type="text" placeholder="Search Something" />
+        </span>
+        <span id="right-header">
+            RIGHT
+        </span>
     </header>
     <main id="main">
-        <div id="div1">
-            
+        <div id="sidebar">
+            <div id="list-div">
+                <ul id="list">
+                    <li><b>Saved Playlists</b></li>
+                    <li><a>Playlist1</a></li>
+                    <li><a>Playlist2</a></li>
+                    <li><a>Playlist3</a></li>
+                </ul>
+            </div>
+            <img id="album-art" src="../assets/album.jpg" alt="album art">
         </div>
         <div id="div2">
-            
+            <p id="stream-heading">Your Stream</p>
+            <div id="tracks">
+                <div class="track-div">
+                    <i class="play-pause" class="fa fa-play" aria-hidden="true"></i>
+                    <div class="song-info">
+                        <a class="song-name">SONG</a>
+                        <div class="artist-album">
+                            <a class="artist-name">ARTIST</a><span> ∙ </span><a class="album-name">ALBUM</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
+
     </main>
+    <div id="player">
+        FOOTER
+    </div>
 </body>
 
 </html>
