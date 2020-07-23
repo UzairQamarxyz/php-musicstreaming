@@ -56,7 +56,7 @@ body {
 /* Side Bar */
 #main {
   display: flex;
-  height: 86vh;
+  height: 81vh;
 }
 #sidebar {
   display: flex;
@@ -105,7 +105,7 @@ body {
   flex-direction: column;
 }
 .song-name {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: bold;
 }
 .album-name,
@@ -113,7 +113,21 @@ body {
   font-size: 12px;
 }
 
+/* Player Control */
 #player {
-  background-color: brown;
-  height: 7vh;
+  background-color: #393e46;
+  height: 12vh;
+  display: flex;
+  align-items: center;
+}
+#controls {
+  background-color: #393e46;
+  margin-left:2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.control {
+  background-color: #393e46;
+  padding: 5px;
 }
