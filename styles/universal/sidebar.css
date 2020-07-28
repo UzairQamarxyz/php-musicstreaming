@@ -1,0 +1,44 @@
+/* CSS FOR SIDEBAR */
+
+/* Side Bar */
+#sidebar {
+  grid-area: sidebar;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#site-name {
+  grid-area: title;
+  text-align: center;
+  align-self: center;
+}
+
+#list-div {
+  margin: 20% 0 0 22px;
+}
+
+#list {
+  list-style: none;
+  padding: 0;
+}
+
+#list > li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+ul > li > i {
+  color: #00a6fb;
+}
+
+#datagrid .material-icons,
+#sidebar .material-icons {
+  margin-right: 12px;
+}
+
+#album-art {
+  width: 100%;
+  object-fit: contain;
+}

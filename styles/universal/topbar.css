@@ -1,0 +1,37 @@
+/* CSS FOR THE TOP BAR */
+
+#searchbar {
+  display: flex;
+  align-items: center;
+  grid-area: search;
+  border-left: 1px solid #495057;
+  border-bottom: 1px solid #495057;
+  padding: 7px;
+}
+#search-icon {
+  color: #ccc9dc;
+}
+#search-box,
+#search-box:focus {
+  outline: none;
+  border: 0;
+  font-size: 18px;
+  font-weight: lighter;
+  color: #ccc9dc;
+}
+#search-box::placeholder {
+  color: #ccc9dc;
+}
+
+#profile-bar {
+  grid-area: profile;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  border-left: 1px solid #495057;
+  border-bottom: 1px solid #495057;
+}
+#pfp {
+  border-radius: 100%;
+}

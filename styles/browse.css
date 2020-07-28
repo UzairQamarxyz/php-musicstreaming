@@ -43,85 +43,7 @@ body {
   display: flex;
 }
 
-/* Side Bar */
-#sidebar {
-  grid-area: sidebar;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-#site-name {
-  grid-area: title;
-  text-align: center;
-  align-self: center;
-}
-
-#list-div {
-  margin: 20% 0 0 22px;
-}
-
-#list {
-  list-style: none;
-  padding: 0;
-}
-
-#list > li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 22px;
-}
-
-ul > li > i {
-  color: #00a6fb;
-}
-
-#datagrid .material-icons,
-#sidebar .material-icons {
-  margin-right: 12px;
-}
-
-#album-art {
-  width: 100%;
-  object-fit: contain;
-}
-
 /* Tracks */
-#searchbar {
-  display: flex;
-  align-items: center;
-  grid-area: search;
-  border-left: 1px solid #495057;
-  border-bottom: 1px solid #495057;
-  padding: 7px;
-}
-#search-icon {
-  color: #ccc9dc;
-}
-#search-box,
-#search-box:focus {
-  outline: none;
-  border: 0;
-  font-size: 18px;
-  font-weight: lighter;
-  color: #ccc9dc;
-}
-#search-box::placeholder {
-  color: #ccc9dc;
-}
-
-#profile {
-  grid-area: profile;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-
-  border-left: 1px solid #495057;
-  border-bottom: 1px solid #495057;
-}
-#pfp {
-  border-radius: 100%;
-}
 
 #datagrid {
   grid-area: tracks;
@@ -154,39 +76,4 @@ ul > li > i {
 }
 
 .gallery {
-}
-
-/* Player Control */
-#player,
-#player * {
-  background-color: #1b263b;
-}
-
-#player {
-  grid-area: player;
-  display: flex;
-  align-items: center;
-  position: sticky;
-}
-
-#controls {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 22px;
-}
-
-#play {
-  font-size: 36px;
-}
-
-#player-trackbox {
-  width: 100%;
-}
-
-#player-info {
-  display: flex;
-  white-space: break-spaces;
-  justify-content: center;
 }

@@ -45,12 +45,33 @@ body {
 
 /* Tracks */
 
+#album-area {
+  display: flex;
+  flex-direction: row;
+  margin: 40px;
+}
+#album-picture {
+  width: 250px;
+  height: 250px;
+  background-position: center;
+  background-size: cover;
+}
+#album-name{
+  font-size: 20px;
+  font-weight: bold;
+}
+#profile {
+  display: flex;
+  flex-direction: column;
+  background: none;
+  align-items: left;
+  margin: 20px;
+}
 #datagrid {
   grid-area: tracks;
   overflow: auto;
   border-left: 1px solid #495057;
 }
-
 #datagrid-heading {
   font-size: 32px;
   font-weight: bold;
