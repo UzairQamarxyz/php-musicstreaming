@@ -21,12 +21,13 @@
   margin-left: 22px;
 }
 
-#play {
+#playpause {
   font-size: 36px;
 }
 
 #player-trackbox {
   width: 100%;
+  text-align: center;
 }
 
 #player-info {
@@ -43,4 +44,26 @@
   font: inherit;
   cursor: pointer;
   outline: inherit;
+}
+progress {
+  width: 30%;
+}
+
+progress[value] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: white;
+  color: #00a6fb;
+  height: 5px;
+}
+
+progress[value]::-webkit-progress-bar {
+  background-color: white;
+  border-radius: 2px;
+  border: 1px solid lighten(#acacac, 20%);
+  color: #00a6fb;
+}
+
+progress::-webkit-progress-value {
+  background-color: #00a6fb;
 }
