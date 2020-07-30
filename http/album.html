@@ -3,40 +3,17 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="../styles/album.css">
+    <link rel="stylesheet" type="text/css" href="../styles/universal/grid.css">
     <link rel="stylesheet" type="text/css" href="../styles/universal/player.css">
     <link rel="stylesheet" type="text/css" href="../styles/universal/sidebar.css">
     <link rel="stylesheet" type="text/css" href="../styles/universal/topbar.css">
+
+    <script type="text/javascript" src="../js/player.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.0/howler.min.js"></script>
-
-    <script>
-        var aud = document.getElementById('aud')
-        var dur = document.getElementById('dur')
-
-        function mDur() {
-            dur.max = aud.duration
-        }
-
-        function mPlay() {
-            dur.value = aud.currentTime
-        }
-
-        function mSet() {
-            aud.currentTime = dur.value
-        }
-    </script>
-    <script>
-        var sound = new Howl({
-            src: ['../assets/song.mp3'],
-            volume: 0.8
-        });
-
-        function playSong() {
-            sound.play();
-        }
-    </script>
 </head>
 
 <body>
@@ -109,21 +86,94 @@
             </div>
         </div>
 
-        <div id="player">
+        <div id="player-div">
+            <audio id="player" ontimeupdate="initProgressBar()">
+                <source src="../assets/song.mp3" type="audio/mp3">
+            </audio>
             <div id="controls">
                 <button id="prev" class="material-icons operator">skip_previous</button>
-                <button id="play" class="material-icons operator" onclick="playSong()">play_arrow</button>
+                <button id="playpause" class="material-icons operator paused" onclick="play()">play_arrow</button>
                 <button id="next" class="material-icons operator">skip_next</button>
             </div>
             <div id="player-trackbox">
                 <div id="player-info">
                     <span id="player-artist">Dawn Wall</span>
-                    <p> • </p>
+                    <p> - </p>
                     <span id="player-title">Mantis</span>
+                </div>
+                <div id="timestamps">
+                    <small id="start-time">00:00</small>
+                    <progress id="seek-obj" value="0" max="1"></progress>
+                    <small id="end-time">00:00</small>
                 </div>
             </div>
 
         </div>
+
+        <script>
+            var playpause = document.getElementById("playpause")
+
+            function initProgressBar() {
+                var player = document.getElementById('player');
+                var length = player.duration
+                var current_time = player.currentTime;
+
+                // calculate total length of value
+                var totalLength = calculateTotalValue(length)
+                document.getElementById("end-time").innerHTML = totalLength;
+
+                // calculate current value time
+                var currentTime = calculateCurrentValue(current_time);
+                document.getElementById("start-time").innerHTML = currentTime;
+
+                var progressbar = document.getElementById('seek-obj');
+                progressbar.value = (player.currentTime / player.duration);
+                progressbar.addEventListener("click", seek);
+
+                if (player.currentTime == player.duration) {
+                    document.getElementById('playpause').className = "";
+                }
+
+                function seek(event) {
+                    var percent = event.offsetX / this.offsetWidth;
+                    player.currentTime = percent * player.duration;
+                    progressbar.value = percent / 100;
+                }
+            };
+
+            function calculateTotalValue(length) {
+                var minutes = Math.floor(length / 60),
+                    seconds_int = length - minutes * 60,
+                    seconds_str = seconds_int.toString(),
+                    seconds = seconds_str.substr(0, 2),
+                    time = minutes + ':' + seconds
+
+                return time;
+            }
+
+            function calculateCurrentValue(currentTime) {
+                var current_hour = parseInt(currentTime / 3600) % 24,
+                    current_minute = parseInt(currentTime / 60) % 60,
+                    current_seconds_long = currentTime % 60,
+                    current_seconds = current_seconds_long.toFixed(),
+                    current_time = (current_minute < 10 ? "0" + current_minute : current_minute) + ":" + (current_seconds < 10 ? "0" + current_seconds : current_seconds);
+
+                return current_time;
+            }
+
+            function play() {
+                if (playpause.classList.contains("paused")) {
+                    $("#playpause").removeClass("paused")
+                    $('#playpause').html('pause');
+                    player.play()
+                } else if (!playpause.classList.contains("paused")) {
+                    $("#playpause").addClass("paused")
+                    $('#playpause').html('play_arrow');
+                    player.pause()
+                }
+            }
+        </script>
+
 </body>
 
 </html>

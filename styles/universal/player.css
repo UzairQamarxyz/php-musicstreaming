@@ -1,12 +1,12 @@
 /* CSS FOR THE BOTTOM PLAYER */
 
 /* Player Control */
-#player,
-#player * {
+#player-div,
+#player-div * {
   background-color: #1b263b;
 }
 
-#player {
+#player-div {
   grid-area: player;
   display: flex;
   align-items: center;
@@ -45,8 +45,15 @@
   cursor: pointer;
   outline: inherit;
 }
+#timestamps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 progress {
   width: 30%;
+  margin: 5px;
 }
 
 progress[value] {

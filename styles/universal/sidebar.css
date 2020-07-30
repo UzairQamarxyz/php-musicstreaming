@@ -23,13 +23,14 @@
   padding: 0;
 }
 
-#list > li {
+#list > li > a {
   display: flex;
   align-items: center;
   margin-bottom: 22px;
+  text-decoration: none;
 }
 
-ul > li > i {
+ul > li > a > i {
   color: #00a6fb;
 }
 

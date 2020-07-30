@@ -4,6 +4,10 @@
 <head>
 
     <link rel="stylesheet" type="text/css" href="../styles/streams.css">
+    <link rel="stylesheet" type="text/css" href="../styles/album.css">
+    <link rel="stylesheet" type="text/css" href="../styles/profile.css">
+    <link rel="stylesheet" type="text/css" href="../styles/browse.css">
+
     <link rel="stylesheet" type="text/css" href="../styles/universal/grid.css">
     <link rel="stylesheet" type="text/css" href="../styles/universal/player.css">
     <link rel="stylesheet" type="text/css" href="../styles/universal/sidebar.css">
@@ -28,55 +32,29 @@
         </div>
 
         <div id="profile-bar">
-            <span id="username"><b>Username</b></span>
+            <span id="banner-username"><b>Username</b></span>
             <img id="pfp" src="../assets/pfp.png" width="35" height="35">
         </div>
 
         <div id="sidebar">
             <div id="list-div">
                 <ul id="list">
-                    <li><i class="material-icons">audiotrack</i><b>Your Stream</b></li>
-                    <li><i class="material-icons">view_list</i><b>Browse</b></li>
-                    <li><i class="material-icons">favorite</i><b>Favorites</b></li>
+                    <li><a id="streams-page" href="#"><i href="" class="material-icons">audiotrack</i><b>Your Stream</b></a></li>
+                    <li><a id="browse-page" href="#"><i href="" class="material-icons">view_list</i><b>Browse</b></a></li>
+                    <li><a id="favorite-page" href="#"><i href="" class="material-icons">favorite</i><b>Favorites</b></a></li>
                 </ul>
             </div>
             <img id="album-art" src="../assets/album.jpg" />
         </div>
+
         <div id="datagrid">
-            <p id="datagrid-heading">Your Stream</p>
-
-            <!-- DATA CELLS -->
-            <div id="datacells">
-                <div id="datacells-heading">
-                    <span class="track-number">#</span>
-                    <span class="track-title">TITLE</span>
-                    <span class="track-artist">ARTIST</span>
-                    <span class="track-album">ALBUM</span>
-                    <span class="track-duration">L.</span>
-                </div>
-                <div class="datacells-tracks">
-                    <span class="track-number">1</span>
-                    <span class="track-title">Storm</span>
-                    <span class="track-artist">Godspeed You! Black Emperor</span>
-                    <span class="track-album">Lift Your Skinny Fists Like Antennas to Heaven</span>
-                    <span class="track-duration">22:32</span>
-                </div>
-                <div class="datacells-tracks">
-                    <span class="track-number">2</span>
-                    <span class="track-title">Power of Persuasion</span>
-                    <span class="track-artist">Oneohtrix Point Never</span>
-                    <span class="track-album">Replica</span>
-                    <span class="track-duration">03:28</span>
-                </div>
-                <div class="datacells-tracks">
-                    <span class="track-number">3</span>
-                    <span class="track-title">Sleep Dealer</span>
-                    <span class="track-artist">Oneohtrix Point Never</span>
-                    <span class="track-album">Replica</span>
-                    <span class="track-duration">03:10</span>
-                </div>
-            </div>
-
+<?php
+    $dir = '../assets/songs/songs/';
+    $files = scandir($dir, 0);
+    for ($i = 2; $i < count($files); $i++) {
+    print $files[$i]."<br>";
+}
+?>
         </div>
 
         <div id="player-div">
@@ -102,8 +80,20 @@
             </div>
 
         </div>
-
-
+<script>
+$('#pfp').click(function(){
+    $('#datagrid').load('profile.php');
+})
+$('#streams-page').click(function(){
+    $('#datagrid').load('streams.php');
+})
+$('#browse-page').click(function(){
+    $('#datagrid').load('browse.php');
+})
+$('#favorite-page').click(function(){
+    $('#datagrid').load('favorite.php');
+})
+</script>
 </body>
 
 </html>
