@@ -48,7 +48,8 @@ function calculateCurrentValue(currentTime) {
     return current_time;
 }
 
-function play() {
+function play(location) {
+    player.load()
     if (playpause.classList.contains("paused")) {
         $("#playpause").removeClass("paused")
         $('#playpause').html('pause');
@@ -58,4 +59,18 @@ function play() {
         $('#playpause').html('play_arrow');
         player.pause()
     }
+}
+
+function loadTrack(location) {
+    console.log(location)
+    $("source").prop("src", location)
+
+    if (!playpause.classList.contains("paused")) {
+        $("#playpause").addClass("paused")
+        $('#playpause').html('play_arrow');
+        player.pause()
+    }
+
+    player.load()
+    play()
 }

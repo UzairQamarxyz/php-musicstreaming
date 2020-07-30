@@ -1,16 +1,5 @@
 /* Tracks */
 
-#datagrid {
-  grid-area: tracks;
-  overflow: auto;
-  border-left: 1px solid #495057;
-}
-
-#datagrid-heading {
-  font-size: 32px;
-  font-weight: bold;
-}
-
 .gallery-innerdiv::-webkit-scrollbar {
   display: none;
 }

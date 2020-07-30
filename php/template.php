@@ -48,18 +48,20 @@
         </div>
 
         <div id="datagrid">
-<?php
-    $dir = '../assets/songs/songs/';
-    $files = scandir($dir, 0);
-    for ($i = 2; $i < count($files); $i++) {
-    print $files[$i]."<br>";
-}
-?>
+
+        <?php
+            $dir = '../assets/songs/songs/';
+            $files = scandir($dir, 0);
+            for ($i = 2; $i < count($files); $i++) {
+            print $files[$i]."<br>";
+            }
+        ?>
+
         </div>
 
         <div id="player-div">
             <audio id="player" ontimeupdate="initProgressBar()">
-                <source src="../assets/song.mp3" type="audio/mp3">
+                <source src="" type="audio/mp3">
             </audio>
             <div id="controls">
                 <button id="prev" class="material-icons operator">skip_previous</button>
