@@ -1,10 +1,11 @@
 body {
   margin: 0 auto;
-  background: url(GwJD6gO.png) no-repeat center center fixed;
+  background-color: #051923;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  font-family: "Barlow", sans-serif;
 }
 
 #main {
@@ -30,26 +31,25 @@ button {
 
 #signup {
   background-color: transparent;
-  border: 2px solid whitesmoke;
-  color: whitesmoke;
+  border: 2px solid white;
+  color: white;
   margin: 0px 5px 0px 0px;
 }
 
 #login {
-  border: 2px solid whitesmoke;
-  color: whitesmoke;
+  border: 2px solid white;
+  color: #00a6fb;
   margin: 0px 0px 0px 5px;
 }
 
 #header {
-  color: whitesmoke;
-  font-family: Helvetica, sans-serif;
+  color: #00a6fb;
   font-weight: bold;
   text-align: center;
   font-size: 4rem;
 }
 
-#desc{
-    margin-top: 0;
-    color: whitesmoke
+#desc {
+  margin-top: 0;
+  color: white;
 }

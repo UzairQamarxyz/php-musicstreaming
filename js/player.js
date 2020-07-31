@@ -61,9 +61,12 @@ function play(location) {
     }
 }
 
-function loadTrack(location) {
+function loadTrack(location, artist, title) {
     console.log(location)
     $("source").prop("src", location)
+
+    document.getElementById("player-artist").innerHTML = artist + " - "
+    document.getElementById("player-title").innerHTML = title 
 
     if (!playpause.classList.contains("paused")) {
         $("#playpause").addClass("paused")

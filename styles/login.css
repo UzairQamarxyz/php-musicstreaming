@@ -19,7 +19,7 @@ input {
   margin: 5px 0 0 0;
   display: inline-block;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid white;
   background: transparent;
 }
 
@@ -40,7 +40,7 @@ input::placeholder {
 
 #signup {
   background-color: black;
-  color: whitesmoke;
+  color: white;
   padding: 13px;
   border: none;
   width: 100%;

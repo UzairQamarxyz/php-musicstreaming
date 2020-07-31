@@ -9,8 +9,9 @@ input {
   margin: 5px 0 0 0;
   display: inline-block;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid white;
   background: transparent;
+  color: white;
 }
 
 input:focus {
@@ -18,7 +19,7 @@ input:focus {
 }
 
 input::placeholder {
-  color: whitesmoke;
+  color: white;
 }
 
 .tooltip {
@@ -29,8 +30,8 @@ input::placeholder {
 }
 
 #signup {
-  background-color: whitesmoke;
-  color: mediumpurple;
+  background-color: #00a6fb;
+  color: white;
   padding: 13px;
   border: none;
   width: 100%;

@@ -33,8 +33,9 @@
   font-size: 14px;
 }
 
-.datacells-tracks > span:not(:last-child),
-#datacells-heading > span:not(:last-child) {
+.datacells-tracks > span,
+.datacells-tracks > button,
+#datacells-heading > span {
   margin-right: 35px;
   text-align: start;
 }
@@ -51,6 +52,12 @@
 
 .track-number {
   width: 6.5%;
+  border: none;
+  text-align: left;
+}
+.track-number:focus {
+  border: none;
+  outline: none;
 }
 .track-title {
   width: 29%;
@@ -62,8 +69,4 @@
 
 .track-album {
   width: 28%;
-}
-
-.track-duration {
-  width: 7.5%;
 }

@@ -39,23 +39,15 @@
         <div id="sidebar">
             <div id="list-div">
                 <ul id="list">
-                    <li><a id="streams-page" href="#"><i href="" class="material-icons">audiotrack</i><b>Your Stream</b></a></li>
-                    <li><a id="browse-page" href="#"><i href="" class="material-icons">view_list</i><b>Browse</b></a></li>
-                    <li><a id="favorite-page" href="#"><i href="" class="material-icons">favorite</i><b>Favorites</b></a></li>
+                    <li><a id="streams-page" href="#"><i href="" class="material-icons side-icons">audiotrack</i><b>Your Stream</b></a></li>
+                    <li><a id="browse-page" href="#"><i href="" class="material-icons side-icons">view_list</i><b>Browse</b></a></li>
+                    <li><a id="favorite-page" href="#"><i href="" class="material-icons side-icons">favorite</i><b>Favorites</b></a></li>
                 </ul>
             </div>
             <img id="album-art" src="../assets/album.jpg" />
         </div>
 
         <div id="datagrid">
-
-        <?php
-            $dir = '../assets/songs/songs/';
-            $files = scandir($dir, 0);
-            for ($i = 2; $i < count($files); $i++) {
-            print $files[$i]."<br>";
-            }
-        ?>
 
         </div>
 
@@ -70,9 +62,8 @@
             </div>
             <div id="player-trackbox">
                 <div id="player-info">
-                    <span id="player-artist">Dawn Wall</span>
-                    <p> - </p>
-                    <span id="player-title">Mantis</span>
+                    <span id="player-artist"></span>
+                    <span id="player-title"></span>
                 </div>
                 <div id="timestamps">
                     <small id="start-time">00:00</small>
@@ -83,6 +74,8 @@
 
         </div>
 <script>
+$('#datagrid').load('streams.php');
+
 $('#pfp').click(function(){
     $('#datagrid').load('profile.php');
 })

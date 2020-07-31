@@ -24,13 +24,15 @@
             '<div class="datacells-tracks">';
 
             $location = $row["track_loc"];
+            $artist = $row["track_artist"];
+            $title = $row["track_title"];
                 
             echo <<<EOL
-            <button class="material-icons track-number" onclick="loadTrack('$location')">play_circle_filled</button>
+            <button class="material-icons track-number" onclick="loadTrack('$location','$artist','$title')">play_circle_filled</button>
             EOL;
 
             echo'
-            <span class="track-title")">'.$row["track_title"].'</span>
+            <span class="track-title">'.$row["track_title"].'</span>
             <span class="track-artist">'.$row["track_artist"].'</span>
             <span class="track-album">'.$row["track_album"].'</span>
         </div>';

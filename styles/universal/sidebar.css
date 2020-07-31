@@ -34,8 +34,8 @@ ul > li > a > i {
   color: #00a6fb;
 }
 
-#datagrid .material-icons,
-#sidebar .material-icons {
+.operator,
+.side-icons {
   margin-right: 12px;
 }
 
