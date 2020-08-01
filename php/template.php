@@ -18,61 +18,62 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
+    <script src="typeahead.min.js"></script>
 
 </head>
 
 <body>
-    <div class="grid-container">
-        <h1 id="site-name">SITE</h1>
 
-        <div id="searchbar">
-            <i id="search-icon" class="material-icons operator">search</i>
-            <input id="search-box" type="text" placeholder="Search Something..." />
+<div class="grid-container">
+    <h1 id="site-name">SITE</h1>
+
+    <div id="searchbar">
+        <i id="search-icon" class="material-icons operator">search</i>
+        <input type="text" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Type your Query" />
+    </div>
+
+    <div id="profile-bar">
+        <span id="banner-username"><b>Username</b></span>
+        <img id="pfp" src="../assets/pfp.png" width="35" height="35">
+    </div>
+
+    <div id="sidebar">
+        <div id="list-div">
+            <ul id="list">
+                <li><a id="streams-page" href="#"><i href="" class="material-icons side-icons">audiotrack</i><b>Your Stream</b></a></li>
+                <li><a id="browse-page" href="#"><i href="" class="material-icons side-icons">view_list</i><b>Browse</b></a></li>
+                <li><a id="favorite-page" href="#"><i href="" class="material-icons side-icons">favorite</i><b>Favorites</b></a></li>
+            </ul>
         </div>
+        <img id="album-art" src="../assets/album.jpg" />
+    </div>
 
-        <div id="profile-bar">
-            <span id="banner-username"><b>Username</b></span>
-            <img id="pfp" src="../assets/pfp.png" width="35" height="35">
+    <div id="datagrid">
+
+    </div>
+
+    <div id="player-div">
+        <audio id="player" ontimeupdate="initProgressBar()">
+            <source src="" type="audio/mp3">
+        </audio>
+        <div id="controls">
+            <button id="prev" class="material-icons operator">skip_previous</button>
+            <button id="playpause" class="material-icons operator paused" onclick="play()">play_arrow</button>
+            <button id="next" class="material-icons operator">skip_next</button>
         </div>
-
-        <div id="sidebar">
-            <div id="list-div">
-                <ul id="list">
-                    <li><a id="streams-page" href="#"><i href="" class="material-icons side-icons">audiotrack</i><b>Your Stream</b></a></li>
-                    <li><a id="browse-page" href="#"><i href="" class="material-icons side-icons">view_list</i><b>Browse</b></a></li>
-                    <li><a id="favorite-page" href="#"><i href="" class="material-icons side-icons">favorite</i><b>Favorites</b></a></li>
-                </ul>
+        <div id="player-trackbox">
+            <div id="player-info">
+                <span id="player-artist"></span>
+                <span id="player-title"></span>
             </div>
-            <img id="album-art" src="../assets/album.jpg" />
-        </div>
-
-        <div id="datagrid">
-
-        </div>
-
-        <div id="player-div">
-            <audio id="player" ontimeupdate="initProgressBar()">
-                <source src="" type="audio/mp3">
-            </audio>
-            <div id="controls">
-                <button id="prev" class="material-icons operator">skip_previous</button>
-                <button id="playpause" class="material-icons operator paused" onclick="play()">play_arrow</button>
-                <button id="next" class="material-icons operator">skip_next</button>
+            <div id="timestamps">
+                <small id="start-time">00:00</small>
+                <progress id="seek-obj" value="0" max="1"></progress>
+                <small id="end-time">00:00</small>
             </div>
-            <div id="player-trackbox">
-                <div id="player-info">
-                    <span id="player-artist"></span>
-                    <span id="player-title"></span>
-                </div>
-                <div id="timestamps">
-                    <small id="start-time">00:00</small>
-                    <progress id="seek-obj" value="0" max="1"></progress>
-                    <small id="end-time">00:00</small>
-                </div>
-            </div>
-
         </div>
+    </div>
+ </div>
 <script>
 $('#datagrid').load('streams.php');
 

@@ -18,7 +18,7 @@
         <!-- FORM -->
 
         <div id="container">
-            <form id="form" method="POST" action="/" onsubmit="return validate()">
+            <form id="form" method="POST" action="">
                 <div class="field-div" id="email-div">
                     <input type="text" name="email" placeholder="Email" id="email" oninput="emailVal()" required>
                     <p id="et" class="tooltip"></p>
@@ -31,21 +31,67 @@
                     <input type="password" name="psw" placeholder="Password" id="psw" oninput="pswVal()" required>
                     <p id="pt" class="tooltip"></p>
                 </div>
-                <input type="submit" id="signup" value="Signup" />
+                <input type="submit" id="signup" name="signup" value="Signup" />
             </form>
-        </div>
+<?php
+    $servername ="localhost";
+    $user ="root";
+    $pass = '';
+    $dbname = "project";
+    
+    $con = mysqli_connect($servername, $user, $pass, $dbname);
+    
+    $username = $email = $psw = "";
+    
+    if (isset($_POST["signup"])) {
+       $username = $_POST["username"];
+       $email = $_POST["email"];
+       $psw = $_POST["psw"];
+       validateInput($username, $email, $con);
+    }
+    
+    function validateInput($username, $email, $con)
+    {
+        $dbUsername = "SELECT * FROM users WHERE user_name='$username' ;";
+        $dbEmail = "SELECT * FROM users WHERE user_email='$email' ;";
 
+        $queryUsername = mysqli_query($con, $dbUsername);
+        $queryEmail= mysqli_query($con, $dbEmail);
+    
+        if (mysqli_num_rows($queryEmail) > 0) {
+            echo <<< EOL
+                <div style="color: white; margin-top: 10px;">This Email is Already in use</div>
+            EOL;
+        }
+        else if (mysqli_num_rows($queryUsername) > 0) {
+            echo <<< EOL
+                <div style="color: white; margin-top: 10px;">This Username is Already Taken</div>
+            EOL;
+        }
+        else if (mysqli_num_rows($queryUsername) == 0 && mysqli_num_rows($queryEmail) == 0) {
+            echo <<< EOL
+                <div style="color: white; margin-top: 10px;">Signup Successful</div>
+            EOL;
+
+            insertuser($con);
+        }
+    }
+    
+    function insertuser($con)
+    {
+        $insertQuery = "INSERT INTO users (user_id, user_name, user_email, user_password)
+        VALUES(DEFAULT, '$GLOBALS[username]', '$GLOBALS[email]', '$GLOBALS[psw]');";
+    
+        mysqli_query($con, $insertQuery);
+    }
+?>
+
+        </div>
     </main>
     <script>
         function login() {
             window.open('./http/login.html', '_blank')
         }
-
-        // Signup
-        function validate() {
-            return (emailVal() && userVal() && pswVal())
-        }
-
 
         // EMAIL VALIDATION
         function emailVal() {
@@ -54,12 +100,14 @@
 
             if (!email.match(emailRegex) || email.length == 0) {
                 $("#et").text("*Please Enter a Valid Email").css({
-                    "color": "red"
+                    "color": "crimson",
+                    "font-weight": "bold"
                 })
                 return false
             } else {
                 $("#et").text("*The entered email is valid").css({
-                    "color": "green"
+                    "color": "#00a6fb",
+                    "font-weight": "bold"
                 })
                 return true
             }
@@ -72,12 +120,14 @@
 
             if (!username.match(userRegex) || username.length == 0) {
                 $("#ut").text("*Username must be alphanumeric with no special characters and must be atleast 4 letters long").css({
-                    "color": "red"
+                    "color": "crimson",
+                    "font-weight": "bold"
                 })
                 return false
             } else {
                 $("#ut").text("*The username is valid").css({
-                    "color": "green"
+                    "color": "#00a6fb",
+                    "font-weight": "bold"
                 })
                 return true
             }
@@ -91,22 +141,26 @@
 
             if (psw.match(strongPsw)) {
                 $("#pt").text("*Password Strength: Strong").css({
-                    "color": "green"
+                    "color": "#00a6fb",
+                    "font-weight": "bold"
                 })
                 return true
             } else if (psw.match(medPsw)) {
                 $("#pt").text("*Password Strength: Medium").css({
-                    "color": "orange"
+                    "color": "gold",
+                    "font-weight": "bold"
                 })
                 return true
             } else if (psw.length < 6) {
                 $("#pt").text("*Password must be atleast 6 characters").css({
-                    "color": "red"
+                    "color": "crimson",
+                    "font-weight": "bold"
                 })
                 return false
             } else {
                 $("#pt").text("*Password Strength: Weak").css({
-                    "color": "red"
+                    "color": "crimson",
+                    "font-weight": "bold"
                 })
                 return true
             }
