@@ -7,13 +7,14 @@
     <link rel="stylesheet" type="text/css" href="../styles/album.css">
     <link rel="stylesheet" type="text/css" href="../styles/profile.css">
     <link rel="stylesheet" type="text/css" href="../styles/browse.css">
+    <link rel="stylesheet" type="text/css" href="../styles/settings.css">
 
     <link rel="stylesheet" type="text/css" href="../styles/universal/grid.css">
     <link rel="stylesheet" type="text/css" href="../styles/universal/player.css">
     <link rel="stylesheet" type="text/css" href="../styles/universal/sidebar.css">
     <link rel="stylesheet" type="text/css" href="../styles/universal/topbar.css">
 
-    <script type="text/javascript" src="../js/player.js" defer></script>
+    <script type="text/javascript" src="../js/verification.js" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -23,7 +24,15 @@
 </head>
 
 <body>
-
+<?php
+    // We need to use sessions, so you should always start sessions using the below code.
+    session_start();
+    // If the user is not logged in redirect to the login page...
+    if (!isset($_SESSION['loggedin'])) {
+        header('Location: ../index.php');
+        exit;
+    }
+?>
 <div class="grid-container">
     <h1 id="site-name">SITE</h1>
 
@@ -33,8 +42,15 @@
     </div>
 
     <div id="profile-bar">
-        <span id="banner-username"><b>Username</b></span>
-        <img id="pfp" src="../assets/pfp.png" width="35" height="35">
+    <span id="banner-username"><b><?=$_SESSION['name']?></b></span>
+    <div class="dropdown">
+    <img id="pfp" class="drpdn" src=<?=$_SESSION['pfp'];?> width="35" height="35" onerror=this.src="../assets/pfps/default.png">
+        <div class="dropdown-content">
+            <a id="drp-profile" href="#">Profile</a>
+            <a id="settings" href="#">Settings</a>
+            <a id="logout" href="logout.php">Logout</a>
+        </div>
+    </div>
     </div>
 
     <div id="sidebar">
@@ -77,8 +93,11 @@
 <script>
 $('#datagrid').load('streams.php');
 
-$('#pfp').click(function(){
+$('#drp-profile').click(function(){
     $('#datagrid').load('profile.php');
+})
+$('#settings').click(function(){
+    $('#datagrid').load('settings.php');
 })
 $('#streams-page').click(function(){
     $('#datagrid').load('streams.php');

@@ -3,7 +3,7 @@
 #datagrid {
   grid-area: tracks;
   overflow: auto;
-  border-left: 1px solid #495057;
+  border-left: 1px solid #32323d;
 }
 
 #datagrid-heading {
@@ -25,11 +25,11 @@
   justify-content: space-between;
   margin: 0 20px;
   padding: 20px 0;
-  border-top: 1px solid gray;
+  border-top: 1px solid #32323d;
 }
 
 #datacells-heading > span {
-  color: darkgray;
+  color: #92929d;
   font-size: 14px;
 }
 
@@ -46,7 +46,7 @@
   justify-content: space-between;
   margin: 0 20px;
   padding: 20px 0;
-  border-top: 1px solid gray;
+  border-top: 1px solid #32323d;
   align-items: center;
 }
 

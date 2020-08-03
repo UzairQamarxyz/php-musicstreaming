@@ -37,79 +37,57 @@
                 <input type="submit" id="signup" name="signup" value="Signup"/>
             </form>
             <?php
-                // Change this to your connection info.
                 $DATABASE_HOST = 'localhost';
                 $DATABASE_USER = 'root';
                 $DATABASE_PASS = '';
                 $DATABASE_NAME = 'project';
                 
-                // Try and connect using the info above.
                 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
                 if (mysqli_connect_errno()) {
-                
-                    // If there is an error with the connection, stop the script and display the error.
                     exit('Failed to connect to MySQL: ' . mysqli_connect_error());
                 }
                 
-                // We need to check if the account with that username exists.
-                if ($stmt = $con->prepare('SELECT user_id, user_password FROM users WHERE user_name = ?')) {
-                
-                    // Bind parameters (s = string, i = int, b = blob, etc), hash the password using the PHP password_hash function.
-                    $stmt->bind_param('s', $_POST['username']);
-                    $stmt->execute();
-                    $stmt->store_result();
-                
-                    // Store the result so we can check if the account exists in the database.
-                    if ($stmt->num_rows > 0) {
-                
-                        // Username already exists
-                        echo <<< EOL
-                <div style="color: white; margin-top: 10px;">Username unavailable! Please Choose Another</div>;
-                EOL;
-                    } elseif ($stmt = $con->prepare('SELECT user_id, user_password FROM users WHERE user_email = ?')) {
-                        // Bind parameters (s = string, i = int, b = blob, etc), hash the password using the PHP password_hash function.
-                        $stmt->bind_param('s', $_POST['email']);
+                if (isset($_POST['signup'])) {
+                    if ($stmt = $con->prepare('SELECT user_id, user_password FROM users WHERE user_name = ? OR user_email = ?')) {
+                        $stmt->bind_param('s', $_POST['username']);
                         $stmt->execute();
                         $stmt->store_result();
                 
-                        // Store the result so we can check if the account exists in the database.
-                        if ($stmt->num_rows > 0) {
+                        if (!$stmt->num_rows > 0) {
+                            if ($stmt = $con->prepare('SELECT user_id, user_password FROM users WHERE user_email = ?')) {
+                                $stmt->bind_param('s', $_POST['email']);
+                                $stmt->execute();
+                                $stmt->store_result();
                 
-                        // Email already exists
-                            echo <<< EOL
-                <div style="color: white; margin-top: 10px;">Email already Registered! Please Login</div>;
-                EOL;
-                        }
-                    } else {
-                
-                        // Username doesnt exists, insert new account
-                        // Email doesnt exists, insert new account
-                        if ($stmt = $con->prepare('INSERT INTO users (user_name, user_password, user_email) VALUES (?, ?, ?)')) {
-                            // We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
-                            $password = password_hash($_POST['psw'], PASSWORD_DEFAULT);
-                            $stmt->bind_param('sss', $_POST['username'], $password, $_POST['email']);
-                            $stmt->execute();
-                            echo <<< EOL
-                <div style="color: white; margin-top: 10px;">Successfully Registered! Please Login</div>;
-                EOL;
+                                if (!$stmt->num_rows > 0) {
+                                    if ($stmt = $con->prepare('INSERT INTO users (user_name, user_password, user_email) VALUES (?, ?, ?)')) {
+                                        $password = password_hash($_POST['psw'], PASSWORD_DEFAULT);
+                                        $stmt->bind_param('sss', $_POST['username'], $password, $_POST['email']);
+                                        $stmt->execute();
+                                        echo <<< EOL
+                                            <div style="color: white; margin-top: 10px;">Successfully Registered! Please Login</div>;
+                                            EOL;
+                                    } else {
+                                        echo 'Could not prepare statement!';
+                                    }
+                                } else {
+                                    echo <<< EOL
+                                        <div style="color: white; margin-top: 10px;">Email already Registered! Please Login</div>;
+                                        EOL;
+                                }
+                            }
                         } else {
-                            // Something is wrong with the sql statement, check to make sure accounts table exists with all 3 fields.
-                            echo 'Could not prepare statement!';
+                            echo <<< EOL
+                                <div style="color: white; margin-top: 10px;">Username unavailable! Please Choose Another</div>;
+                                EOL;
                         }
                     }
-                    $stmt->close();
-                } else {
-                    // Something is wrong with the sql statement, check to make sure accounts table exists with all 3 fields.
-                    echo 'Could not prepare statement!';
                 }
                 $con->close();
             ?>
         </div>
 
     </main>
-
-    <script>
-    </script>
 </body>
 
 </html>

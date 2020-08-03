@@ -1,0 +1,58 @@
+#settings-div * {
+  background-color: #23232d;
+}
+#settings-div div {
+    text-align: right;
+}
+#settings-div {
+  text-align: center;
+  padding: 20px;
+  background-color: #23232d;
+}
+#settings-div img {
+    border-radius: 50%;
+}
+#settings-div p {
+  color: #92929d;
+  text-align: left;
+  font-weight: bold;
+  font-size: 42px;
+  margin: 15px;
+}
+#form-settings button:focus,
+#form-settings button {
+  background-color: #191922;
+  border: 1px solid #92929d;
+  border-radius: 3px;
+  padding: 7px;
+}
+#form-settings label {
+  color: #92929d;
+  font-weight: bold;
+}
+#form-settings div * {
+  margin: 7px;
+}
+#form-settings div {
+  margin: 20px;
+}
+#form-settings div input {
+  border: none;
+  outline: none;
+  background-color: #191922;
+  color: #00a6fb;
+  padding: 7px;
+  border: 1px solid #92929d;
+  border-radius: 3px;
+}
+hr {
+  border: 1px solid #32323d;
+  margin: 0 20px;
+}
+
+#results #et {
+    font-size: 12px;
+}
+#results #pt {
+    font-size: 12px;
+}

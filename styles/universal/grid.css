@@ -1,3 +1,19 @@
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid #00a6fb;
+  -webkit-text-fill-color: #00a6fb;
+  -webkit-box-shadow: 0 0 0px 1000px #191922 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 /* Grid */
 .grid-container {
   display: grid;
@@ -9,7 +25,7 @@
 /* Universally */
 * {
   margin: 0;
-  background-color: #051923;
+  background-color: #191922;
   color: white;
 }
 
@@ -30,7 +46,7 @@ body {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #495057;
+  background-color: #32323d;
   /* color of the scroll thumb */
   border-radius: 20px;
   /* roundness of the scroll thumb */

@@ -62,7 +62,6 @@ function play(location) {
 }
 
 function loadTrack(location, artist, title) {
-    console.log(location)
     $("source").prop("src", location)
 
     document.getElementById("player-artist").innerHTML = artist + " - "
