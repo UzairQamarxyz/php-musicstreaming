@@ -1,16 +1,13 @@
 #settings-div * {
   background-color: #23232d;
 }
-#settings-div div {
-    text-align: right;
-}
 #settings-div {
-  text-align: center;
+  text-align: right;
   padding: 20px;
   background-color: #23232d;
 }
 #settings-div img {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 #settings-div p {
   color: #92929d;
@@ -19,24 +16,24 @@
   font-size: 42px;
   margin: 15px;
 }
-#form-settings button:focus,
-#form-settings button {
+.form-settings button:focus,
+.form-settings button {
   background-color: #191922;
   border: 1px solid #92929d;
   border-radius: 3px;
   padding: 7px;
 }
-#form-settings label {
+.labels {
   color: #92929d;
   font-weight: bold;
 }
-#form-settings div * {
+.form-settings div * {
   margin: 7px;
 }
-#form-settings div {
+.form-settings div {
   margin: 20px;
 }
-#form-settings div input {
+.form-settings div input {
   border: none;
   outline: none;
   background-color: #191922;
@@ -51,8 +48,14 @@ hr {
 }
 
 #results #et {
-    font-size: 12px;
+  font-size: 12px;
 }
 #results #pt {
-    font-size: 12px;
+  font-size: 12px;
+}
+#datagrid #datacells {
+  align-items: unset !important;
+}
+#settings-pfp {
+  margin-left: 20px;
 }

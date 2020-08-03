@@ -1,7 +1,8 @@
-<div id="profile-banner" style="background-image: linear-gradient(rgb(5 25 35 / 0%), rgb(5 25 35)), url(../assets/banner.jpg);">
+<?php session_start(); ?>
+<div id="profile-banner" style="background-image: linear-gradient(rgb(5 25 35 / 0%), rgb(5 25 35)), url(../assets/banners/default.png);">
     <div id="page-profile">
-        <img id="profile-picture" src="../assets/pfp.png">
-        <p id="username">Username</p>
+        <img id="profile-picture" src=<?=$_SESSION['pfp'];?> onerror=this.src="../assets/pfps/default.png">
+        <p id="username"><?=$_SESSION['name']?></p>
     </div>
 </div>
 <p id="datagrid-heading">Your Uploads</p>
