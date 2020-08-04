@@ -48,7 +48,7 @@
                 }
                 
                 if (isset($_POST['signup'])) {
-                    if ($stmt = $con->prepare('SELECT user_id, user_password FROM users WHERE user_name = ? OR user_email = ?')) {
+                    if ($stmt = $con->prepare('SELECT user_id, user_password FROM users WHERE user_name = ?')) {
                         $stmt->bind_param('s', $_POST['username']);
                         $stmt->execute();
                         $stmt->store_result();
