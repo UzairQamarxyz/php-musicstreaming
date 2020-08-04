@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php
+    session_start(); 
+    $_SESSION['current'] = 'settings.php';
+?>
 <script type="text/javascript" src="./js/verification.js" defer></script>
 
 <div id="datacells">

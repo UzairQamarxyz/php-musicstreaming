@@ -1,3 +1,7 @@
+<?php
+    session_start(); 
+    $_SESSION['current'] = 'album.php';
+?>
     <div id="album-area">
         <img id="album-picture" src="../assets/banner.jpg">
         <div id="profile">

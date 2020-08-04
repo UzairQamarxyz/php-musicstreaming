@@ -1,3 +1,7 @@
+<?php
+    session_start(); 
+    $_SESSION['current'] = 'browse.php';
+?>
 <p id="datagrid-heading">Browse</p>
 
 <!-- DATA CELLS -->
@@ -26,7 +30,7 @@
 
             echo <<< EOL
             <div class="album-gallery">
-                <a target="_blank" href="#">
+                <a href="#" data-album="$title">
                     <img src="$row[album_loc]" alt="album art" width="200" height="200">
                 </a>
                 <div class="desc">$title</div>
@@ -64,7 +68,7 @@
 
             echo <<< EOL
             <div class="album-gallery">
-                <a target="_blank" href="#">
+                <a class="browse-album" href="#">
                     <img src="$location" alt="arist" width="200" height="200">
                 </a>
                 <div class="desc">$title</div>

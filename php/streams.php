@@ -1,3 +1,7 @@
+<?php
+    session_start(); 
+    $_SESSION['current'] = 'streams.php';
+?>
 <p id="datagrid-heading">Your Stream</p>
 
 <!-- DATA CELLS -->

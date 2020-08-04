@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php
+    session_start(); 
+    $_SESSION['current'] = 'profile.php';
+?>
 <div id="profile-banner" style="background-image: linear-gradient(rgb(5 25 35 / 0%), rgb(25 25 34)), url(<?=$_SESSION['banner']?>);">
     <div id="page-profile">
         <img id="profile-picture" src=<?=$_SESSION['pfp'];?> onerror=this.src="../assets/pfps/default.png">
