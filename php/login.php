@@ -69,6 +69,8 @@
                             $_SESSION['pfp'] = $user_pfp;
                             $_SESSION['banner'] = $user_banner;
 
+                            $_SESSION['current'] = "streams.php";
+
                             header('Location: ./template.php');
                         } else {
                             echo <<< EOL

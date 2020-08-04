@@ -33,6 +33,14 @@
         header('Location: ../index.php');
         exit;
     }
+
+    $pageWasRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0';
+
+    if ($pageWasRefreshed) {
+        //do something because page was refreshed;
+    } else {
+        //do nothing;
+    }
 ?>
 <div class="grid-container">
     <h1 id="site-name">SITE</h1>
@@ -92,22 +100,28 @@
     </div>
  </div>
 <script>
-$('#datagrid').load('streams.php');
+
+$('#datagrid').load('<?=$_SESSION['current'];?>');
 
 $('#drp-profile').click(function(){
-    $('#datagrid').load('profile.php');
+    <?php $_SESSION['current'] = 'profile.php' ?>
+    $('#datagrid').load('<?=$_SESSION['current'];?>');
 })
 $('#settings').click(function(){
-    $('#datagrid').load('settings.php');
+    <?php $_SESSION['current'] = 'settings.php' ?>
+    $('#datagrid').load('<?=$_SESSION['current'];?>');
 })
 $('#streams-page').click(function(){
-    $('#datagrid').load('streams.php');
+    <?php $_SESSION['current'] = 'streams.php' ?>
+    $('#datagrid').load('<?=$_SESSION['current'];?>');
 })
 $('#browse-page').click(function(){
-    $('#datagrid').load('browse.php');
+    <?php $_SESSION['current'] = 'browse.php' ?>
+    $('#datagrid').load('<?=$_SESSION['current'];?>');
 })
 $('#favorite-page').click(function(){
-    $('#datagrid').load('favorite.php');
+    <?php $_SESSION['current'] = 'favorite.php' ?>
+    $('#datagrid').load('<?=$_SESSION['current'];?>');
 })
 </script>
 </body>

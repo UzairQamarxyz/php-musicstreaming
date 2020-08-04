@@ -49,7 +49,6 @@ function calculateCurrentValue(currentTime) {
 }
 
 function play(location) {
-    player.load()
     if (playpause.classList.contains("paused")) {
         $("#playpause").removeClass("paused")
         $('#playpause').html('pause');
