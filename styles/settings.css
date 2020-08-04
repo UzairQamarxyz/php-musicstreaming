@@ -54,7 +54,6 @@ hr {
   font-size: 12px;
 }
 #datagrid #datacells {
-  align-items: unset !important;
 }
 #settings-pfp {
   margin-left: 20px;

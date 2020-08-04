@@ -3,7 +3,7 @@
 
 <div id="datacells">
     <div id="settings-div">
-        <div id="profile-banner" style="background-image: url(../assets/banners/default.png);">
+    <div id="profile-banner" style="background-image: linear-gradient(rgb(5 25 35 / 0%), rgb(25 25 34)), url(<?=$_SESSION['banner']?>);">
             <img id="settings-pfp" src=<?=$_SESSION['pfp'];?> onerror=this.src="../assets/pfps/default.png" width=130px height=130px>
         </div>
 
