@@ -1,18 +1,3 @@
-<script>
-createCookie("album_loc", location, "10");
-function createCookie(name, value, days) {
-  var expires;
-  if (days) {
-    var date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    expires = "; expires=" + date.toGMTString();
-  }
-  else {
-    expires = "";
-  }
-  document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
-}
-</script>
 <?php
     session_start();
     $_SESSION['current'] = 'browse.php';
@@ -40,23 +25,17 @@ function createCookie(name, value, days) {
         
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
-                    $_SESSION['album_name'] = $row["album_name"];
-                    $_SESSION['album_loc'] = $row["album_loc"];
-
+                    $name = $row["album_name"];
+                    $location = $row["album_loc"];
                     echo <<< EOL
                     <div class="album-gallery">
                         <a class="browse-album" href="#">
-                            <img src="$row[album_loc]" alt="album art" width="200" height="200">
+                            <img src="$location" alt="album art" onclick="createCookie('$name', '$location', '1')" width="200" height="200">
                         </a>
-                    <div class="desc">$_SESSION[album_name]</div>
+                    <div class="desc">$name</div>
                     </div>
                     EOL;
                 }
-            }
-            
-            function loadAlbum($album_name)
-            {
-                $_SESSION['album_name'] = $album_name;
             }
         ?>
 
@@ -100,13 +79,39 @@ function createCookie(name, value, days) {
     </div>
 </div>
 <script>
-$(".browse-album").click(function (){
-    var title = $(".browse-album").attr("data-album-name");
-    var location = $(".browse-album").attr("data-album-location");
+
+function createCookie(title, location, days) {
+  var expires;
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    expires = "; expires=" + date.toGMTString();
+  }
+  else {
+    expires = "";
+  }
+  document.cookie = "name=" + title + expires + "; path=/";
+  document.cookie = "location=" + location + expires + "; path=/";
+
+  $('#datagrid').load('album.php')
 
 
-    $('#datagrid').load('album.php')
-})
+}
 
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
 
 </script>

@@ -4,7 +4,7 @@
 ?>
 
 <div id="album-area">
-<img id="album-picture" src="">
+<img id="album-picture" src=<?=$_COOKIE[location]?>>
     <div id="profile">
         <p id="album-name">Album Name</p>
         <p id="username">Artist Name</p>
@@ -43,3 +43,6 @@
         <span class="track-duration">03:10</span>
     </div>
 </div>
+
+<script>
+</script>
