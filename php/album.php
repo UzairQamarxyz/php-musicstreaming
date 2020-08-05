@@ -1,5 +1,5 @@
 <?php
-    session_start(); 
+    session_start();
     $_SESSION['current'] = 'album.php';
 ?>
 

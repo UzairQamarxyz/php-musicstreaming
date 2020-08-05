@@ -110,9 +110,6 @@ $('#browse-page').click(function(){
 $('#favorite-page').click(function(){
     $('#datagrid').load('favorite.php')
 })
-$(".browse-album").click(function (){
-    $('#datagrid').load('album.php')
-})
 $(".browse-artist").click(function (){
     $('#datagrid').load('artist.php')
 })
