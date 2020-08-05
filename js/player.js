@@ -18,7 +18,11 @@ function initProgressBar() {
     progressbar.addEventListener("click", seek);
 
     if (player.currentTime == player.duration) {
-        document.getElementById('playpause').className = "";
+        document.getElementById('playpause').className = "material-icons operator";
+        $("#playpause").addClass("paused")
+        $('#playpause').html('play_arrow');
+        player.pause()
+
     }
 
     function seek(event) {
@@ -64,7 +68,7 @@ function loadTrack(location, artist, title) {
     $("source").prop("src", location)
 
     document.getElementById("player-artist").innerHTML = artist + " - "
-    document.getElementById("player-title").innerHTML = title 
+    document.getElementById("player-title").innerHTML = title
 
     if (!playpause.classList.contains("paused")) {
         $("#playpause").addClass("paused")
