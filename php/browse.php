@@ -20,19 +20,22 @@
             $dbname = "project";
             $con = mysqli_connect($servername, $user, $pass, $dbname);
         
-            $resultQ = "SELECT * FROM albums;";
+            $resultQ = "SELECT albums.album_name, albums.album_loc, artists.artist_name from albums JOIN albumsxartists JOIN artists on albums.album_id = albumsxartists.album_id and albumsxartists.artist_id = artists.artist_id";
             $result = mysqli_query($con, $resultQ);
         
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
-                    $name = $row["album_name"];
+
+                    $album_name = $row["album_name"];
+                    $artist_name = $row["artist_name"];
                     $location = $row["album_loc"];
+
                     echo <<< EOL
                     <div class="album-gallery">
                         <a class="browse-album" href="#">
-                            <img src="$location" alt="album art" onclick="createCookie('$name', '$location', '1')" width="200" height="200">
+                            <img class="browse-album-select" src="$location" alt="album art" onclick="createCookie('$album_name','$artist_name' ,'$location', '1')" width="200" height="200">
                         </a>
-                    <div class="desc">$name</div>
+                    <div class="desc">$row[album_name]</div>
                     </div>
                     EOL;
                 }
@@ -49,26 +52,18 @@
         <div class="gallery-innerdiv">
 
 <?php
-    $servername ="localhost";
-    $user ="root";
-    $pass = '';
-    $dbname = "project";
-    $con = mysqli_connect($servername, $user, $pass, $dbname);
-
-    $resultQ = "SELECT * FROM artists;";
+    $resultQ = "SELECT artists.artist_name, artists.artist_loc FROM artists JOIN albumsxartists JOIN albums ON albums.album_id = albumsxartists.album_id AND albumsxartists.artist_id = artists.artist_id";
     $result = mysqli_query($con, $resultQ);
 
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-            $_SESSION['artist_name'] = $row["artist_name"];
-            $_SESSION['artist_loc'] = $row["artist_loc"];
 
             echo <<< EOL
             <div class="album-gallery">
                 <a class="browse-artist" href="#">
-                    <img src="$_SESSION[artist_loc]" alt="arist" width="200" height="200">
+                    <img src='$row[artist_loc]' alt="arist" width="200" height="200">
                 </a>
-                <div class="desc">$_SESSION[artist_name]</div>
+                <div class="desc">$row[artist_name]</div>
             </div>
             EOL;
         }
@@ -80,7 +75,7 @@
 </div>
 <script>
 
-function createCookie(title, location, days) {
+function createCookie(album_name, artist_name, location, days) {
   var expires;
   if (days) {
     var date = new Date();
@@ -90,11 +85,11 @@ function createCookie(title, location, days) {
   else {
     expires = "";
   }
-  document.cookie = "name=" + title + expires + "; path=/";
+  document.cookie = "album_name=" + album_name + expires + "; path=/";
+  document.cookie = "artist_name=" + artist_name + expires + "; path=/";
   document.cookie = "location=" + location + expires + "; path=/";
 
   $('#datagrid').load('album.php')
-
 
 }
 

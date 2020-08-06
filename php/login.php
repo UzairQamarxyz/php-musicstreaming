@@ -44,8 +44,6 @@
                     $result = $stmt->get_result();
                     $num_of_rows = $result->num_rows;
 
-                    echo $_POST['psw'];
-
                     while ($row = $result->fetch_assoc()) {
                         $user_name = $row["user_name"];
                         $user_email = $row["user_email"];

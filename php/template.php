@@ -62,7 +62,7 @@
                 <li><a id="favorite-page" href="#"><i href="" class="material-icons side-icons">favorite</i><b>Favorites</b></a></li>
             </ul>
         </div>
-        <img id="album-art" src="../assets/album.jpg" />
+        <img id="album-art" src="" />
     </div>
 
     <div id="datagrid">
