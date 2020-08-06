@@ -12,31 +12,61 @@
 
 <!-- DATA CELLS -->
 <div id="datacells">
-    <div id="datacells-heading">
-        <span class="track-number">#</span>
-        <span class="track-title">TITLE</span>
-        <span class="track-artist">ARTIST</span>
-        <span class="track-album">ALBUM</span>
-        <span class="track-duration">L.</span>
-    </div>
-<?php 
-    $servername ="localhost";
-    $user ="root";
-    $pass = '';
-    $dbname = "project";
-    $con = mysqli_connect($servername, $user, $pass, $dbname);
+<?php
+                $DATABASE_HOST = 'localhost';
+                $DATABASE_USER = 'root';
+                $DATABASE_PASS = '';
+                $DATABASE_NAME = 'project';
+                $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+    
+                if (mysqli_connect_errno()) {
+                    exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+                }
+    
+                if ($stmt = $con->prepare('Select albums.album_name,albums.album_loc from albums JOIN albumsxartists JOIN artists on albums.album_id = albumsxartists.album_id and albumsxartists.artist_id = artists.artist_id and artists.artist_name = ?')) {
+                    $stmt->bind_param('s', $_COOKIE['artist_name']);
+                    $stmt->execute();
+    
+                    $result = $stmt->get_result();
 
-    $resultQ = "SELECT * FROM artists;";
-    $result = mysqli_query($con, $resultQ);
+                    while ($row = $result->fetch_assoc()) {
+                        $album_name = $row['album_name'];
+                        echo <<< EOL
+                        <div class="artist-album-div">
+                            <div class="artist-album-area">
+                                <img src='$row[album_loc]' width=250px height=250px>
+                                <p>$album_name</p>
+                            </div>
+                            <div class="artist-album-tracks">
 
-?>
-    <div class="datacells-tracks">
-        <span class="track-number">1</span>
-        <span class="track-title">Storm</span>
-        <span class="track-artist">Godspeed You! Black Emperor</span>
-        <span class="track-album">Lift Your Skinny Fists Like Antennas to Heaven</span>
-        <span class="track-duration">22:32</span>
-    </div>
+                            <div id="datacells-heading" style="justify-content: unset !important;">
+                                <span class="track-number">#</span>
+                                <span class="track-title">TITLE</span>
+                            </div>
+                        EOL;
+                        if ($stmt1 = $con->prepare('SELECT tracks.track_title, tracks.track_loc, albums.album_name, albums.album_loc, artists.artist_name FROM tracks INNER JOIN albums INNER JOIN albumsxartists INNER JOIN artists on tracks.album_id = albums.album_id AND albums.album_id = albumsxartists.album_id AND albumsxartists.artist_id = artists.artist_id AND albums.album_name = ?')) {
+                            $stmt1->bind_param('s', $album_name);
+                            $stmt1->execute();
+    
+                            $result1 = $stmt1->get_result();
+
+                            while ($row1 = $result1->fetch_assoc()) {
+                                echo <<<EOL
+                                <div class="datacells-tracks" style="justify-content: unset !important;">
+                                    <button class="material-icons track-number" onclick="loadTrack('$row1[track_loc]','$row1[artist_name]','$row1[track_title]', '$row[album_loc]')">play_circle_filled</button>
+                                    <span class="track-title">$row1[track_title]</span>
+                                </div>
+                            EOL;
+                            }
+ 
+                            echo <<< EOL
+                            </div>
+                        </div>
+                        EOL;
+                        }
+                    }
+                }
+            ?>
 </div>
 
 <script>
