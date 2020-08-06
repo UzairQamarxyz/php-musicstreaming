@@ -5,6 +5,7 @@
 
     <link rel="stylesheet" type="text/css" href="../styles/streams.css">
     <link rel="stylesheet" type="text/css" href="../styles/album.css">
+    <link rel="stylesheet" type="text/css" href="../styles/artist.css">
     <link rel="stylesheet" type="text/css" href="../styles/profile.css">
     <link rel="stylesheet" type="text/css" href="../styles/browse.css">
     <link rel="stylesheet" type="text/css" href="../styles/settings.css">
@@ -76,7 +77,7 @@
         <div id="controls">
             <button id="prev" class="material-icons operator">skip_previous</button>
             <button id="playpause" class="material-icons operator paused" onclick="play()">play_arrow</button>
-            <button id="next" class="material-icons operator">skip_next</button>
+            <button id="next" class="material-icons operator" onclick="next()">skip_next</button>
         </div>
         <div id="player-trackbox">
             <div id="player-info">

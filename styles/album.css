@@ -10,9 +10,12 @@
   height: 250px;
   object-fit: cover;
 }
-#album-name {
-  font-size: 20px;
+#album-album-name {
+  font-size: 30px;
   font-weight: bold;
+}
+#album-artist-name {
+    font-size: 24px;
 }
 #profile {
   display: flex;

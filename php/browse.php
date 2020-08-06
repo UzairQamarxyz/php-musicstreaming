@@ -33,7 +33,7 @@
                     echo <<< EOL
                     <div class="album-gallery">
                         <a class="browse-album" href="#">
-                            <img class="browse-album-select" src="$location" alt="album art" onclick="createCookie('$album_name','$artist_name' ,'$location', '1')" width="200" height="200">
+                            <img class="browse-album-select" src="$location" alt="album art" onclick="albumNav('$album_name','$artist_name' ,'$location', '1')" width="200" height="200">
                         </a>
                     <div class="desc">$row[album_name]</div>
                     </div>
@@ -61,7 +61,7 @@
             echo <<< EOL
             <div class="album-gallery">
                 <a class="browse-artist" href="#">
-                    <img src='$row[artist_loc]' alt="arist" width="200" height="200">
+                    <img src='$row[artist_loc]' alt="arist" width="200" height="200" onclick="artistNav('$row[artist_name]', '$row[artist_loc]')">
                 </a>
                 <div class="desc">$row[artist_name]</div>
             </div>
@@ -75,7 +75,7 @@
 </div>
 <script>
 
-function createCookie(album_name, artist_name, location, days) {
+function albumNav(album_name, artist_name, location, days) {
   var expires;
   if (days) {
     var date = new Date();
@@ -90,6 +90,23 @@ function createCookie(album_name, artist_name, location, days) {
   document.cookie = "location=" + location + expires + "; path=/";
 
   $('#datagrid').load('album.php')
+
+}
+
+function artistNav( artist_name, location, days) {
+  var expires;
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    expires = "; expires=" + date.toGMTString();
+  }
+  else {
+    expires = "";
+  }
+  document.cookie = "artist_name=" + artist_name + expires + "; path=/";
+  document.cookie = "location=" + location + expires + "; path=/";
+
+  $('#datagrid').load('artist.php')
 
 }
 

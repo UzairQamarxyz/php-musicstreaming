@@ -6,8 +6,8 @@
 <div id="album-area">
     <img id="album-picture" src="<?=$_COOKIE[location]?>">
         <div id="profile">
-            <p id="album-name"><?=$_COOKIE[album_name]?></p>
-            <p><?=$_COOKIE[artist_name]?></p>
+            <p id="album-album-name"><?=$_COOKIE[album_name]?></p>
+            <p id="album-artist-name"><?=$_COOKIE[artist_name]?></p>
         </div>
     </div>
     

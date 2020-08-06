@@ -4,12 +4,11 @@
 ?>
 
 <div id="album-area">
-<img id="album-picture" style="border-radius:50%;" src=<?=$_COOKIE[location]?>>
+<img id="album-picture" style="border-radius:50%;" src='<?=$_COOKIE[location]?>'>
         <div id="profile">
-        <p id="username"><?=$_COOKIE[name]?></p>
+        <p id="artist-artist-name"><?=$_COOKIE[artist_name]?></p>
     </div>
 </div>
-<p id="datagrid-heading">Album Name</p>
 
 <!-- DATA CELLS -->
 <div id="datacells">

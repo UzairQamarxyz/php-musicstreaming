@@ -27,7 +27,7 @@
                 
             echo <<<EOL
             <div class="datacells-tracks">
-                <button class="material-icons track-number" onclick="loadTrack('$row[track_loc]','$row[artist_name]','$row[track_title]', '$row[album_loc]')">play_circle_filled</button>
+                <button class="material-icons track-number" onclick="loadTrack('$row[track_loc]', '$row[artist_name]', '$row[track_title]', '$row[album_loc]')">play_circle_filled</button>
                 <span class="track-title">$row[track_title]</span>
                 <span class="track-artist">$row[artist_name]</span>
                 <span class="track-album">$row[album_name]</span>

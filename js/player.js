@@ -1,5 +1,4 @@
 var playpause = document.getElementById("playpause")
-var currentTrack = 0
 
 function initProgressBar() {
     var player = document.getElementById('player');
@@ -54,7 +53,6 @@ function calculateCurrentValue(currentTime) {
 }
 
 function play(location) {
-    $("#playpause").addClass("active")
     if (playpause.classList.contains("paused")) {
         $("#playpause").removeClass("paused")
         $('#playpause').html('pause');
@@ -66,9 +64,9 @@ function play(location) {
     }
 }
 
-function loadTrack(location, artist, title, album_loc) {
-    $("source").prop("src", location)
-    console.log(location + artist + title + album_loc)
+function loadTrack(track_location, artist, title, album_loc) {
+    $("source").prop("src", track_location)
+    console.log(track_location + artist + title)
 
     document.getElementById("player-artist").innerHTML = artist + " - "
     document.getElementById("player-title").innerHTML = title
@@ -82,9 +80,4 @@ function loadTrack(location, artist, title, album_loc) {
 
     player.load()
     play()
-}
-
-function next(){
-    tracks = document.getElementsByClassName("track-number")
-
 }
