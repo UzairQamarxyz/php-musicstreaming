@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload') {
+include "dbcon.php";
     if (isset($_FILES['pfp']) && $_FILES['pfp']['error'] === UPLOAD_ERR_OK) {
         // get details of the uploaded file
         $fileTmpPath = $_FILES['pfp']['tmp_name'];
@@ -17,25 +17,16 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload') {
             $uploadFileDir = '../assets/uploads/pfps/';
             $dest_path = $uploadFileDir . $newFileName;
 
-            // DATABASE STUFF
-            $DATABASE_HOST = 'localhost';
-            $DATABASE_USER = 'root';
-            $DATABASE_PASS = '';
-            $DATABASE_NAME = 'project';
-    
-            $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
-            if (mysqli_connect_errno()) {
-                echo "error";
-    
-                exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-            }
-    
+            $con = OpenCon();
+
             if ($stmt = $con->prepare('UPDATE users SET user_pfp= ? WHERE user_name= ?')) {
                 $stmt->bind_param('ss', $dest_path, $_SESSION['name']);
                 $stmt->execute();
+
                 $_SESSION['pfp'] = $dest_path;
+
                 echo <<< EOL
-                    <div style="color: #00a6fb;">Profile Picture Updated!</div>
+                    <div id="pfp-uploaded" style="color: #00a6fb;">Profile Picture Updated!</div>
                 EOL;
             } else {
                 echo 'Could not prepare statement!';
@@ -64,26 +55,17 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload') {
             // directory in which the uploaded file will be moved
             $uploadFileDir = '../assets/uploads/banners/';
             $dest_path = $uploadFileDir . $newFileName;
+            
+            $con = OpenCon();
 
-            // DATABASE STUFF
-            $DATABASE_HOST = 'localhost';
-            $DATABASE_USER = 'root';
-            $DATABASE_PASS = '';
-            $DATABASE_NAME = 'project';
-    
-            $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
-            if (mysqli_connect_errno()) {
-                echo "error";
-    
-                exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-            }
-    
             if ($stmt = $con->prepare('UPDATE users SET user_banner= ? WHERE user_name= ?')) {
                 $stmt->bind_param('ss', $dest_path, $_SESSION['name']);
                 $stmt->execute();
+
                 $_SESSION['banner'] = $dest_path;
+
                 echo <<< EOL
-                    <div style="color: #00a6fb;">Banner Updated!</div>
+                    <div id="banner-uploaded" style="color: #00a6fb;">Banner Updated!</div>
                 EOL;
             } else {
                 echo 'Could not prepare statement!';
@@ -96,4 +78,4 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload') {
             }
         }
     }
-}
+?>

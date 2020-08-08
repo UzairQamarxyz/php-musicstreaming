@@ -1,5 +1,5 @@
 <?php
-    session_start(); 
+    session_start();
     $_SESSION['current'] = 'settings.php';
 ?>
 <script type="text/javascript" src="./js/verification.js" defer></script>
@@ -7,13 +7,13 @@
 <div id="datacells">
     <div id="settings-div">
     <div id="profile-banner" style="background-image: linear-gradient(rgb(5 25 35 / 0%), rgb(25 25 34)), url(<?=$_SESSION['banner']?>);">
-            <img id="settings-pfp" src=<?=$_SESSION['pfp'];?> onerror=this.src="../assets/pfps/default.png" width=130px height=130px>
-        </div>
+        <img id="settings-pfp" src=<?=$_SESSION['pfp'];?> onerror=this.src="../assets/pfps/default.png" width=130px height=130px>
+    </div>
 
         <div>
             <p>Your Profile</p>
             <hr>
-            <form class="form-settings" method="POST">
+            <form id="email-psw" class="form-settings" method="POST">
         
                 <div>
                     <label class="labels" for="email-settings">Email:</label>
@@ -31,7 +31,7 @@
                 </div>
             </form>
 
-            <form class="form-settings" method="POST" action="upload.php" enctype="multipart/form-data">
+            <form id="pfp-banner" class="form-settings" action="upload.php" method="POST" enctype="multipart/form-data">
                 <div>
                     <label class="labels" for="pfp">Change Profile Picture</label>
                     <input type="file" name="pfp" value="Change" />
@@ -74,4 +74,20 @@ function passwordUpdate() {
 	 $('#form-settings')[0].reset();
     });
 }
+
+$("#pfp-banner").on('submit',(function(e) {
+  e.preventDefault();
+  $.ajax({
+         url: "upload.php",
+   type: "POST",
+   data:  new FormData(this),
+   contentType: false,
+         cache: false,
+   processData:false,
+   success: function(data){
+        $("#results").html(data)
+    }
+    });
+}));
+
 </script>
