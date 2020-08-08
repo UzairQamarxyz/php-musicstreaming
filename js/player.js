@@ -84,6 +84,7 @@ function loadTrack(track_location, artist, title, album_loc) {
 function next() {}
 
 function favorite(track_id) {
+    alert("track_id:"+track_id)
     $.ajax({
         url: "../php/favorite.php",
         type: "POST",

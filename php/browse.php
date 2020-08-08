@@ -51,7 +51,7 @@
 <?php
     $con = OpenCon();
 
-    if ($stmt = $con->prepare("SELECT artists.artist_name, artists.artist_loc FROM artists JOIN albumsxartists JOIN albums ON albums.album_id = albumsxartists.album_id AND albumsxartists.artist_id = artists.artist_id")) {
+    if ($stmt = $con->prepare("SELECT artist_name, artist_loc FROM artists;")) {
         $stmt->execute();
         $result = $stmt->get_result();
 
