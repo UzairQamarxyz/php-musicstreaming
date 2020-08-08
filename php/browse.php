@@ -1,6 +1,8 @@
 <?php
     session_start();
     $_SESSION['current'] = 'browse.php';
+
+    include "dbcon.php";
 ?>
 <p id="datagrid-heading">Browse</p>
 
@@ -14,18 +16,13 @@
         <div class="gallery-innerdiv">
 
         <?php
-            $servername ="localhost";
-            $user ="root";
-            $pass = '';
-            $dbname = "project";
-            $con = mysqli_connect($servername, $user, $pass, $dbname);
-        
-            $resultQ = "SELECT albums.album_name, albums.album_loc, artists.artist_name from albums JOIN albumsxartists JOIN artists on albums.album_id = albumsxartists.album_id and albumsxartists.artist_id = artists.artist_id";
-            $result = mysqli_query($con, $resultQ);
-        
-            if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
+            $con = OpenCon();
 
+            if ($stmt = $con->prepare("SELECT albums.album_name, albums.album_loc, artists.artist_name from albums JOIN albumsxartists JOIN artists on albums.album_id = albumsxartists.album_id and albumsxartists.artist_id = artists.artist_id")) {
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                while ($row = $result->fetch_assoc()) {
                     $album_name = $row["album_name"];
                     $artist_name = $row["artist_name"];
                     $location = $row["album_loc"];
@@ -52,12 +49,13 @@
         <div class="gallery-innerdiv">
 
 <?php
-    $resultQ = "SELECT artists.artist_name, artists.artist_loc FROM artists JOIN albumsxartists JOIN albums ON albums.album_id = albumsxartists.album_id AND albumsxartists.artist_id = artists.artist_id";
-    $result = mysqli_query($con, $resultQ);
+    $con = OpenCon();
 
-    if (mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
+    if ($stmt = $con->prepare("SELECT artists.artist_name, artists.artist_loc FROM artists JOIN albumsxartists JOIN albums ON albums.album_id = albumsxartists.album_id AND albumsxartists.artist_id = artists.artist_id")) {
+        $stmt->execute();
+        $result = $stmt->get_result();
 
+        while ($row = $result->fetch_assoc()) {
             echo <<< EOL
             <div class="album-gallery">
                 <a class="browse-artist" href="#">

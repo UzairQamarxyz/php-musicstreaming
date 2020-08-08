@@ -91,7 +91,7 @@ function favorite(track_id) {
             id: track_id
         },
         success: function(data) {
-             $("#datagrid").html(data);   
+            $("#datagrid").html(data)
         }
     })
 

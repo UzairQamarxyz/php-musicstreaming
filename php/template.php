@@ -116,7 +116,7 @@ $('#browse-page').click(function(){
     $('#favorite-page').css("border-left","5px solid transparent") 
 })
 $('#favorite-page').click(function(){
-    $('#datagrid').load('favorite.php')
+    $('#datagrid').load('favorites.php')
     $('#streams-page').css("border-left","5px solid transparent") 
     $('#browse-page').css("border-left","5px solid transparent") 
     $('#favorite-page').css("border-left","5px solid #00a6fb") 

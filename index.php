@@ -37,33 +37,30 @@
                 <input type="submit" id="signup" name="signup" value="Signup"/>
             </form>
             <?php
-                $DATABASE_HOST = 'localhost';
-                $DATABASE_USER = 'root';
-                $DATABASE_PASS = '';
-                $DATABASE_NAME = 'project';
-                
-                $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
-                if (mysqli_connect_errno()) {
-                    exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-                }
+                include "dbcon.php";
+
+                $con = OpenCon();
                 
                 if (isset($_POST['signup'])) {
                     if ($stmt = $con->prepare('SELECT user_id, user_password FROM users WHERE user_name = ?')) {
                         $stmt->bind_param('s', $_POST['username']);
                         $stmt->execute();
                         $stmt->store_result();
-                
+
                         if (!$stmt->num_rows > 0) {
+                            $con = OpenCon();
                             if ($stmt = $con->prepare('SELECT user_id, user_password FROM users WHERE user_email = ?')) {
                                 $stmt->bind_param('s', $_POST['email']);
                                 $stmt->execute();
                                 $stmt->store_result();
                 
                                 if (!$stmt->num_rows > 0) {
+                                    $con = OpenCon();
                                     if ($stmt = $con->prepare('INSERT INTO users (user_name, user_password, user_email) VALUES (?, ?, ?)')) {
                                         $password = password_hash($_POST['psw'], PASSWORD_DEFAULT);
                                         $stmt->bind_param('sss', $_POST['username'], $password, $_POST['email']);
                                         $stmt->execute();
+
                                         echo <<< EOL
                                             <div style="color: white; margin-top: 10px;">Successfully Registered! Please Login</div>;
                                             EOL;
@@ -83,7 +80,7 @@
                         }
                     }
                 }
-                $con->close();
+                CloseCon($con);
             ?>
         </div>
 
