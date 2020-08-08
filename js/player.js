@@ -66,7 +66,6 @@ function play(location) {
 
 function loadTrack(track_location, artist, title, album_loc) {
     $("source").prop("src", track_location)
-    console.log(track_location + artist + title)
 
     document.getElementById("player-artist").innerHTML = artist + " - "
     document.getElementById("player-title").innerHTML = title
@@ -80,4 +79,20 @@ function loadTrack(track_location, artist, title, album_loc) {
 
     player.load()
     play()
+}
+
+function next() {}
+
+function favorite(track_id) {
+    $.ajax({
+        url: "../php/favorite.php",
+        type: "POST",
+        data: {
+            id: track_id
+        },
+        success: function(data) {
+             $("#datagrid").html(data);   
+        }
+    })
+
 }

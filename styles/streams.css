@@ -1,72 +1,89 @@
 /* Tracks */
 
 #datagrid {
-  grid-area: tracks;
-  overflow: auto;
-  border-left: 1px solid #32323d;
+    grid-area: tracks;
+    overflow: auto;
+    border-left: 1px solid #32323d;
 }
 
 #datagrid-heading {
-  font-size: 32px;
-  font-weight: bold;
-  margin: 40px;
+    font-size: 32px;
+    font-weight: bold;
+    margin: 40px;
 }
 
 #datacells {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
 }
 
 #datacells-heading {
-  display: flex;
-  width: 90%;
-  justify-content: space-between;
-  margin: 0 20px;
-  padding: 20px 0;
-  border-top: 1px solid #32323d;
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    margin: 0 20px;
+    padding: 20px 0;
+    border-top: 1px solid #32323d;
 }
 
-#datacells-heading > span {
-  color: #92929d;
-  font-size: 14px;
-}
-
-.datacells-tracks > span,
-.datacells-tracks > button,
-#datacells-heading > span {
-  margin-right: 35px;
-  text-align: start;
-}
-
-.datacells-tracks {
-  display: flex;
-  width: 90%;
-  justify-content: space-between;
-  margin: 0 20px;
-  padding: 20px 0;
-  border-top: 1px solid #32323d;
-  align-items: center;
+#datacells-heading>span {
+    color: #92929d;
+    font-size: 14px;
 }
 
 .track-number {
-  width: 6.5%;
-  border: none;
-  text-align: left;
+    margin-right: 15px;
 }
+
+.favorite {
+    margin-right: 30px;
+}
+
+.datacells-tracks>span,
+#datacells-heading>span {
+    margin-right: 35px;
+    text-align: start;
+}
+
+.track-no {
+    margin-right: 15px !important;
+}
+.track-fav {
+    margin-right: 35px !important;
+}
+
+.datacells-tracks {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    margin: 0 20px;
+    padding: 20px 0;
+    border-top: 1px solid #32323d;
+    align-items: center;
+}
+
+.track-number,
+.favorite {
+    width: 6.5%;
+    border: none;
+    text-align: left;
+}
+
 .track-number:focus {
-  border: none;
-  outline: none;
+    border: none;
+    outline: none;
 }
+
 .track-title {
-  width: 29%;
+    width: 29%;
 }
 
 .track-artist {
-  width: 28%;
+    width: 28%;
 }
 
 .track-album {
-  width: 28%;
+    width: 28%;
 }

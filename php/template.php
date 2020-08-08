@@ -21,7 +21,6 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <script src="typeahead.min.js"></script>
 
 </head>
 
@@ -38,7 +37,7 @@
 
     <div id="searchbar">
         <i id="search-icon" class="material-icons operator">search</i>
-        <input type="text" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Type your Query" />
+        <input type="text" id="search-text" autocomplete="off" spellcheck="false" placeholder="Type your Query" />
     </div>
 
     <div id="profile-bar">
@@ -74,9 +73,10 @@
         </audio>
         <div id="controls">
             <button id="prev" class="material-icons operator">skip_previous</button>
-            <button id="playpause" class="material-icons operator paused" onclick="play()">play_arrow</button>
+            <button id="playpause" class="material-icons operator paused" data-current="" onclick="play()">play_arrow</button>
             <button id="next" class="material-icons operator" onclick="next()">skip_next</button>
         </div>
+
         <div id="player-trackbox">
             <div id="player-info">
                 <span id="player-artist"></span>
@@ -93,6 +93,9 @@
 <script>
 
 $('#datagrid').load('<?=$_SESSION['current'];?>');
+    $('#streams-page').css("border-left","5px solid #00a6fb") 
+    $('#browse-page').css("border-left","5px solid transparent") 
+    $('#favorite-page').css("border-left","5px solid transparent") 
 
 $('#drp-profile').click(function(){
     $('#datagrid').load('profile.php')
@@ -102,16 +105,46 @@ $('#settings').click(function(){
 })
 $('#streams-page').click(function(){
     $('#datagrid').load('streams.php')
+    $('#streams-page').css("border-left","5px solid #00a6fb") 
+    $('#browse-page').css("border-left","5px solid transparent") 
+    $('#favorite-page').css("border-left","5px solid transparent") 
 })
 $('#browse-page').click(function(){
     $('#datagrid').load('browse.php')
+    $('#streams-page').css("border-left","5px solid transparent") 
+    $('#browse-page').css("border-left","5px solid #00a6fb") 
+    $('#favorite-page').css("border-left","5px solid transparent") 
 })
 $('#favorite-page').click(function(){
     $('#datagrid').load('favorite.php')
+    $('#streams-page').css("border-left","5px solid transparent") 
+    $('#browse-page').css("border-left","5px solid transparent") 
+    $('#favorite-page').css("border-left","5px solid #00a6fb") 
 })
 $(".browse-artist").click(function (){
     $('#datagrid').load('artist.php')
 })
+
+
+
+$("#search-text").on("keyup", function(){
+
+    var searched_item = $(this).val();
+    console.log(searched_item)
+
+    $("#datagrid").hide();
+
+    $.ajax({
+        url: "search.php",
+        type: "POST",
+        data: {search: searched_item},
+        success: function(data){
+             $("#datagrid").show();  
+             $("#datagrid").html(data);   
+        }
+    })
+});
+
 
 </script>
 </body>

@@ -38,6 +38,7 @@
                     $num_of_rows = $result->num_rows;
 
                     while ($row = $result->fetch_assoc()) {
+                        $user_id= $row["user_id"];
                         $user_name = $row["user_name"];
                         $user_email = $row["user_email"];
                         $user_password = $row["user_password"];
@@ -55,6 +56,7 @@
 
                             $_SESSION['loggedin'] = true;
 
+                            $_SESSION['id'] = $user_id;
                             $_SESSION['name'] = $user_name;
                             $_SESSION['email'] = $user_email;
                             $_SESSION['pfp'] = $user_pfp;
