@@ -84,7 +84,6 @@ function loadTrack(track_location, artist, title, album_loc) {
 function next() {}
 
 function favorite(track_id) {
-    alert("track_id:"+track_id)
     $.ajax({
         url: "../php/favorite.php",
         type: "POST",
@@ -92,7 +91,12 @@ function favorite(track_id) {
             id: track_id
         },
         success: function(data) {
-            $("#datagrid").html(data)
+            if (data == "LIKED"){
+                $(".favorite[data-id='" + track_id +"']").html("favorite")
+            }
+            else if (data == "DISLIKED"){
+                $(".favorite[data-id='" + track_id +"']").html("favorite_border")
+            }
         }
     })
 
