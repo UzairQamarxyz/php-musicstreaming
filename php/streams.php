@@ -1,6 +1,8 @@
 <?php
     session_start();
     $_SESSION['current'] = 'streams.php';
+
+    include "dbcon.php";
 ?>
 <p id="datagrid-heading">Your Stream</p>
 
@@ -13,18 +15,14 @@
         <span class="track-album">ALBUM</span>
     </div>
 <?php
-    $servername ="localhost";
-    $user ="root";
-    $pass = '';
-    $dbname = "project";
-    $con = mysqli_connect($servername, $user, $pass, $dbname);
+    $con = OpenCon();
 
-    $resultQ = "SELECT tracks.track_id,tracks.track_title, albums.album_name, albums.album_loc, artists.artist_name, tracks.track_loc from tracks INNER JOIN albums INNER JOIN artists WHERE tracks.album_id = albums.album_id and tracks.artist_id = artists.artist_id;";
-    $result = mysqli_query($con, $resultQ);
+    if ($stmt = $con->prepare("SELECT tracks.track_id,tracks.track_title, albums.album_name, albums.album_loc, artists.artist_name, tracks.track_loc from tracks INNER JOIN albums INNER JOIN artists WHERE tracks.album_id = albums.album_id and tracks.artist_id = artists.artist_id;")) {
+        $stmt->execute();
+    
+        $result = $stmt->get_result();
 
-    if (mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-                
+        while ($row = $result->fetch_assoc()) {
             echo <<<EOL
             <div class="datacells-tracks">
                 <button class="material-icons track-number" onclick="loadTrack('$row[track_loc]', '$row[artist_name]', '$row[track_title]', '$row[album_loc]')">play_circle_filled</button>

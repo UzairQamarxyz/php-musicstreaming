@@ -26,16 +26,9 @@
             <?php
             session_start();
 
-            $DATABASE_HOST = 'localhost';
-            $DATABASE_USER = 'root';
-            $DATABASE_PASS = '';
-            $DATABASE_NAME = 'project';
-            $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+            include "dbcon.php";
 
-            if (mysqli_connect_errno()) {
-                exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-            }
-
+            $con = OpenCon();
             if (isset($_POST["login"])) {
                 if ($stmt = $con->prepare('SELECT * FROM users WHERE user_name = ?')) {
                     $stmt->bind_param('s', $_POST['username']);
@@ -81,7 +74,7 @@
                     EOL;
                     }
             
-                    $stmt->close();
+                CloseCon($con);
                 }
             }
             ?>
