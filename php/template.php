@@ -132,14 +132,11 @@ $("#search-text").on("keyup", function(){
     var searched_item = $(this).val();
     console.log(searched_item)
 
-    $("#datagrid").hide();
-
     $.ajax({
         url: "search.php",
         type: "POST",
         data: {search: searched_item},
         success: function(data){
-             $("#datagrid").show();  
              $("#datagrid").html(data);   
         }
     })

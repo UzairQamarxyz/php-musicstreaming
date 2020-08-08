@@ -27,9 +27,30 @@
 
         while ($row = $result->fetch_assoc()) {
             echo <<<EOL
-            <div class="datacells-tracks">
+                <div class="datacells-tracks">
                 <button class="material-icons track-number" onclick="loadTrack('$row[track_loc]', '$row[artist_name]', '$row[track_title]', '$row[album_loc]')">play_circle_filled</button>
-                <button class="material-icons favorite" data-id='$row[track_id]' onclick="favorite('$row[track_id]')")">favorite_border</button>
+                EOL;
+
+            $con =  OpenCon();
+            if ($stmt1 = $con->prepare("SELECT COUNT(*) FROM userxlikes where user_id = ? and track_id = ?")) {
+                $stmt1->bind_param("ii", $_SESSION["id"], $row[track_id]);
+                $stmt1->execute();
+                $stmt1->bind_result($found);
+
+                $stmt1->fetch();
+                
+                if ($found == 0) {
+                    echo <<<EOL
+                        <button class="material-icons favorite" data-id='$row[track_id]' onclick="favorite('$row[track_id]')")">favorite_border</button>
+                    EOL;
+                } else {
+                    echo <<<EOL
+                        <button class="material-icons favorite" data-id='$row[track_id]' onclick="favorite('$row[track_id]')")">favorite</button>
+                    EOL;
+                }
+            }
+
+            echo <<<EOL
                 <span class="track-title">$row[track_title]</span>
                 <span class="track-artist">$row[artist_name]</span>
                 <span class="track-album">$row[album_name]</span>
