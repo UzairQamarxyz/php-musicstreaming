@@ -5,6 +5,7 @@
     include "dbcon.php";
 ?>
 
+<button class="material-icons back" onclick="$('#browse-page').click()">arrow_back_ios</button>
 
 <div id="album-area">
     <img id="album-picture" src="<?=$_GET[album_loc]?>">

@@ -11,13 +11,14 @@
 #search-icon {
   color: #ccc9dc;
 }
-#search-box,
-#search-box:focus {
+#search-text,
+#search-text:focus {
   outline: none;
   border: 0;
   font-size: 18px;
   font-weight: lighter;
   color: #ccc9dc;
+  width: 94%;
 }
 #search-box::placeholder {
   color: #ccc9dc;

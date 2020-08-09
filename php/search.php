@@ -6,9 +6,8 @@ if (isset($_POST['search'])) {
     $search = $_POST['search'];
     $con = OpenCon();
 
-    $con = OpenCon();
-
     echo <<< EOL
+        <p id="datagrid-heading">Search Results for "$search"</p>
         <div id="datacells-browse">
         EOL;
 
@@ -71,7 +70,8 @@ if (isset($_POST['search'])) {
     
         $result = $stmt->get_result();
         echo <<< EOL
-        <p id="datagrid-heading">Search Results for "$search"</p>
+                <div class="gallery-outerdiv">
+        <h2 class="gallery-heading">Tracks</h2>
         <div id="datacells">
             <div id="datacells-heading">
                 <span class="track-number track-no">#</span>
@@ -81,14 +81,16 @@ if (isset($_POST['search'])) {
                 <span class="track-album">ALBUM</span>
             </div>
         EOL;
+
         $count = 0;
+
         while ($row = $result->fetch_assoc()) {
             echo <<<EOL
                 <div class="datacells-tracks">
                 <button class="material-icons track-number" data-count=$count onclick="loadTrack('$row[track_loc]', '$row[artist_name]', '$row[track_title]', '$row[album_loc]', $count)">play_circle_filled</button>
                 EOL;
 
-            $con =  OpenCon();
+            $con = OpenCon();
             if ($stmt1 = $con->prepare("SELECT COUNT(*) FROM userxlikes where user_id = ? and track_id = ?")) {
                 $stmt1->bind_param("ii", $_SESSION["id"], $row[track_id]);
                 $stmt1->execute();
@@ -115,9 +117,13 @@ if (isset($_POST['search'])) {
             EOL;
             $count++;
         }
+        echo <<< EOL
+        </div>
+        EOL;
     } else {
         echo <<< EOL
             No Results Found
         EOL;
     }
+    CloseCon($con);
 }
