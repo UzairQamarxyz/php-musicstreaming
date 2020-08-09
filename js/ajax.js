@@ -46,36 +46,41 @@ function artistNav(artist_name, artist_loc) {
 
 function emailUpdate() {
     var email = $("#email").val()
+    if (!email) {
+        $('#et').html("Please Enter an Email")
+    } else {
+        $.post("./submit.php", {
+                type: "POST",
+                contentType: false,
+                cache: false,
+                processData: false,
+                email: email
+            },
 
-    $.post("./submit.php", {
-            type: "POST",
-            contentType: false,
-            cache: false,
-            processData: false,
-            email: email
-        },
-
-        function(data) {
-            $('#results').html(data);
-            $('#form-settings')[0].reset();
-        });
+            function(data) {
+                $('#et').html(data);
+            });
+    }
 }
 
 function passwordUpdate() {
     var password = $("#psw").val()
 
-    $.post("./submit.php", {
-            type: "POST",
-            contentType: false,
-            cache: false,
-            processData: false,
-            password: password
-        },
+    if (!password) {
+        $('#pt').html("Please Enter a Password")
+    } else {
+        $.post("./submit.php", {
+                type: "POST",
+                contentType: false,
+                cache: false,
+                processData: false,
+                password: password
+            },
 
-        function(data) {
-            $('#results').html(data);
-            $('#form-settings')[0].reset();
-        });
+            function(data) {
+                $('#et').html(data);
+            });
+    }
 }
 
 function upload(fdata) {
@@ -95,19 +100,17 @@ function upload(fdata) {
 $('#profile-banner').on('click', function(event) {
     // compare the element clicked (event.target) with the
     // element that has the click attached (this)
-    if (event.target == this){
+    if (event.target == this) {
         $("#change-banner").click()
-    }
-    else
+    } else
         return;
 })
 
 $('#settings-pfp').on('click', function(event) {
     // compare the element clicked (event.target) with the
     // element that has the click attached (this)
-    if (event.target == this){
+    if (event.target == this) {
         $("#change-pfp").click()
-    }
-    else
+    } else
         return;
 })

@@ -34,25 +34,20 @@
 }
 
 .track-number {
-  margin-right: 15px;
 }
 
 .favorite {
-  margin-right: 30px;
   color: #00a6fb;
 }
 
 .datacells-tracks > span,
 #datacells-heading > span {
-  margin-right: 35px;
   text-align: start;
 }
 
 .track-no {
-  margin-right: 15px !important;
 }
 .track-fav {
-  margin-right: 35px !important;
 }
 
 .datacells-tracks {
@@ -70,6 +65,7 @@
   border: none;
   text-align: left;
   cursor: pointer;
+  width: 7.5%
 }
 
 .favorite:focus,
@@ -79,13 +75,16 @@
 }
 
 .track-title {
-  width: 29%;
+  width: 25%;
+  margin-right: 12px;
 }
 
 .track-artist {
-  width: 28%;
+  width: 27%;
+  margin-right: 12px;
 }
 
 .track-album {
   width: 28%;
+  margin-right: 12px;
 }

@@ -21,10 +21,9 @@
         
                 <div>
                     <label class="labels" for="email-settings">Email:</label>
-                    <input type="text" name="email" id="email" oninput="emailVal()" placeholder="Email">
-                    <input type="button" id="change-email" onclick="emailUpdate()" value="Change" />
+                    <input type="text" name="email" id="email" oninput="emailVal()" placeholder="Email" required>
+                    <input type="button" id="change-email" onclick="emailUpdate()" value="Change" required>
                     <br>
-                    
                 </div>
         
                 <div>
