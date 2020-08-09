@@ -3,8 +3,9 @@
 }
 #settings-div {
   text-align: right;
-  padding: 20px;
+  padding: 0;
   background-color: #23232d;
+  width: 100%;
 }
 #settings-div img {
   border-radius: 50%;
@@ -53,8 +54,40 @@ hr {
 #results #pt {
   font-size: 12px;
 }
+
 #datagrid #datacells {
 }
+
 #settings-pfp {
   margin-left: 20px;
+}
+
+#pfp-banner {
+  display: none;
+}
+#profile-banner {
+  flex-direction: row;
+  justify-content: space-between;
+}
+#profile-banner:hover {
+  cursor: pointer;
+  display: flex;
+}
+#settings-pfp:hover {
+  cursor: pointer;
+}
+.overlay {
+  background-color: white !important;
+  transition: 0.2s ease;
+  opacity: 0;
+  color: black;
+  padding: 10px;
+  font-size: 16px;
+  margin-right: 20px;
+}
+#profile-banner:hover .overlay {
+  opacity: 1;
+}
+#pfp-div {
+  background-color: transparent !important;
 }

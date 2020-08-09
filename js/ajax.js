@@ -79,7 +79,6 @@ function passwordUpdate() {
 }
 
 function upload(fdata) {
-    alert(fdata)
     $.ajax({
         url: "./upload.php",
         type: "POST",
@@ -92,3 +91,23 @@ function upload(fdata) {
         }
     });
 }
+
+$('#profile-banner').on('click', function(event) {
+    // compare the element clicked (event.target) with the
+    // element that has the click attached (this)
+    if (event.target == this){
+        $("#change-banner").click()
+    }
+    else
+        return;
+})
+
+$('#settings-pfp').on('click', function(event) {
+    // compare the element clicked (event.target) with the
+    // element that has the click attached (this)
+    if (event.target == this){
+        $("#change-pfp").click()
+    }
+    else
+        return;
+})

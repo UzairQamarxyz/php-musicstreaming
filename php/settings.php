@@ -8,7 +8,10 @@
 <div id="datacells">
     <div id="settings-div">
     <div id="profile-banner" style="background-image: linear-gradient(rgb(5 25 35 / 0%), rgb(25 25 34)), url(<?=$_SESSION['banner']?>);">
-        <img id="settings-pfp" src=<?=$_SESSION['pfp'];?> onerror=this.src="../assets/pfps/default.png" width=130px height=130px>
+        <div id="pfp-div">
+            <img id="settings-pfp" src=<?=$_SESSION['pfp'];?> onerror=this.src="../assets/pfps/default.png" width=130px height=130px>
+        </div>
+        <div class="overlay">Click to change</div>
     </div>
 
         <div>
@@ -34,16 +37,14 @@
 
             <form id="pfp-banner" class="form-settings" method="POST" enctype="multipart/form-data" onsubmit="upload(this)">
                 <div>
-                    <input id ="change-pfp" type="file" name="pfp" value="Change" />
-                    <br>
+                    <input id ="change-pfp" type="file" name="pfp" value="Change" onchange="$('#submit').click()"/>
                 </div>
 
                 <div>
-                    <input id="change-banner" type="file" name="banner" value="Change" />
-                    <br>
+                    <input id="change-banner" type="file" name="banner" value="Change" onchange="$('#submit').click()"/>
                 </div>
 
-                <input type="submit" name="uploadBtn" value="Upload" />
+                <input id="submit" type="submit" name="uploadBtn" value="Upload" />
 
             </form>
 
