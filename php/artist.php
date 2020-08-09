@@ -14,6 +14,7 @@
 
 <!-- DATA CELLS -->
 <div id="datacells">
+    <p id="datagrid-heading">Albums By <?=$_POST[artist_name]?></p>
 <?php
                 $con = OpenCon();
     

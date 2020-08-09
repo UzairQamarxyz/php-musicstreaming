@@ -4,15 +4,24 @@ include "dbcon.php";
 
 if (isset($_POST['search'])) {
     $search = $_POST['search'];
-    echo $search;
     $con = OpenCon();
 
-    if ($stmt = $con->prepare("SELECT tracks.track_id, tracks.track_title, tracks.track_loc, albums.album_name, albums.album_loc, artists.artist_name FROM tracks INNER JOIN albums INNER JOIN albumsxartists INNER JOIN artists ON tracks.album_id = albums.album_id AND albums.album_id = albumsxartists.album_id AND albumsxartists.artist_id = artists.artist_id AND tracks.track_title LIKE '%$search%' OR albums.album_name LIKE '%$search%' OR artists.artist_name LIKE '%$search%' LIMIT 10;"));
+    if ($stmt = $con->prepare("SELECT * from forsearch where forsearch.track_title like '%$search%' or forsearch.album_name LIKE '%$search%' or forsearch.artist_name LIKE '%$search%'"));
 
     $stmt->execute();
     
     $result = $stmt->get_result();
-
+        echo <<< EOL
+        <p id="datagrid-heading">Search Results for "$search"</p>
+        <div id="datacells">
+            <div id="datacells-heading">
+                <span class="track-number track-no">#</span>
+                <span class="track-number track-fav"></span>
+                <span class="track-title">TITLE</span>
+                <span class="track-artist">ARTIST</span>
+                <span class="track-album">ALBUM</span>
+            </div>
+        EOL;
     while ($row = $result->fetch_assoc()) {
         echo <<<EOL
                 <div class="datacells-tracks">

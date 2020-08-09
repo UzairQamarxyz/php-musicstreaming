@@ -8,6 +8,35 @@
 
 <!-- DATA CELLS -->
 <div id="datacells-browse">
+    <!-- Artists Gallery -->
+
+    <div class="gallery-outerdiv">
+        <h2 class="gallery-heading">Artists</h2>
+        <div class="gallery-innerdiv">
+
+<?php
+    $con = OpenCon();
+
+    if ($stmt = $con->prepare("SELECT artist_name, artist_loc FROM artists;")) {
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        while ($row = $result->fetch_assoc()) {
+            echo <<< EOL
+            <div class="album-gallery">
+                <a class="browse-artist" href="#">
+                    <img src='$row[artist_loc]' alt="arist" width="200" height="200" onclick="artistNav('$row[artist_name]', '$row[artist_loc]')" style="border-radius: 50%;">
+                </a>
+                <div class="desc">$row[artist_name]</div>
+            </div>
+            EOL;
+        }
+    }
+?>
+
+        </div>
+    </div>
+
 
     <!-- Albums Gallery -->
 
@@ -42,32 +71,4 @@
         </div>
     </div>
 
-    <!-- Artists Gallery -->
-
-    <div class="gallery-outerdiv">
-        <h2 class="gallery-heading">Artists</h2>
-        <div class="gallery-innerdiv">
-
-<?php
-    $con = OpenCon();
-
-    if ($stmt = $con->prepare("SELECT artist_name, artist_loc FROM artists;")) {
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        while ($row = $result->fetch_assoc()) {
-            echo <<< EOL
-            <div class="album-gallery">
-                <a class="browse-artist" href="#">
-                    <img src='$row[artist_loc]' alt="arist" width="200" height="200" onclick="artistNav('$row[artist_name]', '$row[artist_loc]')">
-                </a>
-                <div class="desc">$row[artist_name]</div>
-            </div>
-            EOL;
-        }
-    }
-?>
-
-        </div>
-    </div>
 </div>

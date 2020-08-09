@@ -52,33 +52,36 @@ function calculateCurrentValue(currentTime) {
     return current_time;
 }
 
-function play(location) {
+function play() {
+    current = $("#playpause").attr("data-current")
+
     if (playpause.classList.contains("paused")) {
         $("#playpause").removeClass("paused")
         $('#playpause').html('pause');
+        $(".track-number[data-count='" + current + "']").html("pause_circle_filled")
         player.play()
     } else if (!playpause.classList.contains("paused")) {
         $("#playpause").addClass("paused")
         $('#playpause').html('play_arrow');
+        $(".track-number[data-count='" + current + "']").html("play_circle_filled")
         player.pause()
     }
 }
 
-function loadTrack(track_location, artist, title, album_loc) {
-    $("source").prop("src", track_location)
+function loadTrack(track_location, artist, title, album_loc, play_count) {
+    if ($("source").prop("src") !== track_location) {
+        $("source").prop("src", track_location)
+        $("#playpause").attr("data-current", play_count)
+        document.getElementById("player-artist").innerHTML = artist + " - "
+        document.getElementById("player-title").innerHTML = title
 
-    document.getElementById("player-artist").innerHTML = artist + " - "
-    document.getElementById("player-title").innerHTML = title
-    $("#album-art").attr('src', album_loc)
+        $("#album-art").attr('src', album_loc)
 
-    if (!playpause.classList.contains("paused")) {
-        $("#playpause").addClass("paused")
-        $('#playpause').html('play_arrow');
-        player.pause()
+        player.load()
+        prev_count = play_count
     }
 
-    player.load()
-    play()
+    play();
 }
 
 function next() {}

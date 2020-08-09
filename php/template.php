@@ -127,22 +127,24 @@ $(".browse-artist").click(function (){
     $('#datagrid').load('artist.php')
 })
 
-
-
-$("#search-text").on("keyup", function(){
-
+$("#search-text").on("keyup", function() {
     var searched_item = $(this).val();
-    console.log(searched_item)
-
-    $.ajax({
-        url: "search.php",
-        type: "POST",
-        data: {search: searched_item},
-        success: function(data){
-             $("#datagrid").html(data);   
-        }
-    })
+    if (!searched_item) {
+        $("#datagrid").load('<?=$_POST['current']?>')
+    } else {
+        $.ajax({
+            url: "search.php",
+            type: "POST",
+            data: {
+                search: searched_item
+            },
+            success: function(data) {
+                $("#datagrid").html(data);
+            }
+        })
+    }
 });
+
 
 
 </script>
