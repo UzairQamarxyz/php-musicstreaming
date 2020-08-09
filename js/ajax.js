@@ -18,7 +18,7 @@ function favorite(track_id) {
 function albumNav(album_name, artist_name, album_loc) {
     $.ajax({
         url: "./album.php",
-        type: "POST",
+        type: "GET",
         data: {
             album_name: album_name,
             artist_name: artist_name,
@@ -33,7 +33,7 @@ function albumNav(album_name, artist_name, album_loc) {
 function artistNav(artist_name, artist_loc) {
     $.ajax({
         url: "./artist.php",
-        type: "POST",
+        type: "GET",
         data: {
             artist_name: artist_name,
             artist_loc: artist_loc
