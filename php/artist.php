@@ -6,9 +6,9 @@
 ?>
 
 <div id="album-area">
-<img id="album-picture" style="border-radius:50%;" src='<?=$_COOKIE[location]?>'>
+<img id="album-picture" style="border-radius:50%;" src='<?=$_POST[artist_loc]?>'>
         <div id="profile">
-        <p id="artist-artist-name"><?=$_COOKIE[artist_name]?></p>
+        <p id="artist-artist-name"><?=$_POST[artist_name]?></p>
     </div>
 </div>
 
@@ -18,7 +18,7 @@
                 $con = OpenCon();
     
                 if ($stmt = $con->prepare('Select albums.album_name,albums.album_loc from albums JOIN albumsxartists JOIN artists on albums.album_id = albumsxartists.album_id and albumsxartists.artist_id = artists.artist_id and artists.artist_name = ?')) {
-                    $stmt->bind_param('s', $_COOKIE['artist_name']);
+                    $stmt->bind_param('s', $_POST['artist_name']);
                     $stmt->execute();
     
                     $result = $stmt->get_result();

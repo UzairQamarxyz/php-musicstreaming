@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "dbcon.php";
+
     if (isset($_FILES['pfp']) && $_FILES['pfp']['error'] === UPLOAD_ERR_OK) {
         // get details of the uploaded file
         $fileTmpPath = $_FILES['pfp']['tmp_name'];

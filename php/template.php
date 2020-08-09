@@ -16,7 +16,9 @@
     <link rel="stylesheet" type="text/css" href="../styles/universal/topbar.css">
 
     <script type="text/javascript" src="../js/player.js" defer></script>
+    <script type="text/javascript" src="../js/ajax.js" defer></script>
     <script type="text/javascript" src="../js/verification.js" defer></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

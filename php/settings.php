@@ -2,7 +2,8 @@
     session_start();
     $_SESSION['current'] = 'settings.php';
 ?>
-<script type="text/javascript" src="./js/verification.js" defer></script>
+<script type="text/javascript" src="../js/verification.js" defer></script>
+<script type="text/javascript" src="../js/ajax.js" defer></script>
 
 <div id="datacells">
     <div id="settings-div">
@@ -31,63 +32,25 @@
                 </div>
             </form>
 
-            <form id="pfp-banner" class="form-settings" action="upload.php" method="POST" enctype="multipart/form-data">
+            <form id="pfp-banner" class="form-settings" method="POST" enctype="multipart/form-data" onsubmit="upload(this)">
                 <div>
-                    <label class="labels" for="pfp">Change Profile Picture</label>
-                    <input type="file" name="pfp" value="Change" />
+                    <input id ="change-pfp" type="file" name="pfp" value="Change" />
                     <br>
                 </div>
 
                 <div>
-                    <label class="labels" for="banner">Change Profile Banner</label>
-                    <input type="file" name="banner" value="Change" />
+                    <input id="change-banner" type="file" name="banner" value="Change" />
                     <br>
                 </div>
-                    <input type="submit" name="uploadBtn" value="Upload" />
+
+                <input type="submit" name="uploadBtn" value="Upload" />
 
             </form>
+
             <div id="results">
-                    <p id="et" class="tooltip"></p>
-                    <p id="pt" class="tooltip"></p>
+                <p id="et" class="tooltip"></p>
+                <p id="pt" class="tooltip"></p>
             </div>
         </div>
     </div>
 </div>
-<script>
-function emailUpdate() {
-    var email =  $("#email").val()
-
-    $.post("submit.php", { email: email },
-
-    function(data) {
-	 $('#results').html(data);
-	 $('#form-settings')[0].reset();
-    });
-}
-function passwordUpdate() {
-    var password =  $("#psw").val()
-
-    $.post("submit.php", { password: password },
-
-    function(data) {
-	 $('#results').html(data);
-	 $('#form-settings')[0].reset();
-    });
-}
-
-$("#pfp-banner").on('submit',(function(e) {
-  e.preventDefault();
-  $.ajax({
-         url: "upload.php",
-   type: "POST",
-   data:  new FormData(this),
-   contentType: false,
-         cache: false,
-   processData:false,
-   success: function(data){
-        $("#results").html(data)
-    }
-    });
-}));
-
-</script>

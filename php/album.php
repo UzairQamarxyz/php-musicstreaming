@@ -2,14 +2,15 @@
     session_start();
     $_SESSION['current'] = 'album.php';
     
-    include "dbcon.php"
+    include "dbcon.php";
 ?>
 
+
 <div id="album-area">
-    <img id="album-picture" src="<?=$_COOKIE[location]?>">
+    <img id="album-picture" src="<?=$_POST[album_loc]?>">
         <div id="profile">
-            <p id="album-album-name"><?=$_COOKIE[album_name]?></p>
-            <p id="album-artist-name"><?=$_COOKIE[artist_name]?></p>
+            <p id="album-album-name"><?=$_POST[album_name]?></p>
+            <p id="album-artist-name"><?=$_POST[artist_name]?></p>
         </div>
     </div>
     
@@ -27,7 +28,7 @@
                 $con = OpenCon();
     
                 if ($stmt = $con->prepare('SELECT tracks.track_title, tracks.track_loc, albums.album_name, albums.album_loc, artists.artist_name FROM tracks INNER JOIN albums INNER JOIN albumsxartists INNER JOIN artists on tracks.album_id = albums.album_id AND albums.album_id = albumsxartists.album_id AND albumsxartists.artist_id = artists.artist_id AND albums.album_name = ?')) {
-                    $stmt->bind_param('s', $_COOKIE['album_name']);
+                    $stmt->bind_param('s', $_POST['album_name']);
                     $stmt->execute();
     
                     $result = $stmt->get_result();
