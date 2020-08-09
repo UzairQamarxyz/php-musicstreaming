@@ -9,6 +9,20 @@
 <img id="album-picture" style="border-radius:50%;" src='<?=$_POST[artist_loc]?>'>
         <div id="profile">
         <p id="artist-artist-name"><?=$_POST[artist_name]?></p>
+<?php
+    $con = OpenCon();
+    if ($stmt = $con->prepare("SELECT artist_desc FROM artists WHERE artist_name = '$_POST[artist_name]'")) {
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        $row = $result->fetch_assoc();
+    }
+    echo <<< EOL
+        <p id="artist-artist-desc">$row[artist_desc]</p>
+    EOL;
+    CloseCon($con);
+?>
     </div>
 </div>
 
@@ -18,7 +32,7 @@
 <?php
                 $con = OpenCon();
     
-                if ($stmt = $con->prepare('Select albums.album_name,albums.album_loc from albums JOIN albumsxartists JOIN artists on albums.album_id = albumsxartists.album_id and albumsxartists.artist_id = artists.artist_id and artists.artist_name = ?')) {
+                if ($stmt = $con->prepare('SELECT albums.album_name,albums.album_loc FROM albums JOIN albumsxartists JOIN artists ON albums.album_id = albumsxartists.album_id AND albumsxartists.artist_id = artists.artist_id AND artists.artist_name = ?')) {
                     $stmt->bind_param('s', $_POST['artist_name']);
                     $stmt->execute();
     
@@ -35,7 +49,8 @@
                             <div class="artist-album-tracks">
 
                             <div id="datacells-heading" style="justify-content: unset !important;">
-                                <span class="track-number">#</span>
+                                <span class="track-number track-no">#</span>
+                                <span class="track-number track-fav"></span>
                                 <span class="track-title">TITLE</span>
                             </div>
                         EOL;
@@ -46,10 +61,11 @@
     
                             $result1 = $stmt1->get_result();
 
+                            $count = 0;
                             while ($row1 = $result1->fetch_assoc()) {
                                 echo <<<EOL
                                 <div class="datacells-tracks" style="justify-content: unset !important;">
-                                    <button class="material-icons track-number" onclick="loadTrack('$row1[track_loc]','$row1[artist_name]','$row1[track_title]', '$row[album_loc]')">play_circle_filled</button>
+                                <button class="material-icons track-number" data-count=$count onclick="loadTrack('$row[track_loc]', '$row[artist_name]', '$row[track_title]', '$row[album_loc]', $count)">play_circle_filled</button>
                                 EOL;
 
                                 $con =  OpenCon();
@@ -74,6 +90,7 @@
                                     <span class="track-title">$row1[track_title]</span>
                                 </div>
                             EOL;
+                                $count++;
                             }
  
                             echo <<< EOL
@@ -83,6 +100,7 @@
                         }
                     }
                 }
+            CloseCon($con);
             ?>
 </div>
 

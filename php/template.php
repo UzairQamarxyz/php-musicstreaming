@@ -145,8 +145,6 @@ $("#search-text").on("keyup", function() {
     }
 });
 
-
-
 </script>
 </body>
 

@@ -52,14 +52,11 @@
                 $result = $stmt->get_result();
 
                 while ($row = $result->fetch_assoc()) {
-                    $album_name = $row["album_name"];
-                    $artist_name = $row["artist_name"];
-                    $location = $row["album_loc"];
 
                     echo <<< EOL
                     <div class="album-gallery">
                         <a class="browse-album" href="#">
-                            <img class="browse-album-select" src="$location" alt="album art" onclick="albumNav('$album_name','$artist_name' ,'$location', '1')" width="200" height="200">
+                            <img class="browse-album-select" src="$row[album_loc]" alt="album art" onclick="albumNav('$row[album_name]','$row[artist_name]','$row[album_loc]')" width="200" height="200">
                         </a>
                     <div class="desc">$row[album_name]</div>
                     </div>

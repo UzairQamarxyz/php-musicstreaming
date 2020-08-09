@@ -60,6 +60,6 @@
             EOL;
         }
     }
-
+    CloseCon($con);
 ?>
 </div>

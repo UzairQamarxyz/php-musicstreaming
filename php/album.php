@@ -34,10 +34,11 @@
     
                     $result = $stmt->get_result();
 
+                    $count = 0;
                     while ($row = $result->fetch_assoc()) {
                         echo <<<EOL
                             <div class="datacells-tracks">
-                                <button class="material-icons track-number" onclick="loadTrack('$row[track_loc]','$row[artist_name]','$row[track_title]', '$row[album_loc]')">play_circle_filled</button>
+                            <button class="material-icons track-number" data-count=$count onclick="loadTrack('$row[track_loc]', '$row[artist_name]', '$row[track_title]', '$row[album_loc]', $count)">play_circle_filled</button>
                         EOL;
                         $con =  OpenCon();
                         if ($stmt1 = $con->prepare("SELECT COUNT(*) FROM userxlikes where user_id = ? and track_id = ?")) {
@@ -62,6 +63,7 @@
                                 <span class="track-artist">$row[artist_name]</span>
                             </div>
                         EOL;
+                        $count++;
                     }
                 }
             ?>

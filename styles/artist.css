@@ -16,5 +16,10 @@
 }
 #artist-artist-name {
   font-weight: bold;
-  font-size: 30px;
+  font-size: 50px;
+}
+#artist-artist-desc {
+    margin: 10px 0px;
+    width: 75%;
+    color: #ccc9dc;
 }
