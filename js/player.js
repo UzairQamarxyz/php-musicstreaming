@@ -84,4 +84,40 @@ function loadTrack(track_location, artist, title, album_loc, play_count) {
     play();
 }
 
-function next() {}
+function playNext() {
+    // get current count
+    next = $("#playpause").attr("data-current")
+
+    // pause current song
+    $("#playpause").addClass("paused")
+    $('#playpause').html('play_arrow');
+    $(".track-number[data-count='" + next + "']").html("play_circle_filled")
+    player.pause()
+
+    // if already on last track then loop to start 
+    if (next == $(".track-number[data-count]").length - 1) {
+        next = -1
+    }
+
+    // click next entry
+    $(".track-number[data-count='" + ++next + "']").click()
+}
+
+function playPrev() {
+    // get current count
+    prev = $("#playpause").attr("data-current")
+
+    // pause current song
+    $("#playpause").addClass("paused")
+    $('#playpause').html('play_arrow');
+    $(".track-number[data-count='" + prev + "']").html("play_circle_filled")
+    player.pause()
+
+    // if already on first track then loop to last
+    if (prev == 0) {
+        prev = $(".track-number[data-count]").length
+    }
+
+    // click next entry
+    $(".track-number[data-count='" + --prev + "']").click()
+}

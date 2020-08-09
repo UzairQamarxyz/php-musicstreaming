@@ -74,9 +74,9 @@
             <source src="" type="audio/mp3">
         </audio>
         <div id="controls">
-            <button id="prev" class="material-icons operator">skip_previous</button>
+            <button id="prev" class="material-icons operator" onclick="playPrev()">skip_previous</button>
             <button id="playpause" class="material-icons operator paused" data-current="" onclick="play()">play_arrow</button>
-            <button id="next" class="material-icons operator" onclick="next()">skip_next</button>
+            <button id="next" class="material-icons operator" onclick="playNext()">skip_next</button>
         </div>
 
         <div id="player-trackbox">
