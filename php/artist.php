@@ -39,7 +39,7 @@
                             </div>
                         EOL;
 
-                        if ($stmt1 = $con->prepare('SELECT tracks.track_title, tracks.track_loc, albums.album_name, albums.album_loc, artists.artist_name FROM tracks INNER JOIN albums INNER JOIN albumsxartists INNER JOIN artists on tracks.album_id = albums.album_id AND albums.album_id = albumsxartists.album_id AND albumsxartists.artist_id = artists.artist_id AND albums.album_name = ?')) {
+                        if ($stmt1 = $con->prepare('SELECT tracks.track_id, tracks.track_title, tracks.track_loc, albums.album_name, albums.album_loc, artists.artist_name FROM tracks INNER JOIN albums INNER JOIN albumsxartists INNER JOIN artists on tracks.album_id = albums.album_id AND albums.album_id = albumsxartists.album_id AND albumsxartists.artist_id = artists.artist_id AND albums.album_name = ?')) {
                             $stmt1->bind_param('s', $album_name);
                             $stmt1->execute();
     
@@ -49,6 +49,27 @@
                                 echo <<<EOL
                                 <div class="datacells-tracks" style="justify-content: unset !important;">
                                     <button class="material-icons track-number" onclick="loadTrack('$row1[track_loc]','$row1[artist_name]','$row1[track_title]', '$row[album_loc]')">play_circle_filled</button>
+                                EOL;
+
+                                $con =  OpenCon();
+                                if ($stmt2 = $con->prepare("SELECT COUNT(*) FROM userxlikes where user_id = ? and track_id = ?")) {
+                                    $stmt2->bind_param("ii", $_SESSION["id"], $row1[track_id]);
+                                    $stmt2->execute();
+                                    $stmt2->bind_result($found);
+
+                                    $stmt2->fetch();
+                
+                                    if ($found == 0) {
+                                        echo <<<EOL
+                                    <button class="material-icons favorite" data-id='$row1[track_id]' onclick="favorite('$row1[track_id]')")">favorite_border</button>
+                                    EOL;
+                                    } else {
+                                        echo <<<EOL
+                                    <button class="material-icons favorite" data-id='$row1[track_id]' onclick="favorite('$row1[track_id]')")">favorite</button>
+                                    EOL;
+                                    }
+                                }
+                                echo <<< EOL
                                     <span class="track-title">$row1[track_title]</span>
                                 </div>
                             EOL;
