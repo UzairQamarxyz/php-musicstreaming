@@ -9,7 +9,7 @@
 
 <div id="album-area">
 <img id="album-picture" style="border-radius:50%;" src='<?=$_COOKIE["artist_loc"]?>'>
-    <div id="profile">
+    <div id="artist-profile">
         <p id="artist-artist-name"><?=$_COOKIE["artist_name"]?></p>
 <?php
     $con = OpenCon();
@@ -25,6 +25,7 @@
     EOL;
     CloseCon($con);
 ?>
+        <button class="follow">Follow</button>
     </div>
 </div>
 

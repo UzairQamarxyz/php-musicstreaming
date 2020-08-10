@@ -1,3 +1,8 @@
+#artist-profile {
+  margin: 0 40px;
+  display: flex;
+  flex-direction: column;
+}
 .artist-album-div {
   display: flex;
   flex-direction: row;
@@ -19,7 +24,22 @@
   font-size: 50px;
 }
 #artist-artist-desc {
-    margin: 10px 0px;
-    width: 75%;
-    color: #ccc9dc;
+  margin: 10px 0px;
+  width: 75%;
+  color: #ccc9dc;
+}
+
+.follow,
+.follow:focus {
+  font-family: barlow;
+  font-weight: bold;
+  margin: 10px 0px;
+  background-color: #00a6fb;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 30px;
+  font-size: 16px;
+  padding: 7px 15px;
+  align-self: flex-start;
 }
