@@ -65,7 +65,7 @@
   border: none;
   text-align: left;
   cursor: pointer;
-  width: 7.5%
+  width: 7.5%;
 }
 
 .favorite:focus,
@@ -85,6 +85,10 @@
 }
 
 .track-album {
-  width: 28%;
+  width: 22%;
+  margin-right: 12px;
+}
+.track-likes {
+  width: 6%;
   margin-right: 12px;
 }

@@ -15,6 +15,7 @@
         <span class="track-title">TITLE</span>
         <span class="track-artist">ARTIST</span>
         <span class="track-album">ALBUM</span>
+        <span class="track-likes">LIKES</span>
     </div>
 <?php
     $con = OpenCon();

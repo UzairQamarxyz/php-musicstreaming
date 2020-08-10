@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="../styles/universal/sidebar.css">
     <link rel="stylesheet" type="text/css" href="../styles/universal/topbar.css">
 
+    <script type="text/javascript" src="../js/other.js" defer></script>
     <script type="text/javascript" src="../js/player.js" defer></script>
     <script type="text/javascript" src="../js/ajax.js" defer></script>
     <script type="text/javascript" src="../js/verification.js" defer></script>

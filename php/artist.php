@@ -8,12 +8,12 @@
 <button class="material-icons back" onclick="$('#browse-page').click()">arrow_back_ios</button>
 
 <div id="album-area">
-<img id="album-picture" style="border-radius:50%;" src='<?=$_GET["artist_loc"]?>'>
-        <div id="profile">
-        <p id="artist-artist-name"><?=$_GET["artist_name"]?></p>
+<img id="album-picture" style="border-radius:50%;" src='<?=$_COOKIE["artist_loc"]?>'>
+    <div id="profile">
+        <p id="artist-artist-name"><?=$_COOKIE["artist_name"]?></p>
 <?php
     $con = OpenCon();
-    if ($stmt = $con->prepare("SELECT artist_desc FROM artists WHERE artist_name = '$_GET[artist_name]'")) {
+    if ($stmt = $con->prepare("SELECT artist_desc FROM artists WHERE artist_name = '$_COOKIE[artist_name]'")) {
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -30,12 +30,12 @@
 
 <!-- DATA CELLS -->
 <div id="datacells">
-    <p id="datagrid-heading">Albums By <?=$_GET["artist_name"]?></p>
+    <p id="datagrid-heading">Albums By <?=$_COOKIE["artist_name"]?></p>
 <?php
                 $con = OpenCon();
     
                 if ($stmt = $con->prepare('SELECT albums.album_name,albums.album_loc FROM albums JOIN albumsxartists JOIN artists ON albums.album_id = albumsxartists.album_id AND albumsxartists.artist_id = artists.artist_id AND artists.artist_name = ?')) {
-                    $stmt->bind_param('s', $_GET['artist_name']);
+                    $stmt->bind_param('s', $_COOKIE['artist_name']);
                     $stmt->execute();
     
                     $result = $stmt->get_result();
