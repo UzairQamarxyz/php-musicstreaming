@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="../styles/profile.css">
     <link rel="stylesheet" type="text/css" href="../styles/browse.css">
     <link rel="stylesheet" type="text/css" href="../styles/settings.css">
+    <link rel="stylesheet" type="text/css" href="../styles/uploadsongs.css">
 
     <link rel="stylesheet" type="text/css" href="../styles/universal/grid.css">
     <link rel="stylesheet" type="text/css" href="../styles/universal/player.css">
@@ -60,6 +61,13 @@
                 <li><a id="streams-page" href="#"><i href="" class="material-icons side-icons">audiotrack</i><b>Your Stream</b></a></li>
                 <li><a id="browse-page" href="#"><i href="" class="material-icons side-icons">view_list</i><b>Browse</b></a></li>
                 <li><a id="favorite-page" href="#"><i href="" class="material-icons side-icons">favorite</i><b>Favorites</b></a></li>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <li><a id="uploadsongs-page" href="#"><i href="" class="material-icons side-icons">cloud_upload</i><b>Upload Songs</b></a></li>
             </ul>
         </div>
         <img id="album-art" src="" />
@@ -110,18 +118,28 @@ $('#streams-page').click(function(){
     $('#streams-page').css("border-left","5px solid #00a6fb") 
     $('#browse-page').css("border-left","5px solid transparent") 
     $('#favorite-page').css("border-left","5px solid transparent") 
+    $('#uploadsongs-page').css("border-left","5px solid transparent") 
 })
 $('#browse-page').click(function(){
     $('#datagrid').load('browse.php')
     $('#streams-page').css("border-left","5px solid transparent") 
     $('#browse-page').css("border-left","5px solid #00a6fb") 
     $('#favorite-page').css("border-left","5px solid transparent") 
+    $('#uploadsongs-page').css("border-left","5px solid transparent") 
 })
 $('#favorite-page').click(function(){
     $('#datagrid').load('favorites.php')
     $('#streams-page').css("border-left","5px solid transparent") 
     $('#browse-page').css("border-left","5px solid transparent") 
     $('#favorite-page').css("border-left","5px solid #00a6fb") 
+    $('#uploadsongs-page').css("border-left","5px solid transparent") 
+})
+$('#uploadsongs-page').click(function(){
+    $('#datagrid').load('uploadsongs.php')
+    $('#streams-page').css("border-left","5px solid transparent") 
+    $('#browse-page').css("border-left","5px solid transparent") 
+    $('#favorite-page').css("border-left","5px solid transparent") 
+    $('#uploadsongs-page').css("border-left","5px solid #00a6fb") 
 })
 $(".browse-artist").click(function (){
     $('#datagrid').load('artist.php')
