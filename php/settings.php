@@ -2,6 +2,11 @@
     session_start();
     $_SESSION['current'] = 'settings.php';
 ?>
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
 <script type="text/javascript" src="../js/verification.js" defer></script>
 <script type="text/javascript" src="../js/ajax.js" defer></script>
 

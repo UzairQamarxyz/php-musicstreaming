@@ -61,12 +61,6 @@
                 <li><a id="streams-page" href="#"><i href="" class="material-icons side-icons">audiotrack</i><b>Your Stream</b></a></li>
                 <li><a id="browse-page" href="#"><i href="" class="material-icons side-icons">view_list</i><b>Browse</b></a></li>
                 <li><a id="favorite-page" href="#"><i href="" class="material-icons side-icons">favorite</i><b>Favorites</b></a></li>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
                 <li><a id="uploadsongs-page" href="#"><i href="" class="material-icons side-icons">cloud_upload</i><b>Upload Songs</b></a></li>
             </ul>
         </div>
@@ -77,15 +71,15 @@
 
     </div>
 
+    <div id="controls">
+        <button id="prev" class="material-icons operator" onclick="playPrev()">skip_previous</button>
+        <button id="playpause" class="material-icons operator paused" data-current="" onclick="play()">play_arrow</button>
+        <button id="next" class="material-icons operator" onclick="playNext()">skip_next</button>
+    </div>
     <div id="player-div">
         <audio id="player" ontimeupdate="initProgressBar()">
             <source src="" type="audio/mp3">
         </audio>
-        <div id="controls">
-            <button id="prev" class="material-icons operator" onclick="playPrev()">skip_previous</button>
-            <button id="playpause" class="material-icons operator paused" data-current="" onclick="play()">play_arrow</button>
-            <button id="next" class="material-icons operator" onclick="playNext()">skip_next</button>
-        </div>
 
         <div id="player-trackbox">
             <div id="player-info">
@@ -99,13 +93,17 @@
             </div>
         </div>
     </div>
+    
+    <div id="extra-controls">
+        <button id="repeat" class="material-icons operator toggle-buttons">repeat_one</button>
+        <button id="shuffle" class="material-icons operator toggle-buttons">shuffle</button>
+    </div>
  </div>
 <script>
 
-$('#datagrid').load('<?=$_SESSION['current'];?>');
-    $('#streams-page').css("border-left","5px solid #00a6fb") 
-    $('#browse-page').css("border-left","5px solid transparent") 
-    $('#favorite-page').css("border-left","5px solid transparent") 
+$('#datagrid').load('<?=$_SESSION['current'];?>')
+    $("#list li a").removeClass("active")
+    $('#streams-page').addClass("active") 
 
 $('#drp-profile').click(function(){
     $('#datagrid').load('profile.php')
@@ -115,31 +113,23 @@ $('#settings').click(function(){
 })
 $('#streams-page').click(function(){
     $('#datagrid').load('streams.php')
-    $('#streams-page').css("border-left","5px solid #00a6fb") 
-    $('#browse-page').css("border-left","5px solid transparent") 
-    $('#favorite-page').css("border-left","5px solid transparent") 
-    $('#uploadsongs-page').css("border-left","5px solid transparent") 
+    $("#list li a").removeClass("active")
+    $('#streams-page').addClass("active") 
 })
 $('#browse-page').click(function(){
     $('#datagrid').load('browse.php')
-    $('#streams-page').css("border-left","5px solid transparent") 
-    $('#browse-page').css("border-left","5px solid #00a6fb") 
-    $('#favorite-page').css("border-left","5px solid transparent") 
-    $('#uploadsongs-page').css("border-left","5px solid transparent") 
+    $("#list li a").removeClass("active")
+    $('#browse-page').addClass("active") 
 })
 $('#favorite-page').click(function(){
     $('#datagrid').load('favorites.php')
-    $('#streams-page').css("border-left","5px solid transparent") 
-    $('#browse-page').css("border-left","5px solid transparent") 
-    $('#favorite-page').css("border-left","5px solid #00a6fb") 
-    $('#uploadsongs-page').css("border-left","5px solid transparent") 
+    $("#list li a").removeClass("active")
+    $('#favorite-page').addClass("active") 
 })
 $('#uploadsongs-page').click(function(){
     $('#datagrid').load('uploadsongs.php')
-    $('#streams-page').css("border-left","5px solid transparent") 
-    $('#browse-page').css("border-left","5px solid transparent") 
-    $('#favorite-page').css("border-left","5px solid transparent") 
-    $('#uploadsongs-page').css("border-left","5px solid #00a6fb") 
+    $("#list li a").removeClass("active")
+    $('#uploadsongs-page').addClass("active") 
 })
 $(".browse-artist").click(function (){
     $('#datagrid').load('artist.php')

@@ -19,7 +19,7 @@ select:-webkit-autofill:focus {
   display: grid;
   grid-template-columns: 0.4fr 1.7fr 0.3fr;
   grid-template-rows: 6vh 84vh 10vh;
-  grid-template-areas: "title search profile" "sidebar tracks tracks" "player player player";
+  grid-template-areas: "title search profile" "sidebar tracks tracks" "controls player misc";
 }
 
 /* Universally */

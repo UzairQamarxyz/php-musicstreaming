@@ -85,14 +85,24 @@ function loadTrack(track_location, artist, title, album_loc, play_count) {
 }
 
 function playNext() {
+    if ($("#shuffle").hasClass("toggled")) {
+        rando = Math.floor(Math.random() * $(".track-number[data-count]").length) + 1
+    }
+
     // get current count
-    next = $("#playpause").attr("data-current")
+    current = $("#playpause").attr("data-current")
 
     // pause current song
     $("#playpause").addClass("paused")
     $('#playpause').html('play_arrow');
-    $(".track-number[data-count='" + next + "']").html("play_circle_filled")
+    $(".track-number[data-count='" + current + "']").html("play_circle_filled")
     player.pause()
+
+    if (typeof rando !== "undefined") {
+        next = rando
+    } else {
+        next = current
+    }
 
     // if already on last track then loop to start 
     if (next == $(".track-number[data-count]").length - 1) {
@@ -104,14 +114,24 @@ function playNext() {
 }
 
 function playPrev() {
+    if ($("#shuffle").hasClass("toggled")) {
+        rando = Math.floor(Math.random() * $(".track-number[data-count]").length) + 1
+    }
+
     // get current count
     prev = $("#playpause").attr("data-current")
 
     // pause current song
     $("#playpause").addClass("paused")
     $('#playpause').html('play_arrow');
-    $(".track-number[data-count='" + prev + "']").html("play_circle_filled")
+    $(".track-number[data-count='" + current + "']").html("play_circle_filled")
     player.pause()
+
+    if (typeof rando !== "undefined") {
+        prev = rando
+    } else {
+        prev = current
+    }
 
     // if already on first track then loop to last
     if (prev == 0) {
@@ -121,3 +141,29 @@ function playPrev() {
     // click next entry
     $(".track-number[data-count='" + --prev + "']").click()
 }
+
+$("#repeat").on("click", function(e) {
+    $("#repeat").toggleClass("toggled")
+
+    if ($("#player").prop('loop') == false) {
+        $("#player").prop('loop', true);
+    } else {
+        $("#player").prop('loop', false);
+    };
+
+    e.preventDefault();
+})
+
+$("#shuffle").on("click", function(e) {
+    $("#shuffle").toggleClass("toggled")
+
+    e.preventDefault();
+})
+
+$("#player").on("ended", function() {
+    if ($("#shuffle").hasClass("toggled")) {
+        rando = Math.floor(Math.random() * $(".track-number[data-count]").length) + 1
+        playNext()
+        console.log(rando)
+    }
+})

@@ -1,6 +1,8 @@
 /* CSS FOR THE BOTTOM PLAYER */
 
 /* Player Control */
+#extra-controls,
+#extra-controls *,
 #player-div,
 #player-div * {
   background-color: #23232d;
@@ -14,11 +16,10 @@
 }
 
 #controls {
-  position: absolute;
+  background-color: #23232d;
+  grid-area: controls;
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-left: 42px;
 }
 
 #playpause {
@@ -45,6 +46,7 @@
   cursor: pointer;
   outline: inherit;
 }
+
 #timestamps {
   display: flex;
   justify-content: center;
@@ -52,7 +54,7 @@
 }
 
 progress {
-  width: 30%;
+  width: 50%;
   margin: 5px;
 }
 
@@ -73,4 +75,29 @@ progress[value]::-webkit-progress-bar {
 
 progress::-webkit-progress-value {
   background-color: #00a6fb;
+}
+
+.toggle-buttons:focus,
+.toggle-buttons {
+  color: #8f8f8f;
+  outline: none;
+  border: none;
+}
+.toggle-buttons:hover {
+  cursor: pointer;
+}
+
+#extra-controls {
+  grid-area: misc;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.active {
+  border-left: 5px solid #00a6fb !important;
+}
+
+.toggled {
+  color: #00a6fb !important;
 }
