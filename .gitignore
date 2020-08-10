@@ -1,7 +1,7 @@
 *.cache
-/assets/uploads/songs/
-/assets/uploads/pfps/
-/assets/uploads/banners/
+/assets/uploads/songs/*
+/assets/uploads/pfps/*
+/assets/uploads/banners/*
 
 !/assets/uploads/pfps/.gitignore
 !/assets/uploads/banners/.gitignore
