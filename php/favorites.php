@@ -46,7 +46,7 @@
                     EOL;
                 } else {
                     echo <<<EOL
-                        <button class="material-icons favorite" data-id='{$row[track_id]}' onclick="favorite('{$row["track_id"]}')")">favorite</button>
+                        <button class="material-icons favorite" data-id='{$row["track_id"]}' onclick="favorite('{$row["track_id"]}')")">favorite</button>
                     EOL;
                 }
             }

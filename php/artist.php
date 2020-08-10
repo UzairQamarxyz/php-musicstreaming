@@ -45,7 +45,7 @@
                         echo <<< EOL
                         <div class="artist-album-div">
                             <div class="artist-album-area">
-                                <img src='{$row[album_loc]}' width=250px height=250px>
+                                <img src='{$row["album_loc"]}' width=250px height=250px>
                                 <p>$album_name</p>
                             </div>
                             <div class="artist-album-tracks">
@@ -66,8 +66,8 @@
                             $count = 0;
                             while ($row1 = $result1->fetch_assoc()) {
                                 echo <<<EOL
-                                <div class="datacells-tracks" style="justify-content: unset !important;">
-                                <button class="material-icons track-number" data-count={$count} onclick="loadTrack('{$row ["track_loc"]}', '{$row["artist_name"]}', '{$row["track_title"]}', '{$row["album_loc"]}', {$count})">play_circle_filled</button>
+                                    <div class="datacells-tracks" style="justify-content: unset !important;">
+                                    <button class="material-icons track-number" data-count={$count} onclick="loadTrack('{$row1["track_loc"]}', '{$row1["artist_name"]}', '{$row1["track_title"]}', '{$row1["album_loc"]}', {$count})">play_circle_filled</button>
                                 EOL;
 
                                 $con =  OpenCon();
