@@ -148,7 +148,7 @@ $(".browse-artist").click(function (){
 $("#search-text").on("keyup", function() {
     var searched_item = $(this).val();
     if (!searched_item) {
-        $("#datagrid").load('<?=$_POST['current']?>')
+        $("#datagrid").load('<?=$_SESSION['current']?>')
     } else {
         $.ajax({
             url: "search.php",

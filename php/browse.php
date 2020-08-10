@@ -25,9 +25,9 @@
             echo <<< EOL
             <div class="album-gallery">
                 <a class="browse-artist" href="#">
-                    <img src='$row[artist_loc]' alt="arist" width="200" height="200" onclick="artistNav('$row[artist_name]', '$row[artist_loc]')" style="border-radius: 50%;">
+                    <img src='$row[artist_loc]' alt="arist" width="200" height="200" onclick="artistNav('{$row["artist_name"]}', '{$row["artist_loc"]}')" style="border-radius: 50%;">
                 </a>
-                <div class="desc">$row[artist_name]</div>
+                <div class="desc">{$row["artist_name"]}</div>
             </div>
             EOL;
         }
@@ -56,9 +56,9 @@
                     echo <<< EOL
                     <div class="album-gallery">
                         <a class="browse-album" href="#">
-                            <img class="browse-album-select" src="$row[album_loc]" alt="album art" onclick="albumNav('$row[album_name]','$row[artist_name]','$row[album_loc]')" width="200" height="200">
+                            <img class="browse-album-select" src="{$row["album_loc"]}" alt="album art" onclick="albumNav('{$row["album_name"]}','{$row["artist_name"]}','$row[album_loc]')" width="200" height="200">
                         </a>
-                    <div class="desc">$row[album_name]</div>
+                    <div class="desc">${row["album_name"]}</div>
                     </div>
                     EOL;
                 }

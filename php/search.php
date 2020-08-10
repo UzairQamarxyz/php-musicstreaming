@@ -26,9 +26,9 @@ if (isset($_POST['search'])) {
             echo <<< EOL
                         <div class="album-gallery">
                             <a class="browse-artist" href="#">
-                                <img src='$row[artist_loc]' alt="arist" width="200" height="200" onclick="artistNav('$row[artist_name]', '$row[artist_loc]')" style="border-radius: 50%;">
+                                <img src='{$row["artist_loc"]}' alt="arist" width="200" height="200" onclick="artistNav('{$row["artist_name"]}', '{$row["artist_loc"]}')" style="border-radius: 50%;">
                             </a>
-                            <div class="desc">$row[artist_name]</div>
+                            <div class="desc">{$row["artist_name"]}</div>
                         </div>
             EOL;
         }
@@ -53,9 +53,9 @@ if (isset($_POST['search'])) {
                 echo <<< EOL
                     <div class="album-gallery">
                         <a class="browse-album" href="#">
-                            <img class="browse-album-select" src="$row[album_loc]" alt="album art" onclick="albumNav('$row[album_name]','$row[artist_name]','$row[album_loc]')" width="200" height="200">
+                            <img class="browse-album-select" src="{$row["album_loc"]}" alt="album art" onclick="albumNav('{$row["album_name"]}','{$row["artist_name"]}','{$row["album_loc"]}')" width="200" height="200">
                         </a>
-                    <div class="desc">$row[album_name]</div>
+                    <div class="desc">{$row["album_name"]}</div>
                 </div>
                 EOL;
             }
@@ -87,12 +87,12 @@ if (isset($_POST['search'])) {
         while ($row = $result->fetch_assoc()) {
             echo <<<EOL
                 <div class="datacells-tracks">
-                <button class="material-icons track-number" data-count=$count onclick="loadTrack('$row[track_loc]', '$row[artist_name]', '$row[track_title]', '$row[album_loc]', $count)">play_circle_filled</button>
+                <button class="material-icons track-number" data-count={$count} onclick="loadTrack('{$row["track_loc"]}', '{$row["artist_name"]}', '{$row["track_title"]}', '{$row["album_loc"]}', {$count})">play_circle_filled</button>
                 EOL;
 
             $con = OpenCon();
             if ($stmt1 = $con->prepare("SELECT COUNT(*) FROM userxlikes where user_id = ? and track_id = ?")) {
-                $stmt1->bind_param("ii", $_SESSION["id"], $row[track_id]);
+                $stmt1->bind_param("ii", $_SESSION["id"], $row["track_id"]);
                 $stmt1->execute();
                 $stmt1->bind_result($found);
 
@@ -100,19 +100,19 @@ if (isset($_POST['search'])) {
                 
                 if ($found == 0) {
                     echo <<<EOL
-                        <button class="material-icons favorite" data-id='$row[track_id]' onclick="favorite('$row[track_id]')")">favorite_border</button>
+                        <button class="material-icons favorite" data-id='{$row["track_id"]}' onclick="favorite('{$row["track_id"]}')")">favorite_border</button>
                     EOL;
                 } else {
                     echo <<<EOL
-                        <button class="material-icons favorite" data-id='$row[track_id]' onclick="favorite('$row[track_id]')")">favorite</button>
+                        <button class="material-icons favorite" data-id='{$row["track_id"]}' onclick="favorite('{$row["track_id"]}')")">favorite</button>
                     EOL;
                 }
             }
 
             echo <<<EOL
-                <span class="track-title">$row[track_title]</span>
-                <span class="track-artist">$row[artist_name]</span>
-                <span class="track-album">$row[album_name]</span>
+                <span class="track-title">{$row["track_title"]}</span>
+                <span class="track-artist">{$row["artist_name"]}</span>
+                <span class="track-album">{$row["album_name"]}</span>
             </div>
             EOL;
             $count++;

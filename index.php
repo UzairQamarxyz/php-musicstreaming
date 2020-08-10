@@ -37,7 +37,7 @@
                 <input type="submit" id="signup" name="signup" value="Signup"/>
             </form>
             <?php
-                include "dbcon.php";
+                include "./php/dbcon.php";
 
                 $con = OpenCon();
                 
