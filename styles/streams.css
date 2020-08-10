@@ -60,18 +60,8 @@
   align-items: center;
 }
 
-.track-number,
-.favorite {
-  border: none;
-  text-align: left;
-  cursor: pointer;
-  width: 7.5%;
-}
-
-.favorite:focus,
-.track-number:focus {
-  border: none;
-  outline: none;
+.track-number {
+  width: 4.5%;
 }
 
 .track-title {
@@ -91,4 +81,24 @@
 .track-likes {
   width: 6%;
   margin-right: 12px;
+}
+
+.track-number-a,
+.favorite-a,
+.track-number:focus,
+.favorite-a:focus {
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.track-album-a,
+.track-artist-a {
+  cursor: pointer;
+}
+
+.track-album-a:hover,
+.track-artist-a:hover {
+  text-decoration: underline;
 }
