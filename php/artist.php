@@ -67,7 +67,7 @@
                             while ($row1 = $result1->fetch_assoc()) {
                                 echo <<<EOL
                                 <div class="datacells-tracks" style="justify-content: unset !important;">
-                                <button class="material-icons track-number" data-count={$count} onclick="loadTrack('{$row [track_loc]}', '{$row[artist_name]}', '{$row[track_title]}', '{$row[album_loc]}', {$count})">play_circle_filled</button>
+                                <button class="material-icons track-number" data-count={$count} onclick="loadTrack('{$row ["track_loc"]}', '{$row["artist_name"]}', '{$row["track_title"]}', '{$row["album_loc"]}', {$count})">play_circle_filled</button>
                                 EOL;
 
                                 $con =  OpenCon();
@@ -80,11 +80,11 @@
                 
                                     if ($found == 0) {
                                         echo <<<EOL
-                                    <button class="material-icons favorite" data-id='{$row1[track_id]}' onclick="favorite('{$row1[track_id]}')")">favorite_border</button>
+                                    <button class="material-icons favorite" data-id='{$row1["track_id"]}' onclick="favorite('{$row1["track_id"]}')")">favorite_border</button>
                                     EOL;
                                     } else {
                                         echo <<<EOL
-                                    <button class="material-icons favorite" data-id='{$row1[track_id]}' onclick="favorite('{$row1[track_id]}')")">favorite</button>
+                                    <button class="material-icons favorite" data-id='{$row1["track_id"]}' onclick="favorite('{$row1["track_id"]}')")">favorite</button>
                                     EOL;
                                     }
                                 }
