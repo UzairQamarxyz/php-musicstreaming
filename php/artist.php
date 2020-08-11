@@ -30,7 +30,7 @@ echo <<< EOL
 </div>
 
 <!-- DATA CELLS -->
-<div id="datacells">
+<div id="datacells-artist">
     <p id="datagrid-heading">Albums By <?=$_COOKIE["artist_name"]?></p>
 <?php
     $con = OpenCon();
@@ -52,7 +52,7 @@ echo <<< EOL
                 </div>
                 <div class="artist-album-tracks">
     
-                <div id="datacells-heading" style="justify-content: unset !important;">
+                <div id="datacells-heading">
                     <span class="track-number track-no">#</span>
                     <span class="track-number track-fav"></span>
                     <span class="track-title">TITLE</span>
@@ -68,7 +68,7 @@ echo <<< EOL
                 $count = 0;
                 while ($row1 = $result1->fetch_assoc()) {
                     echo <<<EOL
-                        <div class="datacells-tracks" style="justify-content: unset !important;">
+                        <div class="datacells-tracks">
                         <button class="material-icons track-number track-number-a" data-count={$count} onclick="loadTrack('{$row1["track_loc"]}', '{$row1["artist_name"]}', '{$row1["track_title"]}', '{$row1["album_loc"]}', {$count})">play_circle_filled</button>
                     EOL;
     

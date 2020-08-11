@@ -1,0 +1,99 @@
+#sidebar {
+  position: absolute;
+  right: 100vw;
+}
+
+.sidebar-open {
+  position: inherit !important;
+}
+
+#album-art,
+#artist-artist-desc,
+#search-text,
+#banner-username > b,
+#site-name > h1,
+.track-likes,
+.track-album,
+.track-artist,
+#extra-controls {
+  display: none;
+}
+
+.gallery-outerdiv,
+.track-likes,
+.track-album,
+.track-artist,
+.track-title,
+.track-number,
+.track-favorite {
+  margin: 0 !important;
+}
+
+#datacells > div {
+  padding: 10px 0;
+}
+
+#settings-div,
+#datacells {
+  padding: 0 !important;
+}
+
+#datagrid-heading{
+    margin: 20px !important;
+}
+
+.operator {
+  margin: 0 !important;
+}
+
+#site-name {
+  display: flex;
+  border-bottom: 1px solid #32323d;
+  justify-content: center;
+  height: 99.9%;
+}
+
+#menu:focus,
+#menu {
+  outline: 0;
+  border: 0;
+  display: block !important;
+}
+
+#grid-container {
+  display: grid;
+  grid-template-columns: 0.4fr 1.7fr 0.3fr;
+  grid-template-rows: 40px 84vh 10vh;
+  grid-template-areas: "title search profile" "tracks tracks tracks" "controls player player";
+}
+
+.menu-open {
+  grid-template-areas: "title search profile" "sidebar sidebar tracks" "controls player player" !important;
+}
+#album-picture,
+#datacells-artist > div > div.artist-album-area > img,
+#datacells-browse > div > div > div > a > img,
+#datacells-browse > div > div > div > a > img {
+  height: 150px;
+  width: 150px;
+}
+#album-area {
+  flex-direction: column;
+}
+#artist-profile > button,
+#album-picture {
+  align-self: center;
+}
+#artist-profile {
+  align-items: center;
+}
+#datacells-artist > div {
+  display: flex;
+  flex-direction: column;
+}
+#album-area {
+  margin: 20px !important;
+}
+#datacells-artist > div > div.artist-album-tracks {
+  width: 100%;
+}

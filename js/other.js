@@ -9,7 +9,7 @@ function albumNav(album_name, album_loc, artist_name, days) {
     }
     document.cookie = "album_name=" + album_name + expires + "; path=/";
     document.cookie = "album_loc=" + album_loc + expires + "; path=/";
-    document.cookie = "artist_name=" + album_name + expires + "; path=/";
+    document.cookie = "artist_name=" + artist_name + expires + "; path=/";
 
 
     $('#datagrid').load('album.php')
@@ -27,12 +27,10 @@ function artistNav(artist_name, artist_loc, days) {
     document.cookie = "artist_name=" + artist_name + expires + "; path=/";
     document.cookie = "artist_loc=" + artist_loc + expires + "; path=/";
 
-    alert(artist_name + artist_loc)
-
     $('#datagrid').load('artist.php')
 }
 
 $("#menu").on("click", function() {
     $("#grid-container").toggleClass("menu-open");
-    $('#sidebar').toggleClass("sidebar-open") 
+    $('#sidebar').toggleClass("sidebar-open")
 })
