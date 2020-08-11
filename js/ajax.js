@@ -8,8 +8,12 @@ function favorite(track_id) {
         success: function(data) {
             if (data == "LIKED") {
                 $(".favorite[data-id='" + track_id + "']").html("favorite")
+                likes = $(".favorite[data-id='" + track_id + "']").siblings(".track-likes-a").text()
+                $(".favorite[data-id='" + track_id + "']").siblings(".track-likes-a").html(++likes)
             } else if (data == "DISLIKED") {
                 $(".favorite[data-id='" + track_id + "']").html("favorite_border")
+                likes = $(".favorite[data-id='" + track_id + "']").siblings(".track-likes-a").text()
+                $(".favorite[data-id='" + track_id + "']").siblings(".track-likes-a").html(--likes)
             }
         }
     })

@@ -20,7 +20,7 @@
 <?php
     $con = OpenCon();
 
-    if ($stmt = $con->prepare("SELECT tracks.track_id, tracks.track_title, tracks.track_loc, albums.album_name, albums.album_loc, artists.artist_name, artists.artist_loc from tracks INNER JOIN albums INNER JOIN artists WHERE tracks.album_id = albums.album_id and tracks.artist_id = artists.artist_id")) {
+    if ($stmt = $con->prepare("SELECT track_details.track_id,track_details.track_title,track_likes_details.total_likes,track_details.album_name,track_details.artist_name,track_details.track_loc,track_details.album_loc,track_details.artist_loc FROM track_likes_details RIGHT OUTER JOIN track_details on track_likes_details.track_id = track_details.track_id")) {
         $stmt->execute();
     
         $result = $stmt->get_result();
@@ -57,7 +57,15 @@
                 <span class="track-title track-title-a">{$row["track_title"]}</span>
                 <span class="track-artist track-artist-a" onclick="artistNav('{$row["artist_name"]}', '{$row["artist_loc"]}', 1)">{$row["artist_name"]}</span>
                 <span class="track-album track-album-a" onclick="albumNav('{$row["album_name"]}', '{$row["album_loc"]}', '{$row["artist_name"]}', 1)">{$row["album_name"]}</span>
-                <span class="track-likes track-likes-a">LIKES</span>
+                <span class="track-likes track-likes-a">
+                EOL;
+
+                if (is_null($row["total_likes"])) {
+                    $row["total_likes"] = 0;
+                }    
+
+                echo <<<EOL
+                {$row["total_likes"]}</span>
             </div>
             EOL;
         }
