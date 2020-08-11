@@ -25,7 +25,7 @@ include "dbcon.php";
             echo <<< EOL
                 <div class="album-gallery">
                     <a class="browse-artist" href="#">
-                        <img src='$row[artist_loc]' alt="arist" width="200" height="200" onclick="artistNav('{$row["artist_name"]}', '{$row["artist_loc"]}', 1)" style="border-radius: 50%;">
+                        <img src='{$row["artist_loc"]}' alt="arist" onclick="artistNav('{$row["artist_name"]}', '{$row["artist_loc"]}', 1)" style="border-radius: 50%;">
                     </a>
                     <div class="desc">{$row["artist_name"]}</div>
                 </div>
@@ -54,7 +54,7 @@ include "dbcon.php";
                     echo <<< EOL
                         <div class="album-gallery">
                             <a class="browse-album" href="#">
-                                <img class="browse-album-select" src="{$row["album_loc"]}" alt="album art" onclick="albumNav('{$row["album_name"]}', '{$row["album_loc"]}', '{$row["artist_name"]}', 1)" width="200" height="200">
+                                <img class="browse-album-select" src="{$row["album_loc"]}" alt="album art" onclick="albumNav('{$row["album_name"]}', '{$row["album_loc"]}', '{$row["artist_name"]}', 1)">
                             </a>
                             <div class="desc">${row["album_name"]}</div>
                         </div>

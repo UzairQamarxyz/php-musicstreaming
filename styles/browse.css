@@ -20,5 +20,15 @@
 }
 
 .gallery-outerdiv {
-    margin:30px;
+  margin: 30px;
+}
+
+.browse-artist img {
+  width: 200px;
+  height: 200px;
+}
+
+.browse-album img {
+  width: 200px;
+  height: 200px;
 }

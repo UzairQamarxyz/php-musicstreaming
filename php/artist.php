@@ -60,7 +60,7 @@ echo <<< EOL
             EOL;
     
             if ($stmt1 = $con->prepare('SELECT tracks.track_id, tracks.track_title, tracks.track_loc, albums.album_name, albums.album_loc, artists.artist_name FROM tracks INNER JOIN albums INNER JOIN albumsxartists INNER JOIN artists on tracks.album_id = albums.album_id AND albums.album_id = albumsxartists.album_id AND albumsxartists.artist_id = artists.artist_id AND albums.album_name = ?')) {
-                $stmt1->bind_param('s', $album_name);
+                $stmt1->bind_param('s', $row["album_name"]);
                 $stmt1->execute();
     
                 $result1 = $stmt1->get_result();

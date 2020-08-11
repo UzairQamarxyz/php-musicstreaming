@@ -3,6 +3,8 @@
 
 <head>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="stylesheet" type="text/css" href="../styles/streams.css">
     <link rel="stylesheet" type="text/css" href="../styles/album.css">
     <link rel="stylesheet" type="text/css" href="../styles/artist.css">
@@ -15,6 +17,9 @@
     <link rel="stylesheet" type="text/css" href="../styles/universal/player.css">
     <link rel="stylesheet" type="text/css" href="../styles/universal/sidebar.css">
     <link rel="stylesheet" type="text/css" href="../styles/universal/topbar.css">
+
+    <link rel="stylesheet" media='screen and (min-width: 140px) and (max-width: 380px)' href="../styles/universal/phone.css"/>
+    <link rel="stylesheet" media='screen and (min-width: 381px) and (max-width: 700px)' href="../styles/universal/tablet.css"/>
 
     <script type="text/javascript" src="../js/other.js" defer></script>
     <script type="text/javascript" src="../js/player.js" defer></script>
@@ -36,8 +41,11 @@
         exit;
     }
 ?>
-<div class="grid-container">
-    <h1 id="site-name">SITE</h1>
+<div id="grid-container">
+    <div id="site-name">
+        <h1>SITE</h1>
+        <button id="menu" class="material-icons menu" style="display:none;">menu</button>
+    </div>
 
     <div id="searchbar">
         <i id="search-icon" class="material-icons operator">search</i>
@@ -131,9 +139,6 @@ $('#uploadsongs-page').click(function(){
     $('#datagrid').load('uploadsongs.php')
     $("#list li a").removeClass("active")
     $('#uploadsongs-page').addClass("active") 
-})
-$(".browse-artist").click(function (){
-    $('#datagrid').load('artist.php')
 })
 
 $("#search-text").on("keyup", function() {

@@ -15,35 +15,6 @@ function favorite(track_id) {
     })
 }
 
-function albumNav(album_name, artist_name, album_loc) {
-    $.ajax({
-        url: "./album.php",
-        type: "GET",
-        data: {
-            album_name: album_name,
-            artist_name: artist_name,
-            album_loc: album_loc
-        },
-        success: function(data) {
-            $("#datagrid").html(data)
-        }
-    })
-}
-
-function artistNav(artist_name, artist_loc) {
-    $.ajax({
-        url: "./artist.php",
-        type: "GET",
-        data: {
-            artist_name: artist_name,
-            artist_loc: artist_loc
-        },
-        success: function(data) {
-            $("#datagrid").html(data)
-        }
-    })
-}
-
 function emailUpdate() {
     var email = $("#email").val()
     if (!email) {
