@@ -36,17 +36,26 @@
   color: #ccc9dc;
 }
 
+.unfollow,
+.unfollow:focus,
 .follow,
 .follow:focus {
   font-family: barlow;
   font-weight: bold;
   margin: 10px 0px;
   background-color: #00a6fb;
+  border: 2px solid #00a6fb !important;
   outline: none;
-  border: none;
   cursor: pointer;
   border-radius: 30px;
   font-size: 16px;
   padding: 7px 15px;
   align-self: flex-start;
+}
+
+.unfollow,
+.unfollow:focus {
+  color: #00a6fb;
+  background-color: transparent;
+  border: 2px solid white !important;
 }

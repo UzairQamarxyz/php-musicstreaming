@@ -1,11 +1,10 @@
 <?php
     session_start();
     include "dbcon.php";
-
     
     $con = OpenCon();
 
-    if ($stmt0 = $con->prepare("SELECT COUNT(*) FROM userxlikes where user_id = ? and track_id = ?")) {
+    if ($stmt0 = $con->prepare("SELECT COUNT(*) FROM userxartists where user_id = ? and artist_id = ?")) {
         $stmt0->bind_param("ii", $_SESSION["id"], $_POST["id"]);
         $stmt0->execute();
         $stmt0->bind_result($found);
@@ -15,18 +14,18 @@
         if ($found == 0) {
             $con =  OpenCon();
 
-            if ($stmt = $con->prepare("INSERT INTO userxlikes (user_id, track_id) VALUES (?, ?);")) {
+            if ($stmt = $con->prepare("INSERT INTO userxartists (user_id, artist_id) VALUES (?, ?);")) {
                 $stmt->bind_param("ii", $_SESSION["id"], $_POST["id"]);
                 $stmt->execute();
-                echo "LIKED";
+                echo "following";
             }
         } elseif ($found == 1) {
             $con =  OpenCon();
 
-            if ($stmt = $con->prepare("DELETE FROM userxlikes WHERE user_id = ? AND track_id = ?;")) {
+            if ($stmt = $con->prepare("DELETE FROM userxartists WHERE user_id = ? AND artist_id = ?;")) {
                 $stmt->bind_param("ii", $_SESSION["id"], $_POST["id"]);
                 $stmt->execute();
-                echo "DISLIKED";
+                echo "unfollowing";
             }
         }
     }

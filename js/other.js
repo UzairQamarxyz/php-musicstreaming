@@ -15,7 +15,7 @@ function albumNav(album_name, album_loc, artist_name, days) {
     $('#datagrid').load('album.php')
 }
 
-function artistNav(artist_name, artist_loc, days) {
+function artistNav(artist_id, artist_name, artist_loc, days) {
     var expires;
     if (days) {
         var date = new Date();
@@ -24,6 +24,7 @@ function artistNav(artist_name, artist_loc, days) {
     } else {
         expires = "";
     }
+    document.cookie = "artist_id=" + artist_id+ expires + "; path=/";
     document.cookie = "artist_name=" + artist_name + expires + "; path=/";
     document.cookie = "artist_loc=" + artist_loc + expires + "; path=/";
 

@@ -25,7 +25,7 @@ echo <<< EOL
     EOL;
     CloseCon($con);
 ?>
-        <button class="follow">Follow</button>
+    <button class="follow" onclick="follow('<?=$_COOKIE["artist_id"]?>')">Follow</button>
     </div>
 </div>
 

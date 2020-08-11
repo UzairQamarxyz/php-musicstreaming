@@ -19,6 +19,27 @@ function favorite(track_id) {
     })
 }
 
+function follow(artist_id) {
+    $.ajax({
+        url: "../php/follow.php",
+        type: "POST",
+        data: {
+            id: artist_id
+        },
+        success: function(data) {
+            if(data == "following"){
+                $(".follow").addClass("unfollow")
+                $(".follow").removeClass("follow")
+                $(".unfollow").html("Following")
+            } else if (data == "unfollowing"){
+                $(".unfollow").addClass("follow")
+                $(".unfollow").removeClass("unfollow")
+                $(".follow").html("Follow")
+            }
+        }
+    })
+}
+
 function emailUpdate() {
     var email = $("#email").val()
     if (!email) {

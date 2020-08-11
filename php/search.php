@@ -79,6 +79,7 @@ if (isset($_POST['search'])) {
                 <span class="track-title">TITLE</span>
                 <span class="track-artist">ARTIST</span>
                 <span class="track-album">ALBUM</span>
+                <span class="track-likes">LIKES</span>
             </div>
         EOL;
 
@@ -89,6 +90,7 @@ if (isset($_POST['search'])) {
                 <div class="datacells-tracks">
                 <button class="material-icons track-number track-number-a" data-count={$count} onclick="loadTrack('{$row["track_loc"]}', '{$row["artist_name"]}', '{$row["track_title"]}', '{$row["album_loc"]}', {$count})">play_circle_filled</button>
                 EOL;
+            $count++;
 
             $con = OpenCon();
             if ($stmt1 = $con->prepare("SELECT COUNT(*) FROM userxlikes where user_id = ? and track_id = ?")) {
@@ -113,9 +115,17 @@ if (isset($_POST['search'])) {
                 <span class="track-title track-title-a">{$row["track_title"]}</span>
                 <span class="track-artist track-artist-a" onclick="artistNav('{$row["artist_name"]}', '{$row["artist_loc"]}', 1)">{$row["artist_name"]}</span>
                 <span class="track-album track-album-a" onclick="albumNav('{$row["album_name"]}', '{$row["album_loc"]}', '{$row["artist_name"]}', 1)">{$row["album_name"]}</span>
+                <span class="track-likes track-likes-a">
+                EOL;
+
+            if (is_null($row["total_likes"])) {
+                $row["total_likes"] = 0;
+            }
+
+            echo <<<EOL
+                {$row["total_likes"]}</span>
             </div>
             EOL;
-            $count++;
         }
         echo <<< EOL
         </div>

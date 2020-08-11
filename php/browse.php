@@ -17,7 +17,7 @@ include "dbcon.php";
 <?php
     $con = OpenCon();
     
-    if ($stmt = $con->prepare("SELECT artist_name, artist_loc FROM artists;")) {
+    if ($stmt = $con->prepare("SELECT artist_id, artist_name, artist_loc FROM artists;")) {
         $stmt->execute();
         $result = $stmt->get_result();
         
@@ -25,7 +25,7 @@ include "dbcon.php";
             echo <<< EOL
                 <div class="album-gallery">
                     <a class="browse-artist" href="#">
-                        <img src='{$row["artist_loc"]}' alt="arist" onclick="artistNav('{$row["artist_name"]}', '{$row["artist_loc"]}', 1)" style="border-radius: 50%;">
+                        <img src='{$row["artist_loc"]}' alt="arist" onclick="artistNav('{$row["artist_id"]}','{$row["artist_name"]}', '{$row["artist_loc"]}', 1)" style="border-radius: 50%;">
                     </a>
                     <div class="desc">{$row["artist_name"]}</div>
                 </div>
@@ -46,7 +46,7 @@ include "dbcon.php";
         <?php
             $con = OpenCon();
 
-            if ($stmt = $con->prepare("SELECT albums.album_name, albums.album_loc, artists.artist_name from albums JOIN albumsxartists JOIN artists on albums.album_id = albumsxartists.album_id and albumsxartists.artist_id = artists.artist_id")) {
+            if ($stmt = $con->prepare("SELECT albums.album_id, albums.album_name, albums.album_loc, artists.artist_name from albums JOIN albumsxartists JOIN artists on albums.album_id = albumsxartists.album_id and albumsxartists.artist_id = artists.artist_id")) {
                 $stmt->execute();
                 $result = $stmt->get_result();
 
