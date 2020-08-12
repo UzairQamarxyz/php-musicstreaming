@@ -7,9 +7,12 @@
   position: inherit !important;
 }
 
+#search-text{
+    
+}
+
 #album-art,
 #artist-artist-desc,
-#search-text,
 #banner-username > b,
 #site-name > h1,
 .track-likes,

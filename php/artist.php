@@ -24,8 +24,26 @@ echo <<< EOL
         <p id="artist-artist-desc">${row["artist_desc"]}</p>
     EOL;
     CloseCon($con);
+
+$con =  OpenCon();
+if ($stmt1 = $con->prepare("SELECT COUNT(*) FROM userxartists WHERE userxartists.user_id = ? and userxartists.artist_id = ?")) {
+    $stmt1->bind_param("ii", $_SESSION["id"], $_COOKIE["artist_id"]);
+    $stmt1->execute();
+    $stmt1->bind_result($found);
+
+    $stmt1->fetch();
+
+    if ($found == 0) {
+        echo <<<EOL
+        <button class="follow" onclick="follow('{$_COOKIE["artist_id"]}')">Follow</button>
+        EOL;
+    } else {
+        echo <<<EOL
+        <button class="unfollow" onclick="follow('{$_COOKIE["artist_id"]}')">Following</button>
+        EOL;
+    }
+}
 ?>
-    <button class="follow" onclick="follow('<?=$_COOKIE["artist_id"]?>')">Follow</button>
     </div>
 </div>
 

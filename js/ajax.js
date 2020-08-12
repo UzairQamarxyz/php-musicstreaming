@@ -8,12 +8,26 @@ function favorite(track_id) {
         success: function(data) {
             if (data == "LIKED") {
                 $(".favorite[data-id='" + track_id + "']").html("favorite")
-                likes = $(".favorite[data-id='" + track_id + "']").siblings(".track-likes-a").text()
-                $(".favorite[data-id='" + track_id + "']").siblings(".track-likes-a").html(++likes)
             } else if (data == "DISLIKED") {
                 $(".favorite[data-id='" + track_id + "']").html("favorite_border")
-                likes = $(".favorite[data-id='" + track_id + "']").siblings(".track-likes-a").text()
-                $(".favorite[data-id='" + track_id + "']").siblings(".track-likes-a").html(--likes)
+            }
+        }
+    })
+}
+
+function playlist(track_id, playlist_id) {
+    $.ajax({
+        url: "../php/playlist.php",
+        type: "POST",
+        data: {
+            track_id: track_id,
+            playlist_id: playlist_id
+        },
+        success: function(data) {
+            if (data == "added") {
+                $(".track-addtoplaylist-a[data-id='" + track_id + "']").html("playlist_add_check")
+            } else if (data == "removed") {
+                alert("removed")
             }
         }
     })
@@ -27,11 +41,11 @@ function follow(artist_id) {
             id: artist_id
         },
         success: function(data) {
-            if(data == "following"){
+            if (data == "following") {
                 $(".follow").addClass("unfollow")
                 $(".follow").removeClass("follow")
                 $(".unfollow").html("Following")
-            } else if (data == "unfollowing"){
+            } else if (data == "unfollowing") {
                 $(".unfollow").addClass("follow")
                 $(".unfollow").removeClass("unfollow")
                 $(".follow").html("Follow")

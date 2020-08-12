@@ -31,6 +31,11 @@ function artistNav(artist_id, artist_name, artist_loc, days) {
     $('#datagrid').load('artist.php')
 }
 
+function clearSearch() {
+    $("#search-text").val("")
+    $("#search-text").keyup()
+}
+
 $("#menu").on("click", function() {
     $("#grid-container").toggleClass("menu-open");
     $('#sidebar').toggleClass("sidebar-open")

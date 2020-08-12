@@ -15,12 +15,13 @@
         <span class="track-title">TITLE</span>
         <span class="track-artist">ARTIST</span>
         <span class="track-album">ALBUM</span>
-        <span class="track-likes">LIKES</span>
+        <span class="track-addtoplaylist"></span>
     </div>
 <?php
     $con = OpenCon();
 
-    if ($stmt = $con->prepare("SELECT track_details.track_id,track_details.track_title,track_likes_details.total_likes,track_details.album_name,track_details.artist_name,track_details.track_loc,track_details.album_loc,track_details.artist_loc FROM track_likes_details RIGHT OUTER JOIN track_details on track_likes_details.track_id = track_details.track_id")) {
+    if ($stmt = $con->prepare("SELECT users.user_id,users.user_name,tracks.track_id,tracks.track_title,tracks.track_loc,albums.album_id,albums.album_name,albums.album_loc,artists.artist_id,artists.artist_name,artists.artist_loc FROM users,userxartists,tracks,albums,artists WHERE users.user_id = userxartists.user_id and userxartists.artist_id = tracks.artist_id and tracks.artist_id = artists.artist_id and tracks.album_id = albums.album_id and users.user_id = ?")) {
+        $stmt->bind_param("i", $_SESSION["id"]);
         $stmt->execute();
     
         $result = $stmt->get_result();
@@ -55,19 +56,49 @@
 
             echo <<<EOL
                 <span class="track-title track-title-a">{$row["track_title"]}</span>
-                <span class="track-artist track-artist-a" onclick="artistNav('{$row["artist_name"]}', '{$row["artist_loc"]}', 1)">{$row["artist_name"]}</span>
+                <span class="track-artist track-artist-a" onclick="artistNav('{$row["artist_id"]}', '{$row["artist_name"]}', '{$row["artist_loc"]}', 1)">{$row["artist_name"]}</span>
                 <span class="track-album track-album-a" onclick="albumNav('{$row["album_name"]}', '{$row["album_loc"]}', '{$row["artist_name"]}', 1)">{$row["album_name"]}</span>
-                <span class="track-likes track-likes-a">
-                EOL;
-
-                if (is_null($row["total_likes"])) {
-                    $row["total_likes"] = 0;
-                }    
-
-                echo <<<EOL
-                {$row["total_likes"]}</span>
-            </div>
+                <div class="dropdown">
+                        <button class="material-icons track-number track-addtoplaylist-a" data-id="{$row["track_id"]}" onclick="playlist('{$row["track_id"]}')">playlist_add</button>
+                        <div class="dropdown-content">
             EOL;
+
+            $con = OpenCon();
+
+            if ($stmt2 = $con->prepare("SELECT playlist_id, playlist_name FROM `users_playlists` WHERE user_id = ?")) {
+                $stmt2->bind_param("i", $_SESSION["id"]);
+                $stmt2->execute();
+                $result2 = $stmt2->get_result();
+
+
+                while ($row2 = $result2->fetch_assoc()) {
+                    $con = OpenCon();
+                    if ($stmt3 = $con->prepare("SELECT COUNT(*) FROM playlists_contents WHERE playlists_contents.user_id = ? and playlists_contents.playlist_id = ? and playlists_contents.track_id = ?")) {
+                        $stmt3->bind_param("iii", $_SESSION["id"], $row2["playlist_id"], $row["track_id"]);
+                        $stmt3->execute();
+                        $stmt3->bind_result($found);
+
+                        $stmt3->fetch();
+                    
+                        if ($found == 0) {
+                            echo <<<EOL
+                        <a class="playlist-drp" href="#" onclick="playlist('{$row["track_id"]}', '{$row2["playlist_id"]}')">{$row2["playlist_name"]}</a>
+                        EOL;
+                        } else {
+                            echo <<<EOL
+                        <a class="playlist-drp" href="#" onclick="playlist('{$row["track_id"]}', '{$row2["playlist_id"]}')">{$row2["playlist_name"]}<i class="material-icons">done</i></a>
+                        EOL;
+                        }
+                    }
+                }
+
+                echo <<< EOL
+                        </div>
+                    </div>
+                </div>
+
+            EOL;
+            }
         }
     }
     CloseCon($con);

@@ -26,7 +26,7 @@ if (isset($_POST['search'])) {
             echo <<< EOL
                         <div class="album-gallery">
                             <a class="browse-artist" href="#">
-                                <img src='{$row["artist_loc"]}' alt="arist" width="200" height="200" onclick="artistNav('{$row["artist_name"]}', '{$row["artist_loc"]}')" style="border-radius: 50%;">
+                                <img src='{$row["artist_loc"]}' alt="arist" width="200" height="200" onclick="artistNav('{$row["artist_id"]}', '{$row["artist_name"]}', '{$row["artist_loc"]}')" style="border-radius: 50%;">
                             </a>
                             <div class="desc">{$row["artist_name"]}</div>
                         </div>
@@ -79,7 +79,7 @@ if (isset($_POST['search'])) {
                 <span class="track-title">TITLE</span>
                 <span class="track-artist">ARTIST</span>
                 <span class="track-album">ALBUM</span>
-                <span class="track-likes">LIKES</span>
+                <span class="track-addtoplaylist"></span>
             </div>
         EOL;
 
@@ -113,17 +113,8 @@ if (isset($_POST['search'])) {
 
             echo <<<EOL
                 <span class="track-title track-title-a">{$row["track_title"]}</span>
-                <span class="track-artist track-artist-a" onclick="artistNav('{$row["artist_name"]}', '{$row["artist_loc"]}', 1)">{$row["artist_name"]}</span>
+                <span class="track-artist track-artist-a" onclick="artistNav('{$row["artist_id"]}', '{$row["artist_name"]}', '{$row["artist_loc"]}', 1)">{$row["artist_name"]}</span>
                 <span class="track-album track-album-a" onclick="albumNav('{$row["album_name"]}', '{$row["album_loc"]}', '{$row["artist_name"]}', 1)">{$row["album_name"]}</span>
-                <span class="track-likes track-likes-a">
-                EOL;
-
-            if (is_null($row["total_likes"])) {
-                $row["total_likes"] = 0;
-            }
-
-            echo <<<EOL
-                {$row["total_likes"]}</span>
             </div>
             EOL;
         }

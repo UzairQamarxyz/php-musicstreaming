@@ -12,10 +12,7 @@
 #search-text,
 #banner-username > b,
 #site-name > h1,
-.track-likes,
-.track-album,
-.track-artist,
-#extra-controls {
+.track-likes {
   display: none;
 }
 
@@ -64,11 +61,11 @@
   display: grid;
   grid-template-columns: 0.4fr 1.7fr 0.3fr;
   grid-template-rows: 40px 84vh 10vh;
-  grid-template-areas: "title search profile" "tracks tracks tracks" "controls player player";
+  grid-template-areas: "title search profile" "tracks tracks tracks" "controls player misc";
 }
 
 .menu-open {
-  grid-template-areas: "title search profile" "sidebar sidebar tracks" "controls player player" !important;
+  grid-template-areas: "title search profile" "sidebar sidebar tracks" "controls player misc" !important;
 }
 #album-picture,
 #datacells-artist > div > div.artist-album-area > img,

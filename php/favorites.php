@@ -19,7 +19,7 @@
 <?php
     $con = OpenCon();
 
-    if ($stmt = $con->prepare("SELECT tracks.track_id, tracks.track_title, track_loc,albums.album_name, album_loc,artists.artist_name, artists.artist_loc from tracks JOIN userxlikes JOIN albums JOIN albumsxartists JOIN artists on tracks.track_id = userxlikes.track_id and tracks.album_id = albums.album_id and albums.album_id = albumsxartists.album_id and albumsxartists.artist_id = artists.artist_id and userxlikes.user_id = ?")) {
+    if ($stmt = $con->prepare("SELECT tracks.track_id, tracks.track_title, track_loc,albums.album_name, album_loc, artists.artist_id, artists.artist_name, artists.artist_loc from tracks JOIN userxlikes JOIN albums JOIN albumsxartists JOIN artists on tracks.track_id = userxlikes.track_id and tracks.album_id = albums.album_id and albums.album_id = albumsxartists.album_id and albumsxartists.artist_id = artists.artist_id and userxlikes.user_id = ?")) {
         $stmt->bind_param("i", $_SESSION['id']);
         $stmt->execute();
     
@@ -53,7 +53,7 @@
 
             echo <<<EOL
                 <span class="track-title track-title-a">{$row["track_title"]}</span>
-                <span class="track-artist track-artist-a" onclick="artistNav('{$row["artist_name"]}', '{$row["artist_loc"]}', 1)">{$row["artist_name"]}</span>
+                <span class="track-artist track-artist-a" onclick="artistNav('{$row["artist_id"]}','{$row["artist_name"]}', '{$row["artist_loc"]}', 1)">{$row["artist_name"]}</span>
                 <span class="track-album track-album-a" onclick="albumNav('{$row["album_name"]}', '{$row["album_loc"]}', '{$row["artist_name"]}', 1)">{$row["album_name"]}</span>
             </div>
             EOL;
