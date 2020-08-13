@@ -64,12 +64,11 @@ if ($stmt1 = $con->prepare("SELECT COUNT(*) FROM userxartists WHERE userxartists
             <div class="artist-album-div">
                 <div class="artist-album-area">
                     <img src='{$row["album_loc"]}' width=250px height=250px>
-                    <span class="track-album track-album-a" onclick="albumNav('{$row["album_name"]}', '{$row["album_loc"]}', '{$row["artist_name"]}', 1)">
+                    <span class="track-album track-album-a" onclick="albumNav('{$row["album_name"]}', '{$row["album_loc"]}', '{$_COOKIE["artist_name"]}', 1)">
                         <p>{$row['album_name']}</p>
                     </span>
                 </div>
                 <div class="artist-album-tracks">
-    
                 <div id="datacells-heading">
                     <span class="track-number track-no">#</span>
                     <span class="track-number track-fav"></span>
@@ -146,16 +145,14 @@ if ($stmt1 = $con->prepare("SELECT COUNT(*) FROM userxartists WHERE userxartists
 
                         echo <<< EOL
                         </div>
-                    </div>
-                </div>
+                        </div>
+                        </div>
 
-            EOL;
+                        EOL;
                     }
 
-                    EOL;
                     $count++;
                 }
-    
                 echo <<< EOL
                 </div>
             </div>
