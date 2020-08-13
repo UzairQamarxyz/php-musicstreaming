@@ -1,0 +1,65 @@
+#playlists-playlist-div {
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+}
+
+.playlists-playlist-name-div {
+  display: flex;
+  flex-direction: row;
+  padding: 20px 0px;
+  border-bottom: 2px solid #909094;
+  white-space: break-spaces;
+}
+.playlists-playlist-name {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+#add-playlist-circle:focus,
+#add-playlist-circle {
+  outline: 0;
+  border: 0;
+  margin: 30px;
+  font-size: 36px !important;
+  align-self: center;
+  cursor: pointer;
+}
+
+#addplaylist-form {
+  font-family: barlow;
+  display: none;
+  flex-direction: row;
+  padding: 20px 0px;
+  border-bottom: 2px solid #909094;
+  white-space: break-spaces;
+  justify-content: space-between;
+}
+
+#addplaylist-text {
+  font-family: barlow;
+  font-size: 26px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+}
+
+#playlists-playlist-count {
+  font-size: 26px;
+  font-weight: bold;
+}
+#playlists-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  white-space: break-spaces;
+}
+
+#playlists-playlist-add {
+  font-family: barlow;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+}

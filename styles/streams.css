@@ -33,9 +33,6 @@
   font-size: 14px;
 }
 
-.track-number {
-}
-
 .favorite {
   color: #00a6fb;
 }
@@ -43,11 +40,6 @@
 .datacells-tracks > span,
 #datacells-heading > span {
   text-align: start;
-}
-
-.track-no {
-}
-.track-fav {
 }
 
 .datacells-tracks {
@@ -60,28 +52,30 @@
   align-items: center;
 }
 
+.favorite {
+  width: 2%;
+}
 .track-number {
-  width: 4.5%;
+  width: 2%;
 }
 
 .track-title {
-  width: 25%;
-  margin-right: 12px;
+  width: 20%;
 }
 
 .track-artist {
-  width: 27%;
-  margin-right: 12px;
+  width: 20%;
 }
 
 .track-album {
-  width: 22%;
-  margin-right: 12px;
+  width: 20%;
 }
-.track-likes {
-  width: 6%;
-  margin-right: 12px;
+.track-addtoplaylist {
+  width: 2%;
 }
+#datacells > div > .dropdown {
+  width: 2%;
+} 
 
 .added,
 .added:focus,
@@ -95,6 +89,10 @@
   outline: none;
   text-align: left;
   cursor: pointer;
+}
+
+.playlist-drp * {
+  background-color: transparent;
 }
 
 .track-album-a,

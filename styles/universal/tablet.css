@@ -1,23 +1,23 @@
 #sidebar {
   position: absolute;
-  right: 100vw;
+  right: 1000000000vw;
 }
 
 .sidebar-open {
   position: inherit !important;
 }
 
+#search-text {
+}
+
 #album-art,
 #artist-artist-desc,
-#search-text,
 #banner-username > b,
-#site-name > h1,
-.track-likes {
+#site-name > h1 {
   display: none;
 }
 
 .gallery-outerdiv,
-.track-likes,
 .track-album,
 .track-artist,
 .track-title,
@@ -35,8 +35,8 @@
   padding: 0 !important;
 }
 
-#datagrid-heading{
-    margin: 20px !important;
+#datagrid-heading {
+  margin: 20px !important;
 }
 
 .operator {
@@ -65,7 +65,7 @@
 }
 
 .menu-open {
-  grid-template-areas: "title search profile" "sidebar sidebar tracks" "controls player misc" !important;
+  grid-template-areas: "title search profile" "sidebar tracks tracks" "controls player misc" !important;
 }
 #album-picture,
 #datacells-artist > div > div.artist-album-area > img,

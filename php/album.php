@@ -22,6 +22,7 @@ include "dbcon.php";
             <span class="track-number track-fav"></span>
             <span class="track-title">TITLE</span>
             <span class="track-artist">ARTIST</span>
+            <span class="track-addtoplaylist"></span>
         </div>
     
         <!-- Albums Gallery -->

@@ -15,6 +15,22 @@ function favorite(track_id) {
     })
 }
 
+var x = false;
+
+function addPlaylist() {
+    if (!x) {
+        $("#add-playlist-circle").html("remove_circle")
+        $("#addplaylist-form").css("display", "flex")
+
+        x = true;
+    } else {
+        $("#add-playlist-circle").html("add_circle")
+        $("#addplaylist-form").css("display", "none")
+
+        x = false;
+    }
+}
+
 function playlist(track_id, playlist_id) {
     $.ajax({
         url: "../php/playlist.php",
@@ -27,7 +43,6 @@ function playlist(track_id, playlist_id) {
             if (data == "added") {
                 $(".track-addtoplaylist-a[data-id='" + track_id + "']").html("playlist_add_check")
             } else if (data == "removed") {
-                alert("removed")
             }
         }
     })
@@ -102,9 +117,25 @@ function upload(fdata) {
         cache: false,
         processData: false,
         success: function(data) {
-            $("#datagrid").html(data)
+            $('#datagrid').load('settings.php')
         }
     });
+}
+
+function insertplaylist() {
+    var name = $("#addplaylist-text").val()
+    alert(name)
+
+    $.post({
+        url: "./addplaylist.php",
+        type: "POST",
+        data: {
+            name: name
+        },
+        success: function(data) {
+            $('#datagrid').load('playlists.php')
+        }
+    })
 }
 
 $('#profile-banner').on('click', function(event) {

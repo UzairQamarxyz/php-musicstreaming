@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="stylesheet" type="text/css" href="./styles/index.css">
     <link rel="stylesheet" type="text/css" href="./styles/form.css">
+
+    <link rel="stylesheet" media='screen and (min-width: 140px) and (max-width: 360px) and (-webkit-min-device-pixel-ratio: 1)' href="./styles/universal/phone.css"/>
+    <link rel="stylesheet" media='screen and (min-width: 361px) and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 1)' href="./styles/universal/tablet.css"/>
 
     <script type="text/javascript" src="./js/verification.js" defer></script>
 
@@ -36,6 +41,7 @@
                 </div>
                 <input type="submit" id="signup" name="signup" value="Signup"/>
             </form>
+                <button id="login-hidden" onclick="login()">Login</button>
             <?php
                 include "./php/dbcon.php";
 

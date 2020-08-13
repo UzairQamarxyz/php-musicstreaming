@@ -29,17 +29,22 @@ button {
   font-size: 15px;
 }
 
-#signup {
-  background-color: transparent;
+#login,
+#login:focus {
   border: 2px solid white;
-  color: white;
-  margin: 0px 5px 0px 0px;
-}
-
-#login {
-  border: 2px solid white;
+  outline: none;
   color: #00a6fb;
   margin: 0px 0px 0px 5px;
+}
+#login-hidden {
+  display: none;
+  border: 2px solid white;
+  outline: none;
+  color: #00a6fb;
+  padding: 13px;
+  width: 100%;
+  border-radius: 4px;
+  margin: 20px 0px;
 }
 
 #header {

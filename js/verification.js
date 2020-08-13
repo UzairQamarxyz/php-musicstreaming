@@ -1,5 +1,5 @@
 function login() {
-    window.open('./php/login.php', '_blank')
+    window.open('./php/login.php')
 }
 
 // EMAIL VALIDATION

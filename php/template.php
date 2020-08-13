@@ -11,17 +11,16 @@
     <link rel="stylesheet" type="text/css" href="../styles/profile.css">
     <link rel="stylesheet" type="text/css" href="../styles/browse.css">
     <link rel="stylesheet" type="text/css" href="../styles/settings.css">
-    <link rel="stylesheet" type="text/css" href="../styles/uploadsongs.css">
+    <link rel="stylesheet" type="text/css" href="../styles/playlists.css">
 
     <link rel="stylesheet" type="text/css" href="../styles/universal/grid.css">
     <link rel="stylesheet" type="text/css" href="../styles/universal/player.css">
     <link rel="stylesheet" type="text/css" href="../styles/universal/sidebar.css">
     <link rel="stylesheet" type="text/css" href="../styles/universal/topbar.css">
 
-<!-- MEDIA QUERIES
     <link rel="stylesheet" media='screen and (min-width: 140px) and (max-width: 360px) and (-webkit-min-device-pixel-ratio: 1)' href="../styles/universal/phone.css"/>
     <link rel="stylesheet" media='screen and (min-width: 361px) and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 1)' href="../styles/universal/tablet.css"/>
- -->
+
     <script type="text/javascript" src="../js/other.js" defer></script>
     <script type="text/javascript" src="../js/player.js" defer></script>
     <script type="text/javascript" src="../js/ajax.js" defer></script>

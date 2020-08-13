@@ -73,6 +73,7 @@ if ($stmt1 = $con->prepare("SELECT COUNT(*) FROM userxartists WHERE userxartists
                     <span class="track-number track-no">#</span>
                     <span class="track-number track-fav"></span>
                     <span class="track-title">TITLE</span>
+                    <span class="track-addtoplaylist"></span>
                 </div>
             EOL;
     
@@ -111,7 +112,7 @@ if ($stmt1 = $con->prepare("SELECT COUNT(*) FROM userxartists WHERE userxartists
                     echo <<< EOL
                         <span class="track-title track-title-a">{$row1["track_title"]}</span>
                                         <div class="dropdown">
-                <button class="material-icons track-number track-addtoplaylist-a" data-id="{$row["track_id"]}" onclick="playlist('{$row["track_id"]}')">playlist_add</button>
+                <button class="material-icons track-number track-addtoplaylist-a" data-id="{$row1["track_id"]}" onclick="playlist('{$row1["track_id"]}')">playlist_add</button>
                 <div class="dropdown-content">
             EOL;
 

@@ -1,20 +1,21 @@
 #sidebar {
   position: absolute;
-  right: 100vw;
+  right: 1000000000vw;
 }
 
 .sidebar-open {
   position: inherit !important;
 }
 
-#search-text{
-    
+#search-text {
 }
 
 #album-art,
 #artist-artist-desc,
 #banner-username > b,
 #site-name > h1,
+.track-addtoplaylist,
+.track-addtoplaylist-a,
 .track-likes,
 .track-album,
 .track-artist,
@@ -41,8 +42,8 @@
   padding: 0 !important;
 }
 
-#datagrid-heading{
-    margin: 20px !important;
+#datagrid-heading {
+  margin: 20px !important;
 }
 
 .operator {
@@ -99,4 +100,21 @@
 }
 #datacells-artist > div > div.artist-album-tracks {
   width: 100%;
+}
+
+#login-hidden {
+  display: block;
+}
+
+#content {
+  display: none;
+}
+
+#main {
+  justify-content: center;
+}
+
+#container {
+  width: 60vw;
+  margin: 0 !important;
 }
