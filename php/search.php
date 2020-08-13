@@ -115,12 +115,45 @@ if (isset($_POST['search'])) {
                 <span class="track-title track-title-a">{$row["track_title"]}</span>
                 <span class="track-artist track-artist-a" onclick="artistNav('{$row["artist_id"]}', '{$row["artist_name"]}', '{$row["artist_loc"]}', 1)">{$row["artist_name"]}</span>
                 <span class="track-album track-album-a" onclick="albumNav('{$row["album_name"]}', '{$row["album_loc"]}', '{$row["artist_name"]}', 1)">{$row["album_name"]}</span>
-            </div>
+                <div class="dropdown">
+                <button class="material-icons track-number track-addtoplaylist-a" data-id="{$row["track_id"]}" onclick="playlist('{$row["track_id"]}')">playlist_add</button>
+                <div class="dropdown-content">
             EOL;
+
+            $con = OpenCon();
+            if ($stmt2 = $con->prepare("SELECT playlist_id, playlist_name FROM `users_playlists` WHERE user_id = ?")) {
+                $stmt2->bind_param("i", $_SESSION["id"]);
+                $stmt2->execute();
+                $result2 = $stmt2->get_result();
+
+                while ($row2 = $result2->fetch_assoc()) {
+                    $con = OpenCon();
+                    if ($stmt3 = $con->prepare("SELECT COUNT(*) FROM playlists_contents WHERE playlists_contents.user_id = ? and playlists_contents.playlist_id = ? and playlists_contents.track_id = ?")) {
+                        $stmt3->bind_param("iii", $_SESSION["id"], $row2["playlist_id"], $row["track_id"]);
+                        $stmt3->execute();
+                        $stmt3->bind_result($found);
+
+                        $stmt3->fetch();
+                    
+                        if ($found == 0) {
+                            echo <<<EOL
+                        <a class="playlist-drp" href="#" onclick="playlist('{$row["track_id"]}', '{$row2["playlist_id"]}')">{$row2["playlist_name"]}</a>
+                        EOL;
+                        } else {
+                            echo <<<EOL
+                        <a class="playlist-drp" href="#" onclick="playlist('{$row["track_id"]}', '{$row2["playlist_id"]}')">{$row2["playlist_name"]}<i class="material-icons">done</i></a>
+                        EOL;
+                        }
+                    }
+                }
+
+                echo <<< EOL
+                        </div>
+                    </div>
+                </div>
+            EOL;
+            }
         }
-        echo <<< EOL
-        </div>
-        EOL;
     } else {
         echo <<< EOL
             No Results Found

@@ -77,6 +77,7 @@ if ($stmt1 = $con->prepare("SELECT COUNT(*) FROM userxartists WHERE userxartists
                 </div>
             EOL;
     
+            $con =  OpenCon();
             if ($stmt1 = $con->prepare('SELECT tracks.track_id, tracks.track_title, tracks.track_loc, albums.album_name, albums.album_loc, artists.artist_name FROM tracks INNER JOIN albums INNER JOIN albumsxartists INNER JOIN artists on tracks.album_id = albums.album_id AND albums.album_id = albumsxartists.album_id AND albumsxartists.artist_id = artists.artist_id AND albums.album_name = ?')) {
                 $stmt1->bind_param('s', $row["album_name"]);
                 $stmt1->execute();
@@ -110,8 +111,48 @@ if ($stmt1 = $con->prepare("SELECT COUNT(*) FROM userxartists WHERE userxartists
                     }
                     echo <<< EOL
                         <span class="track-title track-title-a">{$row1["track_title"]}</span>
+                                        <div class="dropdown">
+                <button class="material-icons track-number track-addtoplaylist-a" data-id="{$row["track_id"]}" onclick="playlist('{$row["track_id"]}')">playlist_add</button>
+                <div class="dropdown-content">
+            EOL;
+
+                    $con = OpenCon();
+
+                    if ($stmt2 = $con->prepare("SELECT playlist_id, playlist_name FROM `users_playlists` WHERE user_id = ?")) {
+                        $stmt2->bind_param("i", $_SESSION["id"]);
+                        $stmt2->execute();
+                        $result2 = $stmt2->get_result();
+
+                        while ($row2 = $result2->fetch_assoc()) {
+                            $con = OpenCon();
+                            if ($stmt3 = $con->prepare("SELECT COUNT(*) FROM playlists_contents WHERE playlists_contents.user_id = ? and playlists_contents.playlist_id = ? and playlists_contents.track_id = ?")) {
+                                $stmt3->bind_param("iii", $_SESSION["id"], $row2["playlist_id"], $row1["track_id"]);
+                                $stmt3->execute();
+                                $stmt3->bind_result($found);
+
+                                $stmt3->fetch();
+                    
+                                if ($found == 0) {
+                                    echo <<<EOL
+                        <a class="playlist-drp" href="#" onclick="playlist('{$row1["track_id"]}', '{$row2["playlist_id"]}')">{$row2["playlist_name"]}</a>
+                        EOL;
+                                } else {
+                                    echo <<<EOL
+                        <a class="playlist-drp" href="#" onclick="playlist('{$row1["track_id"]}', '{$row2["playlist_id"]}')">{$row2["playlist_name"]}<i class="material-icons">done</i></a>
+                        EOL;
+                                }
+                            }
+                        }
+
+                        echo <<< EOL
+                        </div>
                     </div>
-                EOL;
+                </div>
+
+            EOL;
+                    }
+
+                    EOL;
                     $count++;
                 }
     
@@ -125,6 +166,3 @@ if ($stmt1 = $con->prepare("SELECT COUNT(*) FROM userxartists WHERE userxartists
     CloseCon($con);
 ?>
 </div>
-
-<script>
-</script>

@@ -41,6 +41,8 @@ if ($stmt = $con->prepare('SELECT tracks.track_id, tracks.track_title, tracks.tr
             <div class="datacells-tracks">
                 <button class="material-icons track-number track-number-a" data-count={$count} onclick="loadTrack('{$row["track_loc"]}', '{$row["artist_name"]}', '{$row["track_title"]}', '{$row["album_loc"]}', {$count})">play_circle_filled</button>
             EOL;
+        $count++;
+
         $con =  OpenCon();
         if ($stmt1 = $con->prepare("SELECT COUNT(*) FROM userxlikes where user_id = ? and track_id = ?")) {
             $stmt1->bind_param("ii", $_SESSION["id"], $row["track_id"]);
@@ -62,11 +64,49 @@ if ($stmt = $con->prepare('SELECT tracks.track_id, tracks.track_title, tracks.tr
         echo <<< EOL
                     <span class="track-title track-title-a">{$row["track_title"]}</span>
                     <span class="track-artist track-artist-a" onclick="artistNav('{$row["artist_name"]}', '{$row["artist_loc"]}', 1)">{$row["artist_name"]}</span>
-                </div>
+                <div class="dropdown">
+                        <button class="material-icons track-number track-addtoplaylist-a" data-id="{$row["track_id"]}" onclick="playlist('{$row["track_id"]}')">playlist_add</button>
+                        <div class="dropdown-content">
             EOL;
-        $count++;
+
+        $con = OpenCon();
+
+        if ($stmt2 = $con->prepare("SELECT playlist_id, playlist_name FROM `users_playlists` WHERE user_id = ?")) {
+            $stmt2->bind_param("i", $_SESSION["id"]);
+            $stmt2->execute();
+            $result2 = $stmt2->get_result();
+
+
+            while ($row2 = $result2->fetch_assoc()) {
+                $con = OpenCon();
+                if ($stmt3 = $con->prepare("SELECT COUNT(*) FROM playlists_contents WHERE playlists_contents.user_id = ? and playlists_contents.playlist_id = ? and playlists_contents.track_id = ?")) {
+                    $stmt3->bind_param("iii", $_SESSION["id"], $row2["playlist_id"], $row["track_id"]);
+                    $stmt3->execute();
+                    $stmt3->bind_result($found);
+
+                    $stmt3->fetch();
+                    
+                    if ($found == 0) {
+                        echo <<<EOL
+                        <a class="playlist-drp" href="#" onclick="playlist('{$row["track_id"]}', '{$row2["playlist_id"]}')">{$row2["playlist_name"]}</a>
+                        EOL;
+                    } else {
+                        echo <<<EOL
+                        <a class="playlist-drp" href="#" onclick="playlist('{$row["track_id"]}', '{$row2["playlist_id"]}')">{$row2["playlist_name"]}<i class="material-icons">done</i></a>
+                        EOL;
+                    }
+                }
+            }
+
+            echo <<< EOL
+                        </div>
+                    </div>
+                </div>
+
+            EOL;
+        }
     }
 }
+    CloseCon($con);
 ?>
-        </div>
 </div>
